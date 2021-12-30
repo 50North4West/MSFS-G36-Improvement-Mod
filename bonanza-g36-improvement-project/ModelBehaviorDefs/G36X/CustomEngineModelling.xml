@@ -1,0 +1,388 @@
+<!--#################################################################################################################-->
+<!--#################################################################################################################
+https://docs.flightsimulator.com/html/index.htm#t=Additional_Information%2FReverse_Polish_Notation.htm&rhsearch=xml&rhhlterm=xml
+https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars/Aircraft_Engine_Variables.htm
+-->
+
+<!-- A reversed throttle scale - 25% = 0.075 -->
+<Macro Name="ReverseThrottle">
+  100 (A:GENERAL ENG THROTTLE LEVER POSITION:1, percent) - 100000 / (&gt;L:G36XIP_FOUL_THROTTLE_SCALE)
+</Macro>
+
+<!-- ### CALL THE PROGRAM ### -->
+<Component ID="Call_Spark_Fouling">
+  <UseTemplate Name="Spark_Fouling">
+  </UseTemplate>
+</Component>
+
+<Template Name="Spark_Fouling">
+
+  <!-- Trigger function: Check mixture ratio is over 0.08 and if so set the fouling trigger var -->
+  <Component ID="Trigger">
+    <UseTemplate Name="ASOBO_GT_Update">
+      <FREQUENCY>1</FREQUENCY>
+        <UPDATE_CODE>
+          (A:ENG COMBUSTION:1, bool) 1 ==
+          (A:RECIP MIXTURE RATIO:1, ratio) 0.08 &gt; and
+          if{
+            1 (&gt;L:G36XIP_FOUL)
+          } els{
+            0 (&gt;L:G36XIP_FOUL)
+          }
+        </UPDATE_CODE>
+    </UseTemplate>
+  </Component>
+
+  <!-- A timer to initiate the trigger and ramp up the effect (Badness Scale affect ramped to max over 10 minutes / 600secs)-->
+  <Component ID="G36XTimer">
+    <UseTemplate Name="ASOBO_GT_Update">
+      <FREQUENCY>1</FREQUENCY>
+        <UPDATE_CODE>
+          (L:G36XIP_FOUL) 1 ==
+          (L:G36XIP_BADNESS_SCALE) 1 &lt;= and
+          (A:SIM ON GROUND, bool) 1 == and
+          if{
+            (L:G36XIP_BADNESS_SCALE) 0.001 + (&gt;L:G36XIP_BADNESS_SCALE)
+          }
+
+          (L:G36XIP_FOUL) 1 ==
+          (L:G36XIP_BADNESS_SCALE) 0.3 &lt;= and
+          (A:SIM ON GROUND, bool) 0 == and
+          if{
+            (L:G36XIP_BADNESS_SCALE) 0.001 + (&gt;L:G36XIP_BADNESS_SCALE)
+          }
+
+          (L:G36XIP_FOUL) 0 ==
+          (L:G36XIP_BADNESS_SCALE) 0 &gt;= and
+          if{
+          (A:SIM ON GROUND, bool) 1 ==
+            if{
+              (L:G36XIP_BADNESS_SCALE) 0.005 - (&gt;L:G36XIP_BADNESS_SCALE)
+            } els{
+              (L:G36XIP_BADNESS_SCALE) 0.05 - (&gt;L:G36XIP_BADNESS_SCALE)
+            }
+          }
+        </UPDATE_CODE>
+    </UseTemplate>
+  </Component>
+
+
+  <!--
+    Choose the number of spark plugs that will exibit fouling based on the severity of the engine running rich
+    if (mixture ratio > 0.08) {
+      L:G36XIP_NUM_SPARKS_TO_FOUL = random number (0-1) / mixture ratio
+    }
+  -->
+  <Component ID="ChooseNumSparks">
+    <UseTemplate Name="ASOBO_GT_Update">
+      <FREQUENCY>1</FREQUENCY>
+        <UPDATE_CODE>
+          (A:ENG COMBUSTION:1, bool) 1 ==
+          (A:RECIP MIXTURE RATIO:1, ratio) 0.08 &gt; and
+          if{
+            rand (A:RECIP MIXTURE RATIO:1, ratio) / near (&gt;L:G36XIP_NUM_SPARKS_TO_FOUL)
+            1 (&gt;L:G36XIP_FOULING_POSSIBLE)
+          }
+        </UPDATE_CODE>
+    </UseTemplate>
+  </Component>
+
+  <!--
+    Identify which spark plugs are most likely to foul based on ther LIKELIHOOD score
+  -->
+  <Component ID="GetTheSparksToFoul">
+    <UseTemplate Name="ASOBO_GT_Update">
+      <FREQUENCY>1</FREQUENCY>
+        <UPDATE_CODE>
+          (L:G36XIP_FOULING_POSSIBLE) 1 ==
+          (A:ENG COMBUSTION:1, bool) 1 == and
+          (L:G36XIP_SPARK_1_LIKELIHOOD) (L:G36XIP_SPARK_3_LIKELIHOOD) &gt; and
+          if{
+            (L:G36XIP_SPARK_5_LIKELIHOOD) (L:G36XIP_SPARK_7_LIKELIHOOD) &gt;
+            if{
+              (L:G36XIP_SPARK_1_LIKELIHOOD) (L:G36XIP_SPARK_5_LIKELIHOOD) &gt;
+              if{
+                (L:G36XIP_SPARK_9_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
+                if{
+                  (L:G36XIP_SPARK_1_LIKELIHOOD) (L:G36XIP_SPARK_9_LIKELIHOOD) &gt;
+                  if{
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    if{
+                      1 (&gt;L:G36XIP_SPARK_1_FOULING)
+                    }
+                  } els{
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    if{
+                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
+                    }
+                  }
+                } els{
+                  (L:G36XIP_SPARK_1_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
+                  if{
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    if{
+                      1 (&gt;L:G36XIP_SPARK_1_FOULING)
+                    }
+                  } els{
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    if{
+                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
+                    }
+                  }
+                }
+              } els{
+                (L:G36XIP_SPARK_9_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
+                if{
+                  (L:G36XIP_SPARK_5_LIKELIHOOD) (L:G36XIP_SPARK_9_LIKELIHOOD) &gt;
+                  if{
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    if{
+                      1 (&gt;L:G36XIP_SPARK_5_FOULING)
+                    }
+                  } els{
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    if{
+                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
+                    }
+                  }
+                } els{
+                  (L:G36XIP_SPARK_5_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
+                  if{
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    if{
+                      1 (&gt;L:G36XIP_SPARK_5_FOULING)
+                    }
+                  } els{
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    if{
+                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
+                    }
+                  }
+                }
+              }
+            } els{
+              (L:G36XIP_SPARK_1_LIKELIHOOD) (L:G36XIP_SPARK_7_LIKELIHOOD) &gt;
+              if{
+                (L:G36XIP_SPARK_9_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
+                if{
+                  (L:G36XIP_SPARK_1_LIKELIHOOD) (L:G36XIP_SPARK_9_LIKELIHOOD) &gt;
+                  if{
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    if{
+                      1 (&gt;L:G36XIP_SPARK_1_FOULING)
+                    }
+                  } els{
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    if{
+                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
+                    }
+                  }
+                } els{
+                  (L:G36XIP_SPARK_1_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
+                  if{
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    if{
+                      1 (&gt;L:G36XIP_SPARK_1_FOULING)
+                    }
+                  } els{
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    if{
+                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
+                    }
+                  }
+                }
+              }
+            }
+          } els{
+            (L:G36XIP_SPARK_5_LIKELIHOOD) (L:G36XIP_SPARK_7_LIKELIHOOD) &gt;
+            if{
+              (L:G36XIP_SPARK_3_LIKELIHOOD) (L:G36XIP_SPARK_5_LIKELIHOOD) &gt;
+              if{
+                (L:G36XIP_SPARK_9_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
+                if{
+                  (L:G36XIP_SPARK_3_LIKELIHOOD) (L:G36XIP_SPARK_9_LIKELIHOOD) &gt;
+                  if{
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    if{
+                      1 (&gt;L:G36XIP_SPARK_3_FOULING)
+                    }
+                  } els{
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    if{
+                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
+                    }
+                  }
+                } els{
+                  (L:G36XIP_SPARK_3_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
+                  if{
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    if{
+                      1 (&gt;L:G36XIP_SPARK_3_FOULING)
+                    }
+                  } els{
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    if{
+                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
+                    }
+                  }
+                }
+              } els{
+                (L:G36XIP_SPARK_9_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
+                if{
+                  (L:G36XIP_SPARK_5_LIKELIHOOD) (L:G36XIP_SPARK_9_LIKELIHOOD) &gt;
+                  if{
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    if{
+                      1 (&gt;L:G36XIP_SPARK_5_FOULING)
+                    }
+                  } els{
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    if{
+                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
+                    }
+                  }
+                } els{
+                  (L:G36XIP_SPARK_5_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
+                  if{
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    if{
+                      1 (&gt;L:G36XIP_SPARK_5_FOULING)
+                    }
+                  } els{
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    if{
+                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
+                    }
+                  }
+                }
+              }
+            } els{
+              (L:G36XIP_SPARK_3_LIKELIHOOD) (L:G36XIP_SPARK_7_LIKELIHOOD) &gt;
+              if{
+                (L:G36XIP_SPARK_9_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
+                if{
+                  (L:G36XIP_SPARK_3_LIKELIHOOD) (L:G36XIP_SPARK_9_LIKELIHOOD) &gt;
+                  if{
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    if{
+                      1 (&gt;L:G36XIP_SPARK_3_FOULING)
+                    }
+                  } els{
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    if{
+                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
+                    }
+                  }
+                } els{
+                  (L:G36XIP_SPARK_3_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
+                  if{
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    if{
+                      1 (&gt;L:G36XIP_SPARK_3_FOULING)
+                    }
+                  } els{
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    if{
+                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
+                    }
+                  }
+                }
+              } els{
+                (L:G36XIP_SPARK_9_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
+                if{
+                  (L:G36XIP_SPARK_7_LIKELIHOOD) (L:G36XIP_SPARK_9_LIKELIHOOD) &gt;
+                  if{
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    if{
+                      1 (&gt;L:G36XIP_SPARK_7_FOULING)
+                    }
+                  } els{
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    if{
+                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
+                    }
+                  }
+                } els{
+                  (L:G36XIP_SPARK_7_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
+                  if{
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    if{
+                      1 (&gt;L:G36XIP_SPARK_7_FOULING)
+                    }
+                  } els{
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    if{
+                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
+                    }
+                  }
+                }
+              }
+            }
+          }
+        </UPDATE_CODE>
+    </UseTemplate>
+  </Component>
+
+  <Component ID="FoulThem">
+    <UseTemplate Name="ASOBO_GT_Update">
+      <FREQUENCY>1</FREQUENCY>
+        <UPDATE_CODE>
+          (L:G36XIP_SPARK_1_FOULING) 1 ==
+          (A:GENERAL ENG RPM:1, rpm) 600 &gt; and
+          if{
+            (A:GENERAL ENG PCT MAX RPM:1, percent) (L:G36XIP_BADNESS_SCALE) - (&gt;A:GENERAL ENG PCT MAX RPM:1, percent)
+          }
+
+          (L:G36XIP_SPARK_3_FOULING) 1 ==
+          (A:GENERAL ENG RPM:1, rpm) 600 &gt; and
+          if{
+            (A:GENERAL ENG PCT MAX RPM:1, percent) (L:G36XIP_BADNESS_SCALE) - (&gt;A:GENERAL ENG PCT MAX RPM:1, percent)
+          }
+
+          (L:G36XIP_SPARK_5_FOULING) 1 ==
+          (A:GENERAL ENG RPM:1, rpm, percent) 600 &gt; and
+          if{
+            (A:GENERAL ENG PCT MAX RPM:1, percent) (L:G36XIP_BADNESS_SCALE) - (&gt;A:GENERAL ENG PCT MAX RPM:1, percent)
+          }
+
+          (L:G36XIP_SPARK_7_FOULING) 1 ==
+          (A:GENERAL ENG RPM:1, rpm) 600 &gt; and
+          if{
+            (A:GENERAL ENG PCT MAX RPM:1, percent) (L:G36XIP_BADNESS_SCALE) - (&gt;A:GENERAL ENG PCT MAX RPM:1, percent)
+          }
+
+          (L:G36XIP_SPARK_9_FOULING) 1 ==
+          (A:GENERAL ENG RPM:1, rpm) 600 &gt; and
+          if{
+            (A:GENERAL ENG PCT MAX RPM:1, percent) (L:G36XIP_BADNESS_SCALE) - (&gt;A:GENERAL ENG PCT MAX RPM:1, percent)
+          }
+
+          (L:G36XIP_SPARK_11_FOULING) 1 ==
+          (A:GENERAL ENG RPM:1, rpm) 600 &gt; and
+          if{
+            (A:GENERAL ENG PCT MAX RPM:1, percent) (L:G36XIP_BADNESS_SCALE) - (&gt;A:GENERAL ENG PCT MAX RPM:1, percent)
+          }
+        </UPDATE_CODE>
+    </UseTemplate>
+  </Component>
+
+  <Component ID="MagDropEffect">
+    <UseTemplate Name="ASOBO_GT_Update">
+      <FREQUENCY>3</FREQUENCY>
+        <UPDATE_CODE>
+          (A:RECIP ENG LEFT MAGNETO:1, bool) 0 ==
+          if{
+            (A:GENERAL ENG PCT MAX RPM:1, percent) (L:G36XIP_BADNESS_SCALE) 0.5 + - (&gt;A:GENERAL ENG PCT MAX RPM:1, percent)
+          }
+
+          (A:RECIP ENG RIGHT MAGNETO:1, bool) 0 ==
+          if{
+            (A:GENERAL ENG PCT MAX RPM:1, percent) (L:G36XIP_BADNESS_SCALE) 0.5 + - (&gt;A:GENERAL ENG PCT MAX RPM:1, percent)
+          }
+        </UPDATE_CODE>
+    </UseTemplate>
+  </Component>
+
+
+</Template>
+

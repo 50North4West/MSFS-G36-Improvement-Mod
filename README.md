@@ -18,7 +18,7 @@ PLEASE NOTE - WE HAVE REMOVED THE 'Z' FROM THE FOLDER NAME, ENSURE YOU REMOVE TH
 
 Current version: 0.6.6 Beta 4 (Sim Update 7 Compatible)
 
-* MEW! Changed environmental controls to read C° rather than F°
+* NEW! Changed environmental controls to read C° rather than F°
 * NEW! Spark Plug Fouling (Refactored) - if you don't lean correctly both on the ground or in the air your plugs will encounter spark fouling, loosing RPM and engine power. Each spark is modelled independently and has its own likelihood to foul; this stays across flights, the spark most likely to foul will foul first.
 * The Bonanza G36 Improvement Project is now listed as it's own aircraft in the menu rather than overwriting the default aircraft (please see livery note)
 * Aircraft Persistence, all switches and fuel tanks are saved between flights

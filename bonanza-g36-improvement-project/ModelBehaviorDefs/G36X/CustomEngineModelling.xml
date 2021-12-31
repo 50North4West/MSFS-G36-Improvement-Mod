@@ -47,6 +47,7 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
 
           (L:G36XIP_FOUL) 1 ==
           (L:G36XIP_BADNESS_SCALE) 0.3 &lt;= and
+          (A:GENERAL ENG THROTTLE LEVER POSITION:1, percent) 30 &lt; and
           (A:SIM ON GROUND, bool) 0 == and
           if{
             (L:G36XIP_BADNESS_SCALE) 0.001 + (&gt;L:G36XIP_BADNESS_SCALE)

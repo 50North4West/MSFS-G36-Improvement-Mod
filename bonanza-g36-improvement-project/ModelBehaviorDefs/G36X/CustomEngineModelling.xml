@@ -68,7 +68,7 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
 
 
   <!--
-    Choose the number of spark plugs that will exibit fouling based on the severity of the engine running rich
+    Choose the number of spark plugs that will exibit fouling based on the severity of the engine running rich (Max seems to be 0.091104543)
     if (mixture ratio > 0.08) {
       L:G36XIP_NUM_SPARKS_TO_FOUL = random number (0-1) / mixture ratio
     }
@@ -80,7 +80,9 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
           (A:ENG COMBUSTION:1, bool) 1 ==
           (A:RECIP MIXTURE RATIO:1, ratio) 0.08 &gt; and
           if{
-            rand (A:RECIP MIXTURE RATIO:1, ratio) / near (&gt;L:G36XIP_NUM_SPARKS_TO_FOUL)
+            0.091104543 0.08 - (&gt;O:G36XIP_XNORMALIZED)
+            (A:RECIP MIXTURE RATIO:1, ratio) 0.08 - (&gt;O:G36XIP_XMINIMUM)
+            (O:G36XIP_XMINIMUM) (O:G36XIP_XNORMALIZED) / 100 * near (&gt;L:G36XIP_NUM_SPARKS_TO_FOUL)
             1 (&gt;L:G36XIP_FOULING_POSSIBLE)
           }
         </UPDATE_CODE>
@@ -106,12 +108,14 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
                 if{
                   (L:G36XIP_SPARK_1_LIKELIHOOD) (L:G36XIP_SPARK_9_LIKELIHOOD) &gt;
                   if{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 1 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 17 &lt;
                     if{
                       1 (&gt;L:G36XIP_SPARK_1_FOULING)
                     }
                   } els{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 17 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 34 &lt;
                     if{
                       1 (&gt;L:G36XIP_SPARK_9_FOULING)
                     }
@@ -119,12 +123,14 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
                 } els{
                   (L:G36XIP_SPARK_1_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
                   if{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 1 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 17 &lt;
                     if{
                       1 (&gt;L:G36XIP_SPARK_1_FOULING)
                     }
                   } els{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 17 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 34 &lt;
                     if{
                       1 (&gt;L:G36XIP_SPARK_11_FOULING)
                     }
@@ -135,12 +141,14 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
                 if{
                   (L:G36XIP_SPARK_5_LIKELIHOOD) (L:G36XIP_SPARK_9_LIKELIHOOD) &gt;
                   if{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 1 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 17 &lt;
                     if{
                       1 (&gt;L:G36XIP_SPARK_5_FOULING)
                     }
                   } els{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 17 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 34 &lt;
                     if{
                       1 (&gt;L:G36XIP_SPARK_9_FOULING)
                     }
@@ -148,12 +156,14 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
                 } els{
                   (L:G36XIP_SPARK_5_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
                   if{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 1 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 17 &lt;
                     if{
                       1 (&gt;L:G36XIP_SPARK_5_FOULING)
                     }
                   } els{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 17 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 34 &lt;
                     if{
                       1 (&gt;L:G36XIP_SPARK_11_FOULING)
                     }
@@ -167,12 +177,14 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
                 if{
                   (L:G36XIP_SPARK_1_LIKELIHOOD) (L:G36XIP_SPARK_9_LIKELIHOOD) &gt;
                   if{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 1 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 17 &lt;
                     if{
                       1 (&gt;L:G36XIP_SPARK_1_FOULING)
                     }
                   } els{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 17 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 34 &lt;
                     if{
                       1 (&gt;L:G36XIP_SPARK_9_FOULING)
                     }
@@ -180,12 +192,14 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
                 } els{
                   (L:G36XIP_SPARK_1_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
                   if{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 1 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 17 &lt;
                     if{
                       1 (&gt;L:G36XIP_SPARK_1_FOULING)
                     }
                   } els{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 17 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 34 &lt;
                     if{
                       1 (&gt;L:G36XIP_SPARK_11_FOULING)
                     }
@@ -202,12 +216,14 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
                 if{
                   (L:G36XIP_SPARK_3_LIKELIHOOD) (L:G36XIP_SPARK_9_LIKELIHOOD) &gt;
                   if{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 1 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 17 &lt;
                     if{
                       1 (&gt;L:G36XIP_SPARK_3_FOULING)
                     }
                   } els{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 17 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 34 &lt;
                     if{
                       1 (&gt;L:G36XIP_SPARK_9_FOULING)
                     }
@@ -215,12 +231,14 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
                 } els{
                   (L:G36XIP_SPARK_3_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
                   if{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 1 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 17 &lt;
                     if{
                       1 (&gt;L:G36XIP_SPARK_3_FOULING)
                     }
                   } els{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 17 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 34 &lt;
                     if{
                       1 (&gt;L:G36XIP_SPARK_11_FOULING)
                     }
@@ -231,12 +249,14 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
                 if{
                   (L:G36XIP_SPARK_5_LIKELIHOOD) (L:G36XIP_SPARK_9_LIKELIHOOD) &gt;
                   if{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 1 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 17 &lt;
                     if{
                       1 (&gt;L:G36XIP_SPARK_5_FOULING)
                     }
                   } els{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 17 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 34 &lt;
                     if{
                       1 (&gt;L:G36XIP_SPARK_9_FOULING)
                     }
@@ -244,12 +264,14 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
                 } els{
                   (L:G36XIP_SPARK_5_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
                   if{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 1 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 17 &lt;
                     if{
                       1 (&gt;L:G36XIP_SPARK_5_FOULING)
                     }
                   } els{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 17 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 34 &lt;
                     if{
                       1 (&gt;L:G36XIP_SPARK_11_FOULING)
                     }
@@ -263,12 +285,14 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
                 if{
                   (L:G36XIP_SPARK_3_LIKELIHOOD) (L:G36XIP_SPARK_9_LIKELIHOOD) &gt;
                   if{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 1 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 17 &lt;
                     if{
                       1 (&gt;L:G36XIP_SPARK_3_FOULING)
                     }
                   } els{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 17 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 34 &lt;
                     if{
                       1 (&gt;L:G36XIP_SPARK_9_FOULING)
                     }
@@ -276,12 +300,14 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
                 } els{
                   (L:G36XIP_SPARK_3_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
                   if{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 1 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 17 &lt;
                     if{
                       1 (&gt;L:G36XIP_SPARK_3_FOULING)
                     }
                   } els{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 17 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 34 &lt;
                     if{
                       1 (&gt;L:G36XIP_SPARK_11_FOULING)
                     }
@@ -292,12 +318,14 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
                 if{
                   (L:G36XIP_SPARK_7_LIKELIHOOD) (L:G36XIP_SPARK_9_LIKELIHOOD) &gt;
                   if{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 1 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 17 &lt;
                     if{
                       1 (&gt;L:G36XIP_SPARK_7_FOULING)
                     }
                   } els{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 17 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 34 &lt;
                     if{
                       1 (&gt;L:G36XIP_SPARK_9_FOULING)
                     }
@@ -305,12 +333,14 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
                 } els{
                   (L:G36XIP_SPARK_7_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
                   if{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 1 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 17 &lt;
                     if{
                       1 (&gt;L:G36XIP_SPARK_7_FOULING)
                     }
                   } els{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 2 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 17 &gt;
+                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 34 &lt;
                     if{
                       1 (&gt;L:G36XIP_SPARK_11_FOULING)
                     }

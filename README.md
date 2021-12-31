@@ -1,4 +1,4 @@
-# MSFS G36 Project version 0.6.6 Beta 4
+# MSFS G36 Project version 0.6.6 Beta 5
 
 This is the improvement project for the MSFS default G36. It all started as a simple edit of some configuration files but it has since grown into a fully-fledged modification that improves all aspects of the default G36 and introduces new features. This was made possible with the help of the community consisting of both enthusiasts and G36 pilots (for a list of contributors, see the end of this readme).
 
@@ -18,13 +18,14 @@ PLEASE NOTE - WE HAVE REMOVED THE 'Z' FROM THE FOLDER NAME, ENSURE YOU REMOVE TH
 
 Current version: 0.6.6 Beta 4 (Sim Update 7 Compatible)
 
+* Added TAWS system test message
 * NEW! Integrated @BufordTX's VR Friendly Prop Mod
 * NEW! Changed environmental controls to read C° rather than F°
 * NEW! Spark Plug Fouling (Refactored) - if you don't lean correctly both on the ground or in the air your plugs will encounter spark fouling, loosing RPM and engine power. Each spark is modelled independently and has its own likelihood to foul; this stays across flights, the spark most likely to foul will foul first.
 * The Bonanza G36 Improvement Project is now listed as it's own aircraft in the menu rather than overwriting the default aircraft (please see livery note)
 * Aircraft Persistence, all switches and fuel tanks are saved between flights
 * Aircraft Persistence, saves for different liveries - have multiple Bonanzas in your fleet all with different personalities
-* Beginnings of the Bonanza Hangar; currently an empty panel window, but basis for next beta release. You will manage your aircraft here, check for spark fouling, oil changes and more.
+* Beginnings of the Bonanza Hangar; basis for next release. You will manage your aircraft here, check for spark fouling, oil changes and more.
 * Reworked Engine performance figures: after more than 30hrs of testing and tweaking, the engine performance figures match the POH as close as we can get them and have been verified by real Bonanza pilots. TAS is within 0.22kts on average across the altitude spectrum and fuel flow within 1g/h.
 * Fixed: NXi Engine System Page spacing
 * Fixed: Aircraft getting stuck on the ground. Changed nose height on gear to reflect reference pictures, increased nose gear damping affect, thanks to Synoxys787 for his help and research
@@ -49,7 +50,7 @@ Features:
 **Engine & Fuel system**
 * Completely overhauled engine parameters: realistic fuel flow, mixture-EGT interaction, engine performance at all pressure altitudes.
 * Simulation of the electric fuel pump
-* More advanced simulation of engine startup:
+* More advanced simulation of engine start-up:
   - Cold starts: correct use of the fuel pump, throttle and mixture required depending on engine and ambient temperature
   - Under some conditions, idling the engine too soon after start may cause it to quit.
   - Flooded engine: pumping too much fuel to the engine may cause it to ignite slower or not at all.
@@ -147,7 +148,7 @@ Please Note: Current version of Working Title NXi 0.7.1 does not have a working 
 
 There have also been reports of the GNS750 causing issues with the NXi / Our mod.
 
-**Q: The mod isn't working?***
+**Q: The mod isn't working?**
 
 *A: This is usually due to a conflict with another mod in the community folder. The best thing is to remove all other mods and slowly add them to see what causes the conflict. Aircraft, gauge and lighting mods are the prime suspects.*
 

@@ -81,17 +81,11 @@ class G36XIP extends BaseInstrument {
 
       //SPARKS
       this.spark1 = GetStoredData('G36XIP_SPARK_1_LIKELIHOOD_'+this.livery) ? GetStoredData('G36XIP_SPARK_1_LIKELIHOOD_'+this.livery) : Math.random();
-      this.spark2 = GetStoredData('G36XIP_SPARK_2_LIKELIHOOD_'+this.livery) ? GetStoredData('G36XIP_SPARK_2_LIKELIHOOD_'+this.livery) : Math.random();
       this.spark3 = GetStoredData('G36XIP_SPARK_3_LIKELIHOOD_'+this.livery) ? GetStoredData('G36XIP_SPARK_3_LIKELIHOOD_'+this.livery) : Math.random();
-      this.spark4 = GetStoredData('G36XIP_SPARK_4_LIKELIHOOD_'+this.livery) ? GetStoredData('G36XIP_SPARK_4_LIKELIHOOD_'+this.livery) : Math.random();
       this.spark5 = GetStoredData('G36XIP_SPARK_5_LIKELIHOOD_'+this.livery) ? GetStoredData('G36XIP_SPARK_5_LIKELIHOOD_'+this.livery) : Math.random();
-      this.spark6 = GetStoredData('G36XIP_SPARK_6_LIKELIHOOD_'+this.livery) ? GetStoredData('G36XIP_SPARK_6_LIKELIHOOD_'+this.livery) : Math.random();
       this.spark7 = GetStoredData('G36XIP_SPARK_7_LIKELIHOOD_'+this.livery) ? GetStoredData('G36XIP_SPARK_7_LIKELIHOOD_'+this.livery) : Math.random();
-      this.spark8 = GetStoredData('G36XIP_SPARK_8_LIKELIHOOD_'+this.livery) ? GetStoredData('G36XIP_SPARK_8_LIKELIHOOD_'+this.livery) : Math.random();
       this.spark9 = GetStoredData('G36XIP_SPARK_9_LIKELIHOOD_'+this.livery) ? GetStoredData('G36XIP_SPARK_9_LIKELIHOOD_'+this.livery) : Math.random();
-      this.spark10 = GetStoredData('G36XIP_SPARK_10_LIKELIHOOD_'+this.livery) ? GetStoredData('G36XIP_SPARK_10_LIKELIHOOD_'+this.livery) : Math.random();
       this.spark11 = GetStoredData('G36XIP_SPARK_11_LIKELIHOOD_'+this.livery) ? GetStoredData('G36XIP_SPARK_11_LIKELIHOOD_'+this.livery) : Math.random();
-      this.spark12 = GetStoredData('G36XIP_SPARK_12_LIKELIHOOD_'+this.livery) ? GetStoredData('G36XIP_SPARK_12_LIKELIHOOD_'+this.livery) : Math.random();
 
     }
 
@@ -212,17 +206,11 @@ class G36XIP extends BaseInstrument {
 
         //Spark Fouling Likelihood
         SimVar.SetSimVarValue("L:G36XIP_SPARK_1_LIKELIHOOD", "number", Number(this.spark1));
-        SimVar.SetSimVarValue("L:G36XIP_SPARK_2_LIKELIHOOD", "number", Number(this.spark2));
         SimVar.SetSimVarValue("L:G36XIP_SPARK_3_LIKELIHOOD", "number", Number(this.spark3));
-        SimVar.SetSimVarValue("L:G36XIP_SPARK_4_LIKELIHOOD", "number", Number(this.spark4));
         SimVar.SetSimVarValue("L:G36XIP_SPARK_5_LIKELIHOOD", "number", Number(this.spark5));
-        SimVar.SetSimVarValue("L:G36XIP_SPARK_6_LIKELIHOOD", "number", Number(this.spark6));
         SimVar.SetSimVarValue("L:G36XIP_SPARK_7_LIKELIHOOD", "number", Number(this.spark7));
-        SimVar.SetSimVarValue("L:G36XIP_SPARK_8_LIKELIHOOD", "number", Number(this.spark8));
         SimVar.SetSimVarValue("L:G36XIP_SPARK_9_LIKELIHOOD", "number", Number(this.spark9));
-        SimVar.SetSimVarValue("L:G36XIP_SPARK_10_LIKELIHOOD", "number", Number(this.spark10));
         SimVar.SetSimVarValue("L:G36XIP_SPARK_11_LIKELIHOOD", "number", Number(this.spark11));
-        SimVar.SetSimVarValue("L:G36XIP_SPARK_12_LIKELIHOOD", "number", Number(this.spark12));
 
       }
 
@@ -478,6 +466,19 @@ class G36XIP extends BaseInstrument {
           var fouling = 0;
           SetStoredData('G36XIP_PLUG_FOULING_'+planeId, fouling.toString());
         }
+
+        var spark1LK = SimVar.GetSimVarValue("L:G36XIP_SPARK_1_LIKELIHOOD", "number");
+        SetStoredData('G36XIP_SPARK_1_LIKELIHOOD_'+planeId, spark1LK.toString());
+        var spark3LK = SimVar.GetSimVarValue("L:G36XIP_SPARK_3_LIKELIHOOD", "number");
+        SetStoredData('G36XIP_SPARK_3_LIKELIHOOD_'+planeId, spark3LK.toString());
+        var spark5LK = SimVar.GetSimVarValue("L:G36XIP_SPARK_5_LIKELIHOOD", "number");
+        SetStoredData('G36XIP_SPARK_5_LIKELIHOOD_'+planeId, spark5LK.toString());
+        var spark7LK = SimVar.GetSimVarValue("L:G36XIP_SPARK_7_LIKELIHOOD", "number");
+        SetStoredData('G36XIP_SPARK_7_LIKELIHOOD_'+planeId, spark7LK.toString());
+        var spark9LK = SimVar.GetSimVarValue("L:G36XIP_SPARK_9_LIKELIHOOD", "number");
+        SetStoredData('G36XIP_SPARK_9_LIKELIHOOD_'+planeId, spark9LK.toString());
+        var spark11LK = SimVar.GetSimVarValue("L:G36XIP_SPARK_11_LIKELIHOOD", "number");
+        SetStoredData('G36XIP_SPARK_11_LIKELIHOOD_'+planeId, spark11LK.toString());
 
 
     }

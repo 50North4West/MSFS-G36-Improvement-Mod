@@ -63,6 +63,16 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
               (L:G36XIP_BADNESS_SCALE) 0.05 - (&gt;L:G36XIP_BADNESS_SCALE)
             }
           }
+
+          (L:G36XIP_BADNESS_SCALE) 0 &lt;=
+          if{
+            0 (&gt;L:G36XIP_SPARK_1_FOULING)
+            0 (&gt;L:G36XIP_SPARK_3_FOULING)
+            0 (&gt;L:G36XIP_SPARK_5_FOULING)
+            0 (&gt;L:G36XIP_SPARK_7_FOULING)
+            0 (&gt;L:G36XIP_SPARK_9_FOULING)
+            0 (&gt;L:G36XIP_SPARK_11_FOULING)
+          }
         </UPDATE_CODE>
     </UseTemplate>
   </Component>

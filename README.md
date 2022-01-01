@@ -18,7 +18,8 @@ PLEASE NOTE - WE HAVE REMOVED THE 'Z' FROM THE FOLDER NAME, ENSURE YOU REMOVE TH
 
 Current version: 0.6.6 Beta 4 (Sim Update 7 Compatible)
 
-* Added TAWS system test message
+* NEW! Custom Livery provided by @Crispy136 (Thank you!) You can find more of his liveries here https://flightsim.to/profile/Crispy136/uploads
+* NEW! Added TAWS system test message
 * NEW! Integrated @BufordTX's VR Friendly Prop Mod
 * NEW! Changed environmental controls to read C° rather than F°
 * NEW! Spark Plug Fouling (Refactored) - if you don't lean correctly both on the ground or in the air your plugs will encounter spark fouling, loosing RPM and engine power. Each spark is modelled independently and has its own likelihood to foul; this stays across flights, the spark most likely to foul will foul first.

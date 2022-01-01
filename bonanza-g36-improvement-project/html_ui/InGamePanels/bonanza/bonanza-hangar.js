@@ -71,3 +71,64 @@ class BonanzaHangar extends HTMLElement {
 }
 window.customElements.define("bonanza-hangar", BonanzaHangar);
 checkAutoload();
+
+function stateChange()
+{
+  if (document.getElementById('stateSaving').checked) {
+    var state = 1;
+    SetStoredData('G36XIP_STATE_ACTIVE_'+this.livery, state.toString());
+  } else {
+    var state = 0;
+    SetStoredData('G36XIP_STATE_ACTIVE_'+this.livery, state.toString());
+  }
+};
+
+function resetState()
+{
+  DeleteStoredData('G36XIP_LEFT_FUEL_'+this.livery);
+  DeleteStoredData('G36XIP_RIGHT_FUEL_'+this.livery);
+  DeleteStoredData('G36XIP_PILOT_WEIGHT_'+this.livery);
+  DeleteStoredData('G36XIP_COPILOT_WEIGHT_'+this.livery);
+  DeleteStoredData('G36XIP_FRONT_LEFT_PAX_WEIGHT_'+this.livery);
+  DeleteStoredData('G36XIP_FRONT_RIGHT_PAX_WEIGHT_'+this.livery);
+  DeleteStoredData('G36XIP_REAR_LEFT_PAX_WEIGHT_'+this.livery);
+  DeleteStoredData('G36XIP_REAR_RIGHT_PAX_WEIGHT_'+this.livery);
+  DeleteStoredData('G36XIP_BAGGAGE_WEIGHT_'+this.livery);
+  DeleteStoredData('G36XIP_BAT1_'+this.livery);
+  DeleteStoredData('G36XIP_BAT2_'+this.livery);
+  DeleteStoredData('G36XIP_ALT1_'+this.livery);
+  DeleteStoredData('G36XIP_ALT2_'+this.livery);
+  DeleteStoredData('G36XIP_PBRAKE_'+this.livery);
+  DeleteStoredData('G36XIP_AVIONICS_'+this.livery);
+  DeleteStoredData('G36XIP_AIRCO_'+this.livery);
+  DeleteStoredData('G36XIP_BLOWER_'+this.livery);
+  DeleteStoredData('G36XIP_VENT_BLOWER_'+this.livery);
+  DeleteStoredData('G36XIP_AUX_FUEL_PUMP_'+this.livery);
+  DeleteStoredData('G36XIP_MAGNETOL_'+this.livery);
+  DeleteStoredData('G36XIP_MAGNETOR_'+this.livery);
+  DeleteStoredData('G36XIP_PITOT_'+this.livery);
+  DeleteStoredData('G36XIP_PROP_DEICE_'+this.livery);
+  DeleteStoredData('G36XIP_STROBE_'+this.livery);
+  DeleteStoredData('G36XIP_BEACON_'+this.livery);
+  DeleteStoredData('G36XIP_NAV_LIGHT_'+this.livery);
+  DeleteStoredData('G36XIP_FLOOD_LIGHT_'+this.livery);
+  DeleteStoredData('G36XIP_PANEL_LIGHT_'+this.livery);
+  DeleteStoredData('G36XIP_TAXI_LIGHT_'+this.livery);
+  DeleteStoredData('G36XIP_LANDING_LIGHT_'+this.livery);
+  DeleteStoredData('G36XIP_FUEL_SELECT_'+this.livery);
+  DeleteStoredData('G36XIP_THROTTLE_'+this.livery);
+  DeleteStoredData('G36XIP_PROP_'+this.livery);
+  DeleteStoredData('G36XIP_MIXTURE_'+this.livery);
+  DeleteStoredData('G36XIP_COWL_'+this.livery);
+  DeleteStoredData('G36XIP_FLAPS_SWITCH_'+this.livery);
+  DeleteStoredData('G36XIP_FLAPS_LEFT_'+this.livery);
+  DeleteStoredData('G36XIP_FLAPS_RIGHT_'+this.livery);
+  DeleteStoredData('G36XIP_PITCH_TRIM_'+this.livery);
+  DeleteStoredData('G36XIP_AILERON_TRIM_'+this.livery);
+  DeleteStoredData('G36XIP_FLOOD_BRIGHTNESS_'+this.livery);
+  DeleteStoredData('G36XIP_YOKE_LEFT_'+this.livery);
+  DeleteStoredData('G36XIP_YOKE_RIGHT_'+this.livery);
+  DeleteStoredData('G36XIP_DEFROST_'+this.livery);
+  document.getElementById("resetLabel").innerHTML = "<i class='fa-solid fa-octagon-exclamation fa-lg'></i> Aircraft State Reset";
+  document.getElementById("reset").checked = false;
+};

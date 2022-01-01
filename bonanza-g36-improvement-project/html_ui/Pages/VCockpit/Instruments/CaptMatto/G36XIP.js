@@ -16,8 +16,8 @@ class G36XIP extends BaseInstrument {
     if (GetStoredData('G36XIP_STATE_ACTIVE_'+this.livery) == 1) {
       console.log('State Saving Enabled');
 
-      this.timer = SimVar.GetSimVarValue("GENERAL ENG ELAPSED TIME:1", "hours");
-      SetStoredData('G36XIP_HOBBS_START_VALUE_'+this.livery, this.timer.toString());
+      var now = SimVar.GetSimVarValue("GENERAL ENG HOBBS ELAPSED TIME:1", "hours");
+      SimVar.SetSimVarValue("L:G36XIP_HOBBS_START", "number", Number(now));
       this.hobbs = GetStoredData('G36XIP_HOBBS_'+this.livery) ? GetStoredData('G36XIP_HOBBS_'+this.livery) : 1.25; //Brand new Aircraft that has had a 45min acceptance flight & 30 minute flight checks prior to ownership
 
       //FUEL IN GALLONS AND WEIGHTS IN KG
@@ -463,17 +463,19 @@ class G36XIP extends BaseInstrument {
           SetStoredData('G36XIP_YOKE2_'+planeId, yoke2.toString());
 
         //HOBBS
-          var now = SimVar.GetSimVarValue("GENERAL ENG ELAPSED TIME:1", "hours");
-          var then = GetStoredData('G36XIP_HOBBS_START_VALUE_'+planeId);
-          var elapsed = now - then;
+          var now = SimVar.GetSimVarValue("GENERAL ENG HOBBS ELAPSED TIME:1", "hours");
+          var start = SimVar.GetSimVarValue("L:G36XIP_HOBBS_START", "number");
+          var elapsed = now - start;
           SetStoredData('G36XIP_HOBBS_'+planeId, elapsed.toString());
-      //}
+      //
 
       //MODELLING STUFF
 
         if (SimVar.GetSimVarValue("L:G36XIP_FOUL", "bool")) {
-          console.log('fouling present');
           var fouling = 1;
+          SetStoredData('G36XIP_PLUG_FOULING_'+planeId, fouling.toString());
+        } else {
+          var fouling = 0;
           SetStoredData('G36XIP_PLUG_FOULING_'+planeId, fouling.toString());
         }
 

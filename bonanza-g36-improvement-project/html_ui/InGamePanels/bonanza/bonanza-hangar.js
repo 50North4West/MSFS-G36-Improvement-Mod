@@ -58,9 +58,32 @@ class BonanzaHangar extends HTMLElement {
       var title = SimVar.GetSimVarValue("TITLE", "string");
       this.livery = title.replace(/\s+/g, '_');
 
-      if (GetStoredData('G36XIP_PLUG_FOULING_'+this.livery)) {
-        document.getElementById("fouling").innerHTML = "<i class='fa-solid fa-octagon-exclamation fa-lg'></i> Some plugs have experienced fouling, try and lean during ground ops";
+      if (SimVar.GetSimVarValue('L:G36XIP_SPARK_1_FOULING', "number") == 1) {
+        document.getElementById("fouling1").innerHTML = "<i class='fa-solid fa-octagon-exclamation fa-lg'></i> Plugs 1 & 2 are experiencing fouling<br>";
       }
+
+      if (SimVar.GetSimVarValue('L:G36XIP_SPARK_3_FOULING', "number") == 1) {
+        document.getElementById("fouling3").innerHTML = "<i class='fa-solid fa-octagon-exclamation fa-lg'></i> Plugs 3 & 4 are experiencing fouling<br>";
+      }
+
+      if (SimVar.GetSimVarValue('L:G36XIP_SPARK_5_FOULING', "number") == 1) {
+        document.getElementById("fouling5").innerHTML = "<i class='fa-solid fa-octagon-exclamation fa-lg'></i> Plugs 5 & 6 are experiencing fouling<br>";
+      }
+
+      if (SimVar.GetSimVarValue('L:G36XIP_SPARK_7_FOULING', "number") == 1) {
+        document.getElementById("fouling7").innerHTML = "<i class='fa-solid fa-octagon-exclamation fa-lg'></i> Plugs 7 & 8 are experiencing fouling<br>";
+      }
+
+      if (SimVar.GetSimVarValue('L:G36XIP_SPARK_9_FOULING', "number") == 1) {
+        document.getElementById("fouling9").innerHTML = "<i class='fa-solid fa-octagon-exclamation fa-lg'></i> Plugs 9 & 10 are experiencing fouling<br>";
+      }
+
+      if (SimVar.GetSimVarValue('L:G36XIP_SPARK_11_FOULING', "number") == 1) {
+        document.getElementById("fouling11").innerHTML = "<i class='fa-solid fa-octagon-exclamation fa-lg'></i> Plugs 11 & 12 are experiencing fouling<br>";
+      }
+
+
+
     }, 10000);
 
   }
@@ -74,6 +97,8 @@ checkAutoload();
 
 function stateChange()
 {
+  var title = SimVar.GetSimVarValue("TITLE", "string");
+  this.livery = title.replace(/\s+/g, '_');
   if (document.getElementById('stateSaving').checked) {
     var state = 1;
     SetStoredData('G36XIP_STATE_ACTIVE_'+this.livery, state.toString());
@@ -85,6 +110,8 @@ function stateChange()
 
 function resetState()
 {
+  var title = SimVar.GetSimVarValue("TITLE", "string");
+  this.livery = title.replace(/\s+/g, '_');
   DeleteStoredData('G36XIP_LEFT_FUEL_'+this.livery);
   DeleteStoredData('G36XIP_RIGHT_FUEL_'+this.livery);
   DeleteStoredData('G36XIP_PILOT_WEIGHT_'+this.livery);

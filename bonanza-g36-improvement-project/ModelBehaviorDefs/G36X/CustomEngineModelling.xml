@@ -5,8 +5,8 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
 -->
 
 <!-- A reversed throttle scale - 25% = 0.075 -->
-<Macro Name="ReverseThrottle">
-  100 (A:GENERAL ENG THROTTLE LEVER POSITION:1, percent) - 100000 / (&gt;L:G36XIP_FOUL_THROTTLE_SCALE)
+<Macro Name="ThrottleScalar">
+  (A:GENERAL ENG THROTTLE LEVER POSITION:1, percent) 10000 / (&gt;L:G36XIP_FOUL_THROTTLE_SCALE)
 </Macro>
 
 <!-- ### CALL THE PROGRAM ### -->
@@ -56,12 +56,7 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
           (L:G36XIP_FOUL) 0 ==
           (L:G36XIP_BADNESS_SCALE) 0 &gt;= and
           if{
-          (A:SIM ON GROUND, bool) 1 ==
-            if{
-              (L:G36XIP_BADNESS_SCALE) 0.005 - (&gt;L:G36XIP_BADNESS_SCALE)
-            } els{
-              (L:G36XIP_BADNESS_SCALE) 0.05 - (&gt;L:G36XIP_BADNESS_SCALE)
-            }
+            (L:G36XIP_BADNESS_SCALE) @ThrottleScalar - (&gt;L:G36XIP_BADNESS_SCALE)
           }
 
           (L:G36XIP_BADNESS_SCALE) 0 &lt;=

@@ -466,7 +466,7 @@ class G36XIP extends BaseInstrument {
           var now = SimVar.GetSimVarValue("GENERAL ENG ELAPSED TIME:1", "hours");
           var then = GetStoredData('G36XIP_HOBBS_START_VALUE_'+planeId);
           var elapsed = now - then;
-          SetStoredData('G36XIP_HOBBS_'+planeId, yoke2.toString());
+          SetStoredData('G36XIP_HOBBS_'+planeId, elapsed.toString());
       //}
 
       //MODELLING STUFF

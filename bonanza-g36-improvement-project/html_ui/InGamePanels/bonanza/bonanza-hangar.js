@@ -19,7 +19,7 @@ class BonanzaHangar extends HTMLElement {
       this.stateSaving = GetStoredData('G36XIP_STATE_ACTIVE_'+this.livery);
 
       //get the engine hours
-      this.hobbs = GetStoredData('G36XIP_HOBBS_'+this.livery) ? GetStoredData('G36XIP_HOBBS_'+this.livery) : 1.25; //Brand new Aircraft that has had a 45min acceptance flight & 30 minute flight checks prior to ownership
+      this.panelHobbs = GetStoredData('G36XIP_HOBBS_'+this.livery) ? GetStoredData('G36XIP_HOBBS_'+this.livery) : 1.25; //Brand new Aircraft that has had a 45min acceptance flight & 30 minute flight checks prior to ownership
 
       //get the battery voltages
       this.bat1volts = SimVar.GetSimVarValue('ELECTRICAL BATTERY VOLTAGE:1', "volts");
@@ -40,7 +40,7 @@ class BonanzaHangar extends HTMLElement {
       }
 
       //set the engine hours
-      document.getElementById("aircraftEngineHours").innerHTML = parseFloat(this.hobbs).toFixed(2);
+      document.getElementById("aircraftEngineHours").innerHTML = parseFloat(this.panelHobbs).toFixed(2);
 
       //set the battery voltages
       document.getElementById("aircraftBatt1Volts").innerHTML = parseFloat(this.bat1volts).toFixed(2);
@@ -63,59 +63,6 @@ class BonanzaHangar extends HTMLElement {
       }
     }, 10000);
 
-  }
-
-  //At the moment there is no easy way to delete the stored values and start with a fresh aircraft
-  //  @TODO NEED TO COME UP WITH AN EFFECTIVE WAY TO DELETE THE STORED ITEMS WHEN NEEDED, AM CURRENTLY THINKING A CUSTOM TOOL BAR WINDOW
-  //  @TODO DO WE NEED TO BE ABLE TO LET THE USER HAVE STATE SAVING OR NOT?
-  //To reset the aircraft uncomment the line below
-  //var reset = resetState();
-  function resetState() {
-    DeleteStoredData('G36XIP_LEFT_FUEL_'+this.livery);
-    DeleteStoredData('G36XIP_RIGHT_FUEL_'+this.livery);
-    DeleteStoredData('G36XIP_PILOT_WEIGHT_'+this.livery);
-    DeleteStoredData('G36XIP_COPILOT_WEIGHT_'+this.livery);
-    DeleteStoredData('G36XIP_FRONT_LEFT_PAX_WEIGHT_'+this.livery);
-    DeleteStoredData('G36XIP_FRONT_RIGHT_PAX_WEIGHT_'+this.livery);
-    DeleteStoredData('G36XIP_REAR_LEFT_PAX_WEIGHT_'+this.livery);
-    DeleteStoredData('G36XIP_REAR_RIGHT_PAX_WEIGHT_'+this.livery);
-    DeleteStoredData('G36XIP_BAGGAGE_WEIGHT_'+this.livery);
-    DeleteStoredData('G36XIP_BAT1_'+this.livery);
-    DeleteStoredData('G36XIP_BAT2_'+this.livery);
-    DeleteStoredData('G36XIP_ALT1_'+this.livery);
-    DeleteStoredData('G36XIP_ALT2_'+this.livery);
-    DeleteStoredData('G36XIP_PBRAKE_'+this.livery);
-    DeleteStoredData('G36XIP_AVIONICS_'+this.livery);
-    DeleteStoredData('G36XIP_AIRCO_'+this.livery);
-    DeleteStoredData('G36XIP_BLOWER_'+this.livery);
-    DeleteStoredData('G36XIP_VENT_BLOWER_'+this.livery);
-    DeleteStoredData('G36XIP_AUX_FUEL_PUMP_'+this.livery);
-    DeleteStoredData('G36XIP_MAGNETOL_'+this.livery);
-    DeleteStoredData('G36XIP_MAGNETOR_'+this.livery);
-    DeleteStoredData('G36XIP_PITOT_'+this.livery);
-    DeleteStoredData('G36XIP_PROP_DEICE_'+this.livery);
-    DeleteStoredData('G36XIP_STROBE_'+this.livery);
-    DeleteStoredData('G36XIP_BEACON_'+this.livery);
-    DeleteStoredData('G36XIP_NAV_LIGHT_'+this.livery);
-    DeleteStoredData('G36XIP_FLOOD_LIGHT_'+this.livery);
-    DeleteStoredData('G36XIP_PANEL_LIGHT_'+this.livery);
-    DeleteStoredData('G36XIP_TAXI_LIGHT_'+this.livery);
-    DeleteStoredData('G36XIP_LANDING_LIGHT_'+this.livery);
-    DeleteStoredData('G36XIP_FUEL_SELECT_'+this.livery);
-    DeleteStoredData('G36XIP_THROTTLE_'+this.livery);
-    DeleteStoredData('G36XIP_PROP_'+this.livery);
-    DeleteStoredData('G36XIP_MIXTURE_'+this.livery);
-    DeleteStoredData('G36XIP_COWL_'+this.livery);
-    DeleteStoredData('G36XIP_FLAPS_SWITCH_'+this.livery);
-    DeleteStoredData('G36XIP_FLAPS_LEFT_'+this.livery);
-    DeleteStoredData('G36XIP_FLAPS_RIGHT_'+this.livery);
-    DeleteStoredData('G36XIP_PITCH_TRIM_'+this.livery);
-    DeleteStoredData('G36XIP_AILERON_TRIM_'+this.livery);
-    DeleteStoredData('G36XIP_FLOOD_BRIGHTNESS_'+this.livery);
-    DeleteStoredData('G36XIP_YOKE_LEFT_'+this.livery);
-    DeleteStoredData('G36XIP_YOKE_RIGHT_'+this.livery);
-    DeleteStoredData('G36XIP_DEFROST_'+this.livery);
-    return true;
   }
 
   disconnectedCallback() {

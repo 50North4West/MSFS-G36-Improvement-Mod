@@ -14,41 +14,53 @@ class BonanzaHangar extends HTMLElement {
       //get the livery
       var title = SimVar.GetSimVarValue("TITLE", "string");
       this.livery = title.replace(/\s+/g, '_');
+      console.log('Panel - SetTimeout running');
 
       //check if state saving is enabled
       this.stateSaving = GetStoredData('G36XIP_STATE_ACTIVE_'+this.livery);
-
-      //get the engine hours
-      this.panelHobbs = GetStoredData('G36XIP_HOBBS_'+this.livery) ? GetStoredData('G36XIP_HOBBS_'+this.livery) : 1.25; //Brand new Aircraft that has had a 45min acceptance flight & 30 minute flight checks prior to ownership
-
-      //get the battery voltages
-      this.bat1volts = SimVar.GetSimVarValue('ELECTRICAL BATTERY VOLTAGE:1', "volts");
-      this.bat2volts = SimVar.GetSimVarValue('ELECTRICAL BATTERY VOLTAGE:2', "volts");
-
-
-    //Send info to the panel - eventually put this in a loop
 
       //if state saving enabled make the checkbox checked
       if (this.stateSaving == 1) {
         console.log('Panel - State Saving Enabled');
         SetStoredData('G36XIP_STATE_ACTIVE_'+this.livery, this.stateSaving.toString());
         document.getElementById("stateSaving").checked = true;
+        console.log('Panel - Changed savestate. 1');
       } else {
         console.log('Panel - State Saving Disabled');
         SetStoredData('G36XIP_STATE_ACTIVE_'+this.livery, this.stateSaving.toString());
         document.getElementById("stateSaving").checked = false;
+        console.log('Panel - Changed savestate. 0 ');
       }
+
+      //get the engine hobbs hours
+	  var hobbshours = parseFloat(SimVar.GetSimVarValue('L:G36XIP_HOBBS_START', "number"))
+      this.panelHobbs = hobbshours; //Brand new Aircraft that has had a 45min acceptance flight & 30 minute flight checks prior to ownership
+
+    //Send info to the panel - eventually put this in a loop
 
       //set the engine hours
       document.getElementById("aircraftEngineHours").innerHTML = parseFloat(this.panelHobbs).toFixed(2);
 
-      //set the battery voltages
-      document.getElementById("aircraftBatt1Volts").innerHTML = parseFloat(this.bat1volts).toFixed(2);
-      document.getElementById("aircraftBatt2Volts").innerHTML = parseFloat(this.bat2volts).toFixed(2);
-
+      //set the aircraftHoursToService
+      document.getElementById("aircraftHoursToService").innerHTML = parseFloat(100.0 - ((hobbshours) % 100.0)).toFixed(2);
+	  
+	  //get TTSN
+	  var ttsnhours = parseFloat(GetStoredData('G36XIP_TTSN_'+this.livery));
+	  this.panelTTSN = ttsnhours > 0.0 ? ttsnhours : 1.5;
+	  if(ttsnhours < hobbshours) {
+		ttsnhours = hobbshours;
+	  }
+	  //set TTSN
+      document.getElementById("aircraftHoursTTSN").innerHTML = parseFloat((ttsnhours)).toFixed(2);
+	  
       //Set the ATC name etc
       document.getElementById("aircraftReg").innerHTML = SimVar.GetSimVarValue('ATC ID', "string");
       document.getElementById("aircraftLivery").innerHTML = title;
+
+      //get the battery voltages
+      this.bat1volts = SimVar.GetSimVarValue('ELECTRICAL BATTERY VOLTAGE:1', "volts");
+      //set the battery voltages
+      document.getElementById("aircraftBatt1Volts").innerHTML = parseFloat(this.bat1volts).toFixed(2);
 
     }, delayInMilliseconds);
 
@@ -57,6 +69,7 @@ class BonanzaHangar extends HTMLElement {
       //get the livery
       var title = SimVar.GetSimVarValue("TITLE", "string");
       this.livery = title.replace(/\s+/g, '_');
+      console.log('Panel - SetInterval running');
 
       if (SimVar.GetSimVarValue('L:G36XIP_SPARK_1_FOULING', "number") == 1) {
         document.getElementById("fouling1").innerHTML = "<i class='fa-solid fa-octagon-exclamation fa-lg'></i> Plugs 1 & 2 are experiencing fouling<br>";
@@ -99,12 +112,17 @@ function stateChange()
 {
   var title = SimVar.GetSimVarValue("TITLE", "string");
   this.livery = title.replace(/\s+/g, '_');
+  console.log('Panel - Trigger Change state');
   if (document.getElementById('stateSaving').checked) {
-    var state = 1;
-    SetStoredData('G36XIP_STATE_ACTIVE_'+this.livery, state.toString());
+    this.stateSaving = 1;
+    SetStoredData('G36XIP_STATE_ACTIVE_'+this.livery, this.stateSaving.toString());
+    SimVar.SetSimVarValue('L:G36XIP_STATESAVING', "number", this.stateSaving);
+    console.log('Panel - Trigger Change state - 1');
   } else {
-    var state = 0;
-    SetStoredData('G36XIP_STATE_ACTIVE_'+this.livery, state.toString());
+    this.stateSaving = 0;
+    SetStoredData('G36XIP_STATE_ACTIVE_'+this.livery, this.stateSaving.toString());
+    SimVar.SetSimVarValue('L:G36XIP_STATESAVING', "number", this.stateSaving);
+    console.log('Panel - Trigger Change state - 0');
   }
 };
 
@@ -156,6 +174,13 @@ function resetState()
   DeleteStoredData('G36XIP_YOKE_LEFT_'+this.livery);
   DeleteStoredData('G36XIP_YOKE_RIGHT_'+this.livery);
   DeleteStoredData('G36XIP_DEFROST_'+this.livery);
+  DeleteStoredData('G36XIP_DEFROST_'+this.livery);
+  DeleteStoredData('G36XIP_SPARK_1_FOULING_'+this.livery);
+  DeleteStoredData('G36XIP_SPARK_3_FOULING_'+this.livery);
+  DeleteStoredData('G36XIP_SPARK_5_FOULING_'+this.livery);
+  DeleteStoredData('G36XIP_SPARK_7_FOULING_'+this.livery);
+  DeleteStoredData('G36XIP_SPARK_9_FOULING_'+this.livery);
+  DeleteStoredData('G36XIP_SPARK_11_FOULING_'+this.livery);
   document.getElementById("resetLabel").innerHTML = "<i class='fa-solid fa-octagon-exclamation fa-lg'></i> Aircraft State Reset";
   document.getElementById("reset").checked = false;
 };

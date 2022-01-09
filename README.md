@@ -35,8 +35,8 @@ Current version: 0.6.6
 * Fixed: NXi Engine System Page spacing
 * Fixed: Aircraft getting stuck on the ground. Changed nose height on gear to reflect reference pictures, increased nose gear damping affect, thanks to Synoxys787 for his help and research
 * Fixed: Missing registration and ASI error, thanks to Bert Pieke on Avsim.
-* Fixed: Incorrect circuit for PFD, (@meh1951)
-* Fixed: Missing '=' in the bonanza hangar (@DA40CGDFQ)
+* Fixed: Incorrect circuit for PFD, removed sharing two busses. (@meh1951)
+* Fixed: Missing '=' in the bonanza hangar. (@DA40CGDFQ)
 
 **Liveries**
 We have split out the files from modifying the default Bonanza to becoming its own aircraft. This is so we can complete further 3d model changes, and work on the hangar module and deeper systems modelling. Liveries will need to be amended to reflect this new aircraft to work. More information here https://forums.flightsimulator.com/t/g36-improvement-project/216094/1943

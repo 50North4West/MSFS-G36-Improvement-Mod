@@ -29,7 +29,7 @@ class BonanzaHangar extends HTMLElement {
     //Send info to the panel - eventually put this in a loop
 
       //if state saving enabled make the checkbox checked
-      if (this.stateSaving = 1) {
+      if (this.stateSaving == 1) {
         console.log('Panel - State Saving Enabled');
         SetStoredData('G36XIP_STATE_ACTIVE_'+this.livery, this.stateSaving.toString());
         document.getElementById("stateSaving").checked = true;

@@ -157,13 +157,13 @@
     },
     {
       "path": "html_ui/InGamePanels/bonanza/bonanza-hangar.html",
-      "size": 7454,
-      "date": 132853632108851335
+      "size": 6879,
+      "date": 132855373961787473
     },
     {
       "path": "html_ui/InGamePanels/bonanza/bonanza-hangar.js",
-      "size": 5783,
-      "date": 132855237873339556
+      "size": 7204,
+      "date": 132855372289721305
     },
     {
       "path": "html_ui/InGamePanels/bonanza/css/bootstrap.css",
@@ -207,8 +207,8 @@
     },
     {
       "path": "html_ui/Pages/VCockpit/Instruments/CaptMatto/G36XIP.js",
-      "size": 28484,
-      "date": 132853630039527457
+      "size": 28119,
+      "date": 132855360087914198
     },
     {
       "path": "html_ui/Pages/VCockpit/Instruments/Generic/Misc/DigitalOAT/DigitalOAT.js",
@@ -227,8 +227,8 @@
     },
     {
       "path": "ModelBehaviorDefs/G36X/CustomEngineModelling.xml",
-      "size": 49240,
-      "date": 132855124015661687
+      "size": 49072,
+      "date": 132855379474810613
     },
     {
       "path": "ModelBehaviorDefs/G36X/CustomLogic.xml",
@@ -1396,14 +1396,14 @@
       "date": 132855039113362329
     },
     {
-      "path": "SimObjects/Airplanes/Bonanza_G36_Improvement_Project/TEXTURE/thumbnail.JPG",
-      "size": 290805,
-      "date": 132855046238976326
+      "path": "SimObjects/Airplanes/Bonanza_G36_Improvement_Project/TEXTURE/thumbnail.jpg",
+      "size": 350187,
+      "date": 132856397993651023
     },
     {
-      "path": "SimObjects/Airplanes/Bonanza_G36_Improvement_Project/TEXTURE/thumbnail_small.JPG",
-      "size": 87051,
-      "date": 132855046239066085
+      "path": "SimObjects/Airplanes/Bonanza_G36_Improvement_Project/TEXTURE/thumbnail_small.jpg",
+      "size": 64013,
+      "date": 132856397685489989
     }
   ]
 }

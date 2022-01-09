@@ -1,6 +1,8 @@
-# MSFS G36 Project version 0.6.6 Beta 5
+# MSFS G36 Project version 0.6.6
 
 This is the improvement project for the MSFS default G36. It all started as a simple edit of some configuration files but it has since grown into a fully-fledged modification that improves all aspects of the default G36 and introduces new features. This was made possible with the help of the community consisting of both enthusiasts and G36 pilots (for a list of contributors, see the end of this readme).
+
+We now have a discord channel! https://discord.gg/JVPMYdKx86
 
 -------------------------------------
 -------------------------------------
@@ -11,28 +13,33 @@ Installation:
 
 2: Download and unzip the folder ‘bonanza-g36-improvement-project’ in to your MSFS Community folder
 
+3: The Bonanza G36 Improvement Project is now listed as it's own aircraft in the menu rather than overwriting the default aircraft (please see livery note)
+
 PLEASE NOTE - WE HAVE REMOVED THE 'Z' FROM THE FOLDER NAME, ENSURE YOU REMOVE THE OLD VERSION PRIOR TO USING THIS ONE!!
 
 -------------------------------------
 -------------------------------------
 
-Current version: 0.6.6 Beta 4 (Sim Update 7 Compatible)
+Current version: 0.6.6
 
+**New in this version...**
 * NEW! Custom Livery provided by @Crispy136 (Thank you!) You can find more of his liveries here https://flightsim.to/profile/Crispy136/uploads
 * NEW! Added TAWS system test message
 * NEW! Integrated @BufordTX's VR Friendly Prop Mod
 * NEW! Changed environmental controls to read C° rather than F°
-* NEW! Spark Plug Fouling (Refactored) - if you don't lean correctly both on the ground or in the air your plugs will encounter spark fouling, loosing RPM and engine power. Each spark is modelled independently and has its own likelihood to foul; this stays across flights, the spark most likely to foul will foul first.
-* The Bonanza G36 Improvement Project is now listed as it's own aircraft in the menu rather than overwriting the default aircraft (please see livery note)
-* Aircraft Persistence, all switches and fuel tanks are saved between flights
-* Aircraft Persistence, saves for different liveries - have multiple Bonanzas in your fleet all with different personalities
-* Beginnings of the Bonanza Hangar; basis for next release. You will manage your aircraft here, check for spark fouling, oil changes and more.
+* NEW! Spark Plug Fouling - if you don't lean correctly both on the ground or in the air your plugs will encounter spark fouling, loosing RPM and engine power. Each spark is modelled independently and has its own likelihood to foul; this stays across flights, the spark most likely to foul will foul first followed by the next etc.
+* NEW! Bonanza Hangar; You will manage your aircraft here, check for spark fouling, oil changes and more. This is still very much a WIP feature
 * Reworked Engine performance figures: after more than 30hrs of testing and tweaking, the engine performance figures match the POH as close as we can get them and have been verified by real Bonanza pilots. TAS is within 0.22kts on average across the altitude spectrum and fuel flow within 1g/h.
+
+**Fixes**
 * Fixed: NXi Engine System Page spacing
 * Fixed: Aircraft getting stuck on the ground. Changed nose height on gear to reflect reference pictures, increased nose gear damping affect, thanks to Synoxys787 for his help and research
 * Fixed: Missing registration and ASI error, thanks to Bert Pieke on Avsim.
+* Fixed: Incorrect circuit for PFD, (@meh1951)
+* Fixed: Missing '=' in the bonanza hangar (@DA40CGDFQ)
 
-Note regarding Liveries: We have split out the files from modifying the default Bonanza to becoming its own aircraft. This is so we can complete further 3d model changes, and work on the hangar module and deeper systems modelling. Liveries will need to be amended to reflect this new aircraft to work. We will create a guide shortly on how to do this.
+**Liveries**
+We have split out the files from modifying the default Bonanza to becoming its own aircraft. This is so we can complete further 3d model changes, and work on the hangar module and deeper systems modelling. Liveries will need to be amended to reflect this new aircraft to work. More information here https://forums.flightsimulator.com/t/g36-improvement-project/216094/1943
 
 -------------------------------------
 -------------------------------------
@@ -50,6 +57,7 @@ Features:
 
 **Engine & Fuel system**
 * Completely overhauled engine parameters: realistic fuel flow, mixture-EGT interaction, engine performance at all pressure altitudes.
+* Simulation of Spark Plugs
 * Simulation of the electric fuel pump
 * More advanced simulation of engine start-up:
   - Cold starts: correct use of the fuel pump, throttle and mixture required depending on engine and ambient temperature

@@ -173,6 +173,20 @@ Update the hangar module to show which spark/s has fouled
 				els{
 					0 (&gt;L:G36XIP_SPARK_7_FOULING) 
 				}
+				(L:G36XIP_SPARK_9_LIKELIHOOD) 0.75 &gt;
+				if{
+					1 (&gt;L:G36XIP_SPARK_9_FOULING) 
+				}
+				els{
+					0 (&gt;L:G36XIP_SPARK_9_FOULING) 
+				}
+				(L:G36XIP_SPARK_11_LIKELIHOOD) 0.75 &gt;
+				if{
+					1 (&gt;L:G36XIP_SPARK_11_FOULING) 
+				}
+				els{
+					0 (&gt;L:G36XIP_SPARK_11_FOULING) 
+				}
 				
 			}
 			(L:G36XIP_NUM_SPARKS_TO_FOUL) 0.25 86 * &gt;
@@ -210,6 +224,20 @@ Update the hangar module to show which spark/s has fouled
 				els{
 					0 (&gt;L:G36XIP_SPARK_7_FOULING) 
 				}
+				(L:G36XIP_SPARK_9_LIKELIHOOD) 0.5 &gt;
+				if{
+					1 (&gt;L:G36XIP_SPARK_9_FOULING) 
+				}
+				els{
+					0 (&gt;L:G36XIP_SPARK_9_FOULING) 
+				}
+				(L:G36XIP_SPARK_11_LIKELIHOOD) 0.5 &gt;
+				if{
+					1 (&gt;L:G36XIP_SPARK_11_FOULING) 
+				}
+				els{
+					0 (&gt;L:G36XIP_SPARK_11_FOULING) 
+				}
 			}
 			(L:G36XIP_NUM_SPARKS_TO_FOUL) 0.5 86 * &gt;
 			(L:G36XIP_NUM_SPARKS_TO_FOUL) 0.75 86 * &lt; and
@@ -246,6 +274,20 @@ Update the hangar module to show which spark/s has fouled
 				els{
 					0 (&gt;L:G36XIP_SPARK_7_FOULING) 
 				}
+				(L:G36XIP_SPARK_9_LIKELIHOOD) 0.25 &gt;
+				if{
+					1 (&gt;L:G36XIP_SPARK_9_FOULING) 
+				}
+				els{
+					0 (&gt;L:G36XIP_SPARK_9_FOULING) 
+				}
+				(L:G36XIP_SPARK_11_LIKELIHOOD) 0.25 &gt;
+				if{
+					1 (&gt;L:G36XIP_SPARK_11_FOULING) 
+				}
+				els{
+					0 (&gt;L:G36XIP_SPARK_11_FOULING) 
+				}
 			}
 			(L:G36XIP_NUM_SPARKS_TO_FOUL) 0.75 86 * &gt;
 			(L:G36XIP_NUM_SPARKS_TO_FOUL) 1 86 * &lt; and
@@ -281,6 +323,20 @@ Update the hangar module to show which spark/s has fouled
 				}
 				els{
 					0 (&gt;L:G36XIP_SPARK_7_FOULING) 
+				}
+				(L:G36XIP_SPARK_9_LIKELIHOOD) 0 &gt;
+				if{
+					1 (&gt;L:G36XIP_SPARK_9_FOULING) 
+				}
+				els{
+					0 (&gt;L:G36XIP_SPARK_9_FOULING) 
+				}
+				(L:G36XIP_SPARK_11_LIKELIHOOD) 0 &gt;
+				if{
+					1 (&gt;L:G36XIP_SPARK_11_FOULING) 
+				}
+				els{
+					0 (&gt;L:G36XIP_SPARK_11_FOULING) 
 				}
 			}
           }

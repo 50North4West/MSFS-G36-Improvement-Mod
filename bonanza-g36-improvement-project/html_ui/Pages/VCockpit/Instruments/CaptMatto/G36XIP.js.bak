@@ -9,34 +9,16 @@ class G36XIP extends BaseInstrument {
     super();
 
     //Set our variables and read from the DataStore whilst the sim is loading the flight
-    let seed = Math.floor(Math.random() * 100);
-	var randomnumber = 0;
     var title = SimVar.GetSimVarValue("TITLE", "string");
     this.livery = title.replace(/\s+/g, '_');
-    console.log('Looking for state in DataStore - G36');
-	var state = GetStoredData('G36XIP_STATE_ACTIVE_'+this.livery);
-	if(state != 0 || state !=1) {
-		state = 1;
-		SimVar.SetSimVarValue('L:G36XIP_STATESAVING', "number", state);
-	}
-    console.log('Found State Active - ' + state);
-	//this.sparkcount = GetStoredData('G36XIP_SPARK_COUNT_'+this.livery) ? GetStoredData('G36XIP_SPARK_COUNT_'+this.livery) : 6;
-	this.sparkcount = 6;
-    SimVar.SetSimVarValue("L:G36XIP_SPARKCOUNT", "number", Number(this.sparkcount));
+    console.log(GetStoredData('G36XIP_STATE_ACTIVE_'+this.livery));
 
-	  if (SimVar.GetSimVarValue("L:G36XIP_RESET", "number") == 0.0) {
-		  // This program is basically an instrument and get reinitilized with a flight restart.
-		  // don't get datasore if just a restart of the flight.
-		  // Hobbs is based on the oil pressure switch in the DA-40
-          // get the engine hobbs hours
-		  var hobbshours = parseFloat(GetStoredData('G36XIP_HOBBS_'+this.livery));
-		  if (hobbshours < 0.0) {
-			console.log('Found Hobbs error - ' + hobbshours);
-			hobbshours = 1.25;
-		  }
-		  
-		  this.panelHobbs = hobbshours > 1.25 ? hobbshours : 1.25; //Brand new Aircraft that has had a 45min acceptance flight & 30 minute flight checks prior to ownership
-		  SimVar.SetSimVarValue('L:G36XIP_HOBBS_START', "number", hobbshours);
+    if (GetStoredData('G36XIP_STATE_ACTIVE_'+this.livery) == 1) {
+      console.log('State Saving Enabled');
+
+      var now = SimVar.GetSimVarValue("GENERAL ENG HOBBS ELAPSED TIME:1", "hours");
+      SimVar.SetSimVarValue("L:G36XIP_HOBBS_START", "number", Number(now));
+      this.hobbs = GetStoredData('G36XIP_HOBBS_'+this.livery) ? GetStoredData('G36XIP_HOBBS_'+this.livery) : 1.25; //Brand new Aircraft that has had a 45min acceptance flight & 30 minute flight checks prior to ownership
 
       //FUEL IN GALLONS AND WEIGHTS IN KG
       this.leftFuel = GetStoredData('G36XIP_LEFT_FUEL_'+this.livery) ? GetStoredData('G36XIP_LEFT_FUEL_'+this.livery) : 32; // See JuiceBox7535 post #1825 in main forum
@@ -95,66 +77,16 @@ class G36XIP extends BaseInstrument {
       this.yokeLeft = GetStoredData('G36XIP_YOKE_LEFT_'+this.livery) ? GetStoredData('G36XIP_YOKE_LEFT_'+this.livery) : 0;
       this.yoke2Right = GetStoredData('G36XIP_YOKE_RIGHT_'+this.livery) ? GetStoredData('G36XIP_YOKE_RIGHT_'+this.livery) : 0;
 
-		  //MODELLING STUFF
+      //MODELLING STUFF
 
-		  //SPARKS
-		  console.log('Spark Plug Likelihood - G36');
-		  randomnumber = middleSquareMethod()/1000.0;
-		  this.spark1 = parseFloat(GetStoredData('G36XIP_SPARK_1_LIKELIHOOD_'+this.livery)) != 0.0 ? GetStoredData('G36XIP_SPARK_1_LIKELIHOOD_'+this.livery) : randomnumber;
-		  randomnumber = middleSquareMethod()/1000.0;
-		  this.spark3 = parseFloat(GetStoredData('G36XIP_SPARK_3_LIKELIHOOD_'+this.livery)) != 0.0 ? GetStoredData('G36XIP_SPARK_3_LIKELIHOOD_'+this.livery) : randomnumber;
-		  randomnumber = middleSquareMethod()/1000.0;
-		  this.spark5 = parseFloat(GetStoredData('G36XIP_SPARK_5_LIKELIHOOD_'+this.livery)) != 0.0 ? GetStoredData('G36XIP_SPARK_5_LIKELIHOOD_'+this.livery) : randomnumber;
-		  randomnumber = middleSquareMethod()/1000.0;
-		  this.spark7 = parseFloat(GetStoredData('G36XIP_SPARK_7_LIKELIHOOD_'+this.livery)) != 0.0 ? GetStoredData('G36XIP_SPARK_7_LIKELIHOOD_'+this.livery) : randomnumber;
-		  randomnumber = middleSquareMethod()/1000.0;
-		  this.spark9 = parseFloat(GetStoredData('G36XIP_SPARK_9_LIKELIHOOD_'+this.livery)) != 0.0 ? GetStoredData('G36XIP_SPARK_9_LIKELIHOOD_'+this.livery) : randomnumber;
-		  randomnumber = middleSquareMethod()/1000.0;
-		  this.spark11 = parseFloat(GetStoredData('G36XIP_SPARK_11_LIKELIHOOD_'+this.livery)) != 0.0 ? GetStoredData('G36XIP_SPARK_11_LIKELIHOOD_'+this.livery) : randomnumber;
-		  this.sparkarray = [this.spark1, this.spark3, this.spark5, this.spark7, this.spark9, this.spark11];
-      }
-	  else {
-		  // alresdy retrieved from datastore - probably a flight restart
-		  randomnumber = middleSquareMethod()/1000.0;
-          SetStoredData('G36XIP_SPARK_1_LIKELIHOOD_'+this.livery, randomnumber.toString());
- 		  randomnumber = middleSquareMethod()/1000.0;
-          SetStoredData('G36XIP_SPARK_3_LIKELIHOOD_'+this.livery, randomnumber.toString());
-		  randomnumber = middleSquareMethod()/1000.0;
-          SetStoredData('G36XIP_SPARK_5_LIKELIHOOD_'+this.livery, randomnumber.toString());
-		  randomnumber = middleSquareMethod()/1000.0;
-          SetStoredData('G36XIP_SPARK_7_LIKELIHOOD_'+this.livery, randomnumber.toString());
-		  randomnumber = middleSquareMethod()/1000.0;
-          SetStoredData('G36XIP_SPARK_9_LIKELIHOOD_'+this.livery, randomnumber.toString());
-		  randomnumber = middleSquareMethod()/1000.0;
-          SetStoredData('G36XIP_SPARK_11_LIKELIHOOD_'+this.livery, randomnumber.toString());
-		  
-		  //this.spark1 = SimVar.GetSimVarValue("L:G36XIP_SPARK_1_LIKELIHOOD", "number");
-		  //this.spark3 = SimVar.GetSimVarValue("L:G36XIP_SPARK_3_LIKELIHOOD", "number");
-		  //this.spark5 = SimVar.GetSimVarValue("L:G36XIP_SPARK_5_LIKELIHOOD", "number");
-		  //this.spark7 = SimVar.GetSimVarValue("L:G36XIP_SPARK_7_LIKELIHOOD", "number");
-		  //this.spark9 = SimVar.GetSimVarValue("L:G36XIP_SPARK_9_LIKELIHOOD", "number");
-		  //this.spark11 = SimVar.GetSimVarValue("L:G36XIP_SPARK_11_LIKELIHOOD", "number");
-		  this.spark1 = parseFloat(GetStoredData('G36XIP_SPARK_1_LIKELIHOOD_'+this.livery));
-		  this.spark3 = parseFloat(GetStoredData('G36XIP_SPARK_3_LIKELIHOOD_'+this.livery));
-		  this.spark5 = parseFloat(GetStoredData('G36XIP_SPARK_5_LIKELIHOOD_'+this.livery));
-		  this.spark7 = parseFloat(GetStoredData('G36XIP_SPARK_7_LIKELIHOOD_'+this.livery));
-		  this.spark9 = parseFloat(GetStoredData('G36XIP_SPARK_9_LIKELIHOOD_'+this.livery));
-		  this.spark11 = parseFloat(GetStoredData('G36XIP_SPARK_11_LIKELIHOOD_'+this.livery));
-		  this.sparkarray = [this.spark1, this.spark3, this.spark5, this.spark7, this.spark9, this.spark11];
-          SimVar.SetSimVarValue('L:G36XIP_RESET', "number", "0")
-		  //this.sparkarraynum = [1, 3, 5, 7, 9, 11];
-		  //this.sparkarraylikelihoodgroup = [0, 0, 0, 0, 0, 0];
-		  //this.current_value = 0;
-		  //this.previousPosition = 0;
-	  }
+      //SPARKS
+      this.spark1 = GetStoredData('G36XIP_SPARK_1_LIKELIHOOD_'+this.livery) ? GetStoredData('G36XIP_SPARK_1_LIKELIHOOD_'+this.livery) : Math.random();
+      this.spark3 = GetStoredData('G36XIP_SPARK_3_LIKELIHOOD_'+this.livery) ? GetStoredData('G36XIP_SPARK_3_LIKELIHOOD_'+this.livery) : Math.random();
+      this.spark5 = GetStoredData('G36XIP_SPARK_5_LIKELIHOOD_'+this.livery) ? GetStoredData('G36XIP_SPARK_5_LIKELIHOOD_'+this.livery) : Math.random();
+      this.spark7 = GetStoredData('G36XIP_SPARK_7_LIKELIHOOD_'+this.livery) ? GetStoredData('G36XIP_SPARK_7_LIKELIHOOD_'+this.livery) : Math.random();
+      this.spark9 = GetStoredData('G36XIP_SPARK_9_LIKELIHOOD_'+this.livery) ? GetStoredData('G36XIP_SPARK_9_LIKELIHOOD_'+this.livery) : Math.random();
+      this.spark11 = GetStoredData('G36XIP_SPARK_11_LIKELIHOOD_'+this.livery) ? GetStoredData('G36XIP_SPARK_11_LIKELIHOOD_'+this.livery) : Math.random();
 
-    // }
-    function middleSquareMethod() {
-      let result = (seed*seed).toString().padStart(4,"0").slice(1,4);
-
-    // Pad with zeros as necessary, then extract the middle value.
-      seed = parseInt(result);
-      return parseFloat(result); // return 3-digit pseudo-random number
     }
 
 
@@ -172,16 +104,15 @@ class G36XIP extends BaseInstrument {
   //Runs once the flight is loaded
   onFlightStart() {
     super.onFlightStart();
-	
-    console.log('FlightStart - G36');
-	
-    if (SimVar.GetSimVarValue('L:G36XIP_STATESAVING', "number") == 1) {
+
+
+    if (GetStoredData('G36XIP_STATE_ACTIVE_'+this.livery) == 1) {
 
       //FLIGHT STATES ON LOAD
 
       //Parked
       if (SimVar.GetSimVarValue("ATC ON PARKING SPOT", "bool") == 1) {
-        // The aircraft is on the ground and parked, we can load all the variables
+        //The aircraft is on the ground and parked, we can load all the variables
 
         //load fuel
         SimVar.SetSimVarValue("FUEL TANK LEFT MAIN QUANTITY", "number", Number(this.leftFuel));
@@ -273,44 +204,23 @@ class G36XIP extends BaseInstrument {
         SimVar.SetSimVarValue("L:XMLVAR_YokeHidden1", "number", Number(this.yoke1));
         SimVar.SetSimVarValue("L:XMLVAR_YokeHidden2", "number", Number(this.yoke2));
 
-		// removed sorting - not required
-        // sort the array with a insertion sort
-		//var sparkcount = SimVar.GetSimVarValue("L:G36XIP_SPARKCOUNT", "number")
-		//for (let i = 1; i < sparkcount; i++) {
-		//	this.current_value = this.sparkarray[i];
-		//	this.current_num = this.sparkarraynum[i];
-		//	this.previousPosition = i - 1;
-		//	while((this.previousPosition >= 0) && (this.sparkarray[this.previousPosition] > this.current_value)) {
-		//		this.sparkarray[this.previousPosition + 1] = this.sparkarray[this.previousPosition];
-		//		this.sparkarraynum[this.previousPosition + 1] = this.sparkarraynum[this.previousPosition];
-		//		this.previousPosition -= 1;
-		//	}
-		//	this.sparkarray[this.previousPosition + 1] = this.current_value;
-		//	this.sparkarraynum[this.previousPosition + 1] = this.current_num;
-		// }
-
         //Spark Fouling Likelihood
-        SimVar.SetSimVarValue("L:G36XIP_SPARK_1_LIKELIHOOD", "number", Number(this.sparkarray[0]));
-        //SimVar.SetSimVarValue("L:G36XIP_SPARK_2_LIKELIHOOD", "number", Number(this.sparkarray[1]));
-        SimVar.SetSimVarValue("L:G36XIP_SPARK_3_LIKELIHOOD", "number", Number(this.sparkarray[1]));
-        //SimVar.SetSimVarValue("L:G36XIP_SPARK_4_LIKELIHOOD", "number", Number(this.sparkarray[3]));
-        SimVar.SetSimVarValue("L:G36XIP_SPARK_5_LIKELIHOOD", "number", Number(this.sparkarray[2]));
-        //SimVar.SetSimVarValue("L:G36XIP_SPARK_6_LIKELIHOOD", "number", Number(this.sparkarray[5]));
-        SimVar.SetSimVarValue("L:G36XIP_SPARK_7_LIKELIHOOD", "number", Number(this.sparkarray[3]));
-        //SimVar.SetSimVarValue("L:G36XIP_SPARK_8_LIKELIHOOD", "number", Number(this.sparkarray[7]));
-        SimVar.SetSimVarValue("L:G36XIP_SPARK_9_LIKELIHOOD", "number", Number(this.sparkarray[4]));
-        //SimVar.SetSimVarValue("L:G36XIP_SPARK_10_LIKELIHOOD", "number", Number(this.sparkarray[9]));
-        SimVar.SetSimVarValue("L:G36XIP_SPARK_11_LIKELIHOOD", "number", Number(this.sparkarray[5]));
-        //SimVar.SetSimVarValue("L:G36XIP_SPARK_12_LIKELIHOOD", "number", Number(this.sparkarray[11]));
-	  }
+        SimVar.SetSimVarValue("L:G36XIP_SPARK_1_LIKELIHOOD", "number", Number(this.spark1));
+        SimVar.SetSimVarValue("L:G36XIP_SPARK_3_LIKELIHOOD", "number", Number(this.spark3));
+        SimVar.SetSimVarValue("L:G36XIP_SPARK_5_LIKELIHOOD", "number", Number(this.spark5));
+        SimVar.SetSimVarValue("L:G36XIP_SPARK_7_LIKELIHOOD", "number", Number(this.spark7));
+        SimVar.SetSimVarValue("L:G36XIP_SPARK_9_LIKELIHOOD", "number", Number(this.spark9));
+        SimVar.SetSimVarValue("L:G36XIP_SPARK_11_LIKELIHOOD", "number", Number(this.spark11));
+
+      }
 
       //On Ground but not in a parking space, probably on the runway
       if (SimVar.GetSimVarValue("SIM ON GROUND", "bool") == 1 && SimVar.GetSimVarValue("ATC ON PARKING SPOT", "bool") == 0) {
         //The aircraft is on the ground AND not in a parking spot, so most probably on the runway, we want to check if the engine is running
         if (SimVar.GetSimVarValue("ENG COMBUSTION:1", "bool") == 1) {
           //engine is running don't override the sim settings
-        } 
-		else {
+
+        } else {
           //engine off set everything
 
           //load fuel
@@ -541,24 +451,11 @@ class G36XIP extends BaseInstrument {
           SetStoredData('G36XIP_YOKE2_'+planeId, yoke2.toString());
 
         //HOBBS
-          if (SimVar.GetSimVarValue('L:G36XIP_STATESAVING', "number") == 1 && 
-		  SimVar.GetSimVarValue("ENG OIL PRESSURE:1", "psi") >= 25 &&
-		  SimVar.GetSimVarValue("L:G36XIP_ELAPSETIMESTARTED", "number") == 0) {
-			  SimVar.SetSimVarValue("L:G36XIP_ELAPSETIMESTARTED", "number", 1);
-			  var engstarttime = SimVar.GetSimVarValue("L:G36XIP_ABSOLUTETIME", "number");
-			  SimVar.SetSimVarValue("L:G36XIP_ELAPSETIMESTART", "number", engstarttime);
-		  }
-		  else if (SimVar.GetSimVarValue("ENG OIL PRESSURE:1", "psi") <= 25) {
-			  SimVar.SetSimVarValue("L:G36XIP_ELAPSETIMESTARTED", "number", 0);
-			  SimVar.SetSimVarValue("L:G36XIP_ELAPSETIMESTART", "number", 0);
-		  }
-          if (SimVar.GetSimVarValue("L:G36XIP_ELAPSETIMESTARTED", "number") == 1) {
-			  var engruntime = SimVar.GetSimVarValue("L:G36XIP_ABSOLUTETIME", "number");
-			  var elapsetimestart = SimVar.GetSimVarValue("L:G36XIP_ELAPSETIMESTART", "number");
-			  var elapsedtime = engruntime - elapsetimestart;
-              SetStoredData('G36XIP_HOBBS_'+planeId, elapsedtime.toString());
-              SimVar.SetSimVarValue('L:G36XIP_HOBBS_START', "number", elapsedtime);
-		  }//
+          var now = SimVar.GetSimVarValue("GENERAL ENG HOBBS ELAPSED TIME:1", "hours");
+          var start = SimVar.GetSimVarValue("L:G36XIP_HOBBS_START", "number");
+          var elapsed = now - start;
+          SetStoredData('G36XIP_HOBBS_'+planeId, elapsed.toString());
+      //
 
       //MODELLING STUFF
 

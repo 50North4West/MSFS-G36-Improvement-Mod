@@ -17,8 +17,8 @@
     },
     {
       "path": "fi-FI.locPak",
-      "size": 2080,
-      "date": 132862215225025019
+      "size": 1978,
+      "date": 132810534011137821
     },
     {
       "path": "fr-FR.locPak",
@@ -37,13 +37,13 @@
     },
     {
       "path": "nb-NO.locPak",
-      "size": 1905,
-      "date": 132862214913334000
+      "size": 1803,
+      "date": 132810534011147794
     },
     {
       "path": "nl-NL.locPak",
-      "size": 1953,
-      "date": 132862214858804308
+      "size": 1850,
+      "date": 132810534011147794
     },
     {
       "path": "pl-PL.locPak",
@@ -62,8 +62,8 @@
     },
     {
       "path": "sv-SE.locPak",
-      "size": 2016,
-      "date": 132862215018024810
+      "size": 1914,
+      "date": 132810534021336816
     },
     {
       "path": "ContentInfo/captmatto-panel-bonanza/Thumbnail.jpg",
@@ -78,7 +78,7 @@
     {
       "path": "Effects/LIGHT_G36_Landing.fx",
       "size": 1160,
-      "date": 132862186980584658
+      "date": 132801517215280258
     },
     {
       "path": "Effects/LIGHT_G36_NavigationGreen.fx",
@@ -103,17 +103,17 @@
     {
       "path": "Effects/LIGHT_G36_Taxi.fx",
       "size": 1209,
-      "date": 132862187651841097
+      "date": 132801517215629334
     },
     {
       "path": "Effects/LIGHT_G36_vLanding.fx",
-      "size": 1158,
-      "date": 132862187796406576
+      "size": 1157,
+      "date": 132801517215699147
     },
     {
       "path": "Effects/LIGHT_G36_vTaxi.fx",
-      "size": 1207,
-      "date": 132862187938969699
+      "size": 1206,
+      "date": 132801517215758982
     },
     {
       "path": "Effects/texture/FX_ulm01.PNG.dds",
@@ -157,13 +157,13 @@
     },
     {
       "path": "html_ui/InGamePanels/bonanza/bonanza-hangar.html",
-      "size": 6925,
-      "date": 132862170773359403
+      "size": 6879,
+      "date": 132855373961787473
     },
     {
       "path": "html_ui/InGamePanels/bonanza/bonanza-hangar.js",
-      "size": 7205,
-      "date": 132862224154266572
+      "size": 7204,
+      "date": 132855372289721305
     },
     {
       "path": "html_ui/InGamePanels/bonanza/css/bootstrap.css",
@@ -327,8 +327,8 @@
     },
     {
       "path": "SimObjects/Airplanes/Bonanza_G36_Improvement_Project/systems.cfg",
-      "size": 11980,
-      "date": 132862184550660121
+      "size": 11987,
+      "date": 132801517218062821
     },
     {
       "path": "SimObjects/Airplanes/Bonanza_G36_Improvement_Project/taxi.flt",
@@ -1397,13 +1397,13 @@
     },
     {
       "path": "SimObjects/Airplanes/Bonanza_G36_Improvement_Project/TEXTURE/thumbnail.jpg",
-      "size": 318918,
-      "date": 132856421493930189
+      "size": 350187,
+      "date": 132856397993651023
     },
     {
       "path": "SimObjects/Airplanes/Bonanza_G36_Improvement_Project/TEXTURE/thumbnail_small.jpg",
-      "size": 64334,
-      "date": 132856422366959372
+      "size": 64013,
+      "date": 132856397685489989
     }
   ]
 }

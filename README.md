@@ -1,23 +1,27 @@
 # MSFS G36 Project version 0.6.6
 
-This is the improvement project for the MSFS default G36. It all started as a simple edit of some configuration files but it has since grown into a fully-fledged modification that improves all aspects of the default G36 and introduces new features. This was made possible with the help of the community consisting of both enthusiasts and G36 pilots (for a list of contributors, see the end of this readme).
+This is the improvement project for the MSFS default G36. It all started as a simple edit of some configuration files but it has since grown into a fully-fledged modification that improves all aspects of the default G36 and introduces new features. This was made possible with the help of the community consisting of both enthusiasts and G36 pilots.
 
-We now have a discord channel! https://discord.gg/JVPMYdKx86
+We now have a discord channel! https://discord.gg/JVPMYdKx86 or the dedicated forum post in the MSFS forum https://forums.flightsimulator.com/t/g36-improvement-project/216094 we value your constructive feedback.
 
 ![](https://dcbadge.vercel.app/api/shield/860496910367326228?compact=true)
 
 -------------------------------------
 -------------------------------------
 
-Installation:
+**Installation**
 
-1: Download and install the Working Title NXi from the store Marketplace
+1: Download and install the Working Title NXi from the Marketplace
 
 2: Download and unzip the folder ‘bonanza-g36-improvement-project’ in to your MSFS Community folder
 
-3: The Bonanza G36 Improvement Project is now listed as it's own aircraft in the menu rather than overwriting the default aircraft (please see livery note)
+3: The Bonanza G36 Improvement Project is now listed as it's own aircraft in the aicraft selection menu rather than overwriting the default aircraft (please see livery note)
 
-PLEASE NOTE - WE HAVE REMOVED THE 'Z' FROM THE FOLDER NAME, ENSURE YOU REMOVE THE OLD VERSION PRIOR TO USING THIS ONE!!
+PLEASE NOTE - IN THIS RELEASE WE HAVE REMOVED THE 'Z' FROM THE FOLDER NAME, ENSURE YOU REMOVE THE OLD VERSION PRIOR TO USING THIS ONE!!!
+
+**Updates**
+
+From now on we will be releasing stable versions to FlightSim.To 
 
 -------------------------------------
 -------------------------------------
@@ -182,3 +186,7 @@ There have also been reports of the GNS750 causing issues with the NXi / Our mod
 **Q: The AC Blower switch doesn't work?**
 
 *A: Unfortunately there is something wrong with the animation. We have to wait for Asobo to fix this, but since this button was (inop.) by default don't hold your breath. If you click it, it does actually work. You can see it increases the electrical BUS1 load slightly.*
+
+
+Our contributors (by their MSFS Forum name)
+FrettFS, CaptMatto, Coppersens, Uwajimaya, dciskey, Matchrocket, JuiceBox7535, jonasbeaver, Exp232, nickc95, GuiFarias31 and MrTommymxr. Special thanks to the Working Title team for their excellent NXi implementation!

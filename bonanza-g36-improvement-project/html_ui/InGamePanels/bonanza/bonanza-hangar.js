@@ -39,12 +39,6 @@ class BonanzaHangar extends HTMLElement {
         document.getElementById("stateSaving").checked = false;
       }
 
-      //get the engine hobbs hours
-	  var hobbshours = SimVar.GetSimVarValue('L:G36XIP_HOBBS_START', "number");
-      this.panelHobbs = hobbshours; //Brand new Aircraft that has had a 45min acceptance flight & 30 minute flight checks prior to ownership
-
-    //Send info to the panel - eventually put this in a loop
-
       //set the engine hours
       document.getElementById("aircraftEngineHours").innerHTML = parseFloat(this.panelHobbs).toFixed(2);
 
@@ -55,14 +49,6 @@ class BonanzaHangar extends HTMLElement {
       //Set the ATC name etc
       document.getElementById("aircraftReg").innerHTML = SimVar.GetSimVarValue('ATC ID', "string");
       document.getElementById("aircraftLivery").innerHTML = title;
-
-      //get the battery voltages
-      this.bat1volts = SimVar.GetSimVarValue('ELECTRICAL BATTERY VOLTAGE:1', "volts");
-      //set the battery voltages
-      document.getElementById("aircraftBatt1Volts").innerHTML = parseFloat(this.bat1volts).toFixed(2);
-      this.bat1volts = SimVar.GetSimVarValue('ELECTRICAL BATTERY VOLTAGE:2', "volts");
-      //set the battery voltages
-      document.getElementById("aircraftBatt2Volts").innerHTML = parseFloat(this.bat1volts).toFixed(2);
 
     }, delayInMilliseconds);
 

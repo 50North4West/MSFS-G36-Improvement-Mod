@@ -4,6 +4,8 @@ This is the improvement project for the MSFS default G36. It all started as a si
 
 We now have a discord channel! https://discord.gg/JVPMYdKx86
 
+![](https://dcbadge.vercel.app/api/shield/860496910367326228?compact=true)
+
 -------------------------------------
 -------------------------------------
 

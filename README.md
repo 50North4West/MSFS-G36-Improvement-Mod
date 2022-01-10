@@ -2,7 +2,9 @@
 
 This is the improvement project for the MSFS default G36. It all started as a simple edit of some configuration files but it has since grown into a fully-fledged modification that improves all aspects of the default G36 and introduces new features. This was made possible with the help of the community consisting of both enthusiasts and G36 pilots (for a list of contributors, see the end of this readme).
 
-We now have a discord channel! https://discord.gg/JVPMYdKx86
+We now have a discord channel! https://discord.gg/JVPMYdKx86 or you can continue to use the dedicated MSFS forum post https://forums.flightsimulator.com/t/g36-improvement-project/216094 
+
+We really value your constructive feedback.
 
 -------------------------------------
 -------------------------------------
@@ -180,3 +182,7 @@ There have also been reports of the GNS750 causing issues with the NXi / Our mod
 **Q: The AC Blower switch doesn't work?**
 
 *A: Unfortunately there is something wrong with the animation. We have to wait for Asobo to fix this, but since this button was (inop.) by default don't hold your breath. If you click it, it does actually work. You can see it increases the electrical BUS1 load slightly.*
+
+
+Our contributors (by their MSFS Forum name)
+FrettFS, CaptMatto, Coppersens, Uwajimaya, dciskey, Matchrocket, JuiceBox7535, jonasbeaver, Exp232, nickc95, GuiFarias31 and MrTommymxr. Special thanks to the Working Title team for their excellent NXi implementation!

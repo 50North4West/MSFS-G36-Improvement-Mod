@@ -305,7 +305,7 @@
 	<Sound WwiseData="true" WwiseEvent="tone_warning" NodeName="LIGHTING_CABIN_EMISSIVE_1" ViewPoint="Inside"/>
 	<Sound WwiseData="true" WwiseEvent="tone_altitude_alert_default" NodeName="LIGHTING_CABIN_EMISSIVE_1" ViewPoint="Inside"/>
 	<Sound WwiseData="true" WwiseEvent="aural_taws_system_test_ok" ViewPoint="Inside"/>
-	<Sound WwiseData="false" WwiseEvent="custom_warning_cockpit_sound_04" FileName="custom_taws" NodeName="AS1000_PFD_SCREEN" ViewPoint="Inside"/>
+	<Sound WwiseData="false" WwiseEvent="custom_warning_cockpit_sound_04" FileName="custom_taws" NodeName="AS1000_MFD_SCREEN" ViewPoint="Inside"/>
   </AvionicSounds>
 
 <!-- ANIMATION SOUNDS ################################################################################# -->

@@ -60,26 +60,38 @@ class BonanzaHangar extends HTMLElement {
 
       if (SimVar.GetSimVarValue('L:G36XIP_SPARK_1_FOULING', "number") == 1) {
         document.getElementById("fouling1").innerHTML = "<i class='fa-solid fa-octagon-exclamation fa-lg'></i> Plugs 1 & 2 are experiencing fouling<br>";
+      } else {
+        document.getElementById("fouling1").innerHTML = "";
       }
 
       if (SimVar.GetSimVarValue('L:G36XIP_SPARK_3_FOULING', "number") == 1) {
         document.getElementById("fouling3").innerHTML = "<i class='fa-solid fa-octagon-exclamation fa-lg'></i> Plugs 3 & 4 are experiencing fouling<br>";
+      } else {
+        document.getElementById("fouling3").innerHTML = "";
       }
 
       if (SimVar.GetSimVarValue('L:G36XIP_SPARK_5_FOULING', "number") == 1) {
         document.getElementById("fouling5").innerHTML = "<i class='fa-solid fa-octagon-exclamation fa-lg'></i> Plugs 5 & 6 are experiencing fouling<br>";
+      } else {
+        document.getElementById("fouling5").innerHTML = "";
       }
 
       if (SimVar.GetSimVarValue('L:G36XIP_SPARK_7_FOULING', "number") == 1) {
         document.getElementById("fouling7").innerHTML = "<i class='fa-solid fa-octagon-exclamation fa-lg'></i> Plugs 7 & 8 are experiencing fouling<br>";
+      } else {
+        document.getElementById("fouling7").innerHTML = "";
       }
 
       if (SimVar.GetSimVarValue('L:G36XIP_SPARK_9_FOULING', "number") == 1) {
         document.getElementById("fouling9").innerHTML = "<i class='fa-solid fa-octagon-exclamation fa-lg'></i> Plugs 9 & 10 are experiencing fouling<br>";
+      } else {
+        document.getElementById("fouling9").innerHTML = "";
       }
 
       if (SimVar.GetSimVarValue('L:G36XIP_SPARK_11_FOULING', "number") == 1) {
         document.getElementById("fouling11").innerHTML = "<i class='fa-solid fa-octagon-exclamation fa-lg'></i> Plugs 11 & 12 are experiencing fouling<br>";
+      } else {
+        document.getElementById("fouling11").innerHTML = "";
       }
 
 

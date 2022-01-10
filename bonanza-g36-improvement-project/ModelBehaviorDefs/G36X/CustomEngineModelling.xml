@@ -54,12 +54,12 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
           }
 
           (L:G36XIP_FOUL) 0 ==
-          (L:G36XIP_BADNESS_SCALE) 0 &gt;= and
+          (L:G36XIP_BADNESS_SCALE) 0 &gt; and
           if{
             (L:G36XIP_BADNESS_SCALE) @ThrottleScalar - (&gt;L:G36XIP_BADNESS_SCALE)
           }
 
-          (L:G36XIP_BADNESS_SCALE) 0 &lt;=
+          (L:G36XIP_BADNESS_SCALE) 0 &lt;
           if{
             0 (&gt;L:G36XIP_SPARK_1_FOULING)
             0 (&gt;L:G36XIP_SPARK_3_FOULING)
@@ -75,9 +75,6 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
 
   <!--
     Choose the number of spark plugs that will exibit fouling based on the severity of the engine running rich (Max seems to be 0.091104543)
-    if (mixture ratio > 0.08) {
-      L:G36XIP_NUM_SPARKS_TO_FOUL = random number (0-1) / mixture ratio
-    }
   -->
   <Component ID="ChooseNumSparks">
     <UseTemplate Name="ASOBO_GT_Update">

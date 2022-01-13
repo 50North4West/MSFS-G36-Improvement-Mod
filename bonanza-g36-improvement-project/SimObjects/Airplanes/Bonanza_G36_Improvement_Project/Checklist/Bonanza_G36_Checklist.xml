@@ -1385,7 +1385,7 @@
 <!-- BUS 2 voltage check -->
         <Checkpoint Id="BEFORE_TAXI_BUS2_VOLTAGES">
           <Clue name="Bus 2 should be between 25.5 - 27.0 Volts"/>
-          <CheckpointDesc SubjectTT="BUS 1 between 25.5 to 27.0 Volts" ExpectationTT="Checked" />
+          <CheckpointDesc SubjectTT="BUS 2 between 25.5 to 27.0 Volts" ExpectationTT="Checked" />
           <ForceCamera name="MFD" />
           <Test>
             <TestValue>

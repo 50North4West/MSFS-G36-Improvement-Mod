@@ -107,6 +107,7 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
       <FREQUENCY>1</FREQUENCY>
         <UPDATE_CODE>
           (L:G36XIP_FOULING_POSSIBLE) 1 ==
+          (A:RECIP MIXTURE RATIO:1, ratio) 0.08 &gt; and
           (A:ENG COMBUSTION:1, bool) 1 == and
           (L:G36XIP_SPARK_1_LIKELIHOOD) (L:G36XIP_SPARK_3_LIKELIHOOD) &gt; and
           if{

@@ -9,7 +9,7 @@
 
   <AcousticParameters>
       <Parameter Name="ReverberationPreset" ShareSetInside="Insulation_ExitClosed"/>
-      <Parameter Name="Insulation_ExitClosed" Value="-15"/>
+      <Parameter Name="Insulation_ExitClosed" Value="-25"/>
       <Parameter Name="Insulation_ExitOpen" Value="0"/>
   </AcousticParameters>
 

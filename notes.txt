@@ -1,0 +1,4 @@
+
+Alternator load curve specifications
+It's percentage of engine rpm vs voltage generated the by alternator
+.5:24 = 24 volts at 50% engine rpm

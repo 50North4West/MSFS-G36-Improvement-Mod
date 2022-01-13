@@ -58,8 +58,15 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
           if{
             (L:G36XIP_BADNESS_SCALE) @ThrottleScalar - (&gt;L:G36XIP_BADNESS_SCALE)
           }
+        </UPDATE_CODE>
+    </UseTemplate>
+  </Component>
 
-          (L:G36XIP_BADNESS_SCALE) 0 &lt;
+  <Component ID="G36XReseter">
+    <UseTemplate Name="ASOBO_GT_Update">
+      <FREQUENCY>6</FREQUENCY>
+        <UPDATE_CODE>
+          (L:G36XIP_BADNESS_SCALE) 0 &lt;=
           if{
             0 (&gt;L:G36XIP_SPARK_1_FOULING)
             0 (&gt;L:G36XIP_SPARK_3_FOULING)
@@ -1144,4 +1151,3 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
 
 
 </Template>
-

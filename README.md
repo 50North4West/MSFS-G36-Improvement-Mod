@@ -1,8 +1,8 @@
-# MSFS G36 Project version 0.6.6
+# MSFS G36 Project version 0.6.7
 
 This is the improvement project for the MSFS default G36. It all started as a simple edit of some configuration files but it has since grown into a fully-fledged modification that improves all aspects of the default G36 and introduces new features. This was made possible with the help of the community consisting of both enthusiasts and G36 pilots (for a list of contributors, see the end of this readme).
 
-We now have a discord channel! https://discord.gg/JVPMYdKx86 or you can continue to use the dedicated MSFS forum post https://forums.flightsimulator.com/t/g36-improvement-project/216094 
+We now have a discord channel! https://discord.gg/JVPMYdKx86 or you can continue to use the dedicated MSFS forum post https://forums.flightsimulator.com/t/g36-improvement-project/216094
 
 We really value your constructive feedback.
 
@@ -22,31 +22,35 @@ PLEASE NOTE - WE HAVE REMOVED THE 'Z' FROM THE FOLDER NAME, ENSURE YOU REMOVE TH
 -------------------------------------
 -------------------------------------
 
-Current version: 0.6.6
+Current version: 0.6.7
 
-**New in this version...**
-* NEW! Custom Livery provided by @Crispy136 (Thank you!) You can find more of his liveries here https://flightsim.to/profile/Crispy136/uploads
-* NEW! Added TAWS system test message
-* NEW! Integrated @BufordTX's VR Friendly Prop Mod
-* NEW! Changed environmental controls to read C° rather than F°
-* NEW! Spark Plug Fouling - if you don't lean correctly both on the ground or in the air your plugs will encounter spark fouling, loosing RPM and engine power. Each spark is modelled independently and has its own likelihood to foul; this stays across flights, the spark most likely to foul will foul first followed by the next etc.
-* NEW! Bonanza Hangar; You will manage your aircraft here, check for spark fouling, oil changes and more. This is still very much a WIP feature
-* Reworked Engine performance figures: after more than 30hrs of testing and tweaking, the engine performance figures match the POH as close as we can get them and have been verified by real Bonanza pilots. TAS is within 0.22kts on average across the altitude spectrum and fuel flow within 1g/h.
-
-**Fixes**
-* Fixed: NXi Engine System Page spacing
-* Fixed: Aircraft getting stuck on the ground. Changed nose height on gear to reflect reference pictures, increased nose gear damping affect, thanks to Synoxys787 for his help and research
-* Fixed: Missing registration and ASI error, thanks to Bert Pieke on Avsim.
-* Fixed: Incorrect circuit for PFD, removed sharing two busses. (@meh1951)
-* Fixed: Missing '=' in the bonanza hangar. (@DA40CGDFQ)
+**Changelog**
+* Fixed missing altitude alert tone @200ft to go
+* Added missing minimums callout as per NXi manual
+* Fixed spark fouling message in hangar module when sparks not actually fouling
+* Tweaked fuel flow as current flow slightly less than book figures (Rpt by @JayDee6281)
 
 **Liveries**
 We have split out the files from modifying the default Bonanza to becoming its own aircraft. This is so we can complete further 3d model changes, and work on the hangar module and deeper systems modelling. Liveries will need to be amended to reflect this new aircraft to work. More information here https://forums.flightsimulator.com/t/g36-improvement-project/216094/1943
+
+**RoadMap**
+I though you might like to see the plans I have regarding further development of the mod. None of these are set in stone or confirmed as definitely happening, just things I'd like to try and accomplish. Fee free to add what you'd like to see with the mod in our discord roadmap channel https://discord.gg/JVPMYdKx86
+1. Aircraft Persistence (80% Complete)
+2. Spark Plug Fouling (In test / tweaking)
+3. Hangar Module further development (In progress)
+4. Modelling of MP reduction when systems using power to simulate engine efficiencies e.g. alternator load, air-conditioning, spark plug fouling, mixture etc. (Pondering)
+5. Oil Simulation (investigating)
+6. Electrical System deeper simulation (not started, see this post https://forums.flightsimulator.com/t/understanding-what-systems-the-sim-simulates/488250)
+7. Wear and tear on aircraft hardware, e.g. flaps/ailerons etc. (not started)
+8. Further Aircraft failures (Investigating)
 
 -------------------------------------
 -------------------------------------
 
 Features:
+
+**Bonanza Hangar**
+* A custom in game panel where you will manage your aircraft. This is a work in progress feature but aims to replicate some of the features found in the A2A aircraft hangar. This is still very much a WIP feature and will evolve over time.
 
 **Flight dynamics/performance**
 * Adjusted climb and cruise performance to match the Bonanza G36 POH charts.
@@ -58,8 +62,8 @@ Features:
 * Increased overall stability: less 'twitchy' feeling
 
 **Engine & Fuel system**
-* Completely overhauled engine parameters: realistic fuel flow, mixture-EGT interaction, engine performance at all pressure altitudes.
-* Simulation of Spark Plugs
+* Completely overhauled engine parameters: realistic fuel flow, mixture-EGT interaction, engine performance at all pressure altitudes. After more than 30hrs of testing and tweaking, the engine performance figures match the POH as close as we can get them and have been verified by real Bonanza pilots. TAS is within 0.22kts on average across the altitude spectrum and fuel flow within 1g/h.
+* Simulation of Spark Plugs / Spark Plug Fouling - if you don't lean correctly both on the ground or in the air your plugs will encounter spark fouling, loosing RPM and engine power. Each spark is modelled independently and has its own likelihood to foul; this stays across flights, the spark most likely to foul will foul first followed by the next etc.
 * Simulation of the electric fuel pump
 * More advanced simulation of engine start-up:
   - Cold starts: correct use of the fuel pump, throttle and mixture required depending on engine and ambient temperature
@@ -87,10 +91,13 @@ Features:
 * Integration with the Working Title NXi mod, with customized ENGINE, LEAN and SYSTEM pages.
 * Completely redone G1000 annunciators: all annunciators of the real G36 were implemented (except for door open warnings)
 * Corrected fuel gauge scale
+* Changed environmental controls to read C° rather than F°
 
 **Textures & effects**
 * Including the latest version of Uwajimaya's lighting mod (https://uwajimaya.github.io/FS2020/)
 * Corrected decals (e.g. shoulder hardness -> harness)
+* Custom Livery provided by @Crispy136 (Thank you!) You can find more of his liveries here https://flightsim.to/profile/Crispy136/uploads
+* Integrated @BufordTX's VR Friendly Prop Mod
 
 **Checklists**
 * Interactive checklists for every stage of your flight that follow the POH
@@ -100,6 +107,7 @@ Features:
 
 **SOUNDS**
 * Excessive undercarriage wind noise reduced
+* Added TAWS system test message
 
 **AIRCRAFT PERSISTENCE / STATE SAVING / MAKING THE PLANE 'REAL' (WORK IN PROGRESS)**
 * Your aircraft now remembers how you left it!

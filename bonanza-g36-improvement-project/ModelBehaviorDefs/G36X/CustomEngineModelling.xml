@@ -39,10 +39,10 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
       <FREQUENCY>1</FREQUENCY>
         <UPDATE_CODE>
           (L:G36XIP_FOUL) 1 ==
-          (L:G36XIP_BADNESS_SCALE) 1 &lt;= and
+          (L:G36XIP_BADNESS_SCALE) 3 &lt;= and
           (A:SIM ON GROUND, bool) 1 == and
           if{
-            (L:G36XIP_BADNESS_SCALE) 0.001 + (&gt;L:G36XIP_BADNESS_SCALE)
+            (L:G36XIP_BADNESS_SCALE) 0.0001 + (&gt;L:G36XIP_BADNESS_SCALE)
           }
 
           (L:G36XIP_FOUL) 1 ==
@@ -50,7 +50,7 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
           (A:GENERAL ENG THROTTLE LEVER POSITION:1, percent) 30 &lt; and
           (A:SIM ON GROUND, bool) 0 == and
           if{
-            (L:G36XIP_BADNESS_SCALE) 0.001 + (&gt;L:G36XIP_BADNESS_SCALE)
+            (L:G36XIP_BADNESS_SCALE) 0.0001 + (&gt;L:G36XIP_BADNESS_SCALE)
           }
 
           (L:G36XIP_FOUL) 0 ==
@@ -64,7 +64,7 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
 
   <Component ID="G36XReseter">
     <UseTemplate Name="ASOBO_GT_Update">
-      <FREQUENCY>6</FREQUENCY>
+      <FREQUENCY>3</FREQUENCY>
         <UPDATE_CODE>
           (L:G36XIP_BADNESS_SCALE) 0 &lt;=
           if{
@@ -81,7 +81,8 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
 
 
   <!--
-    Choose the number of spark plugs that will exibit fouling based on the severity of the engine running rich (Max seems to be 0.091104543)
+    Choose the number of spark plugs that will exibit fouling based on the severity of the engine running rich, we need to normalize the result to ensure it works correctly.
+    Max Ratio seems to be 0.09476823
   -->
   <Component ID="ChooseNumSparks">
     <UseTemplate Name="ASOBO_GT_Update">
@@ -90,1048 +91,148 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
           (A:ENG COMBUSTION:1, bool) 1 ==
           (A:RECIP MIXTURE RATIO:1, ratio) 0.08 &gt; and
           if{
-            0.091104543 0.08 - (&gt;O:G36XIP_XNORMALIZED)
+            0.09476823 0.08 - (&gt;O:G36XIP_XNORMALIZED)
             (A:RECIP MIXTURE RATIO:1, ratio) 0.08 - (&gt;O:G36XIP_XMINIMUM)
-            (O:G36XIP_XMINIMUM) (O:G36XIP_XNORMALIZED) / 100 * near (&gt;L:G36XIP_NUM_SPARKS_TO_FOUL)
-            1 (&gt;L:G36XIP_FOULING_POSSIBLE)
+            (O:G36XIP_XMINIMUM) (O:G36XIP_XNORMALIZED) / (&gt;L:G36XIP_NUM_SPARKS_TO_FOUL)
           }
         </UPDATE_CODE>
     </UseTemplate>
   </Component>
 
   <!--
-    Identify which spark plugs are most likely to foul based on ther LIKELIHOOD score
+    ##########################################################################################################################################################
   -->
-  <Component ID="GetTheSparksToFoul">
+
+  <!-- Cylinder 1 - Plugs 1 & 2 -->
+  <Component ID="CylinderOne">
     <UseTemplate Name="ASOBO_GT_Update">
-      <FREQUENCY>1</FREQUENCY>
+      <FREQUENCY>1.3</FREQUENCY>
         <UPDATE_CODE>
-          (L:G36XIP_FOULING_POSSIBLE) 1 ==
-          (A:RECIP MIXTURE RATIO:1, ratio) 0.08 &gt; and
-          (A:ENG COMBUSTION:1, bool) 1 == and
-          (L:G36XIP_SPARK_1_LIKELIHOOD) (L:G36XIP_SPARK_3_LIKELIHOOD) &gt; and
+          (A:ENG COMBUSTION:1, bool) 1 ==
+          (L:G36XIP_FOUL) 1 == and
+          (L:G36XIP_SPARK_1_LIKELIHOOD) (L:G36XIP_NUM_SPARKS_TO_FOUL) &lt;= and
           if{
-            (L:G36XIP_SPARK_5_LIKELIHOOD) (L:G36XIP_SPARK_7_LIKELIHOOD) &gt;
-            if{
-              (L:G36XIP_SPARK_1_LIKELIHOOD) (L:G36XIP_SPARK_5_LIKELIHOOD) &gt;
-              if{
-                (L:G36XIP_SPARK_9_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
-                if{
-                  (L:G36XIP_SPARK_1_LIKELIHOOD) (L:G36XIP_SPARK_9_LIKELIHOOD) &gt;
-                  if{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 0 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_1_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_5_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_7_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 110 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_3_FOULING)
-                    }
-
-                  } els{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 0 &gt;=
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_1_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_5_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_7_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 110 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_3_FOULING)
-                    }
-
-                  }
-                } els{
-                  (L:G36XIP_SPARK_1_LIKELIHOOD) (L:G36XIP_SPARK_9_LIKELIHOOD) &gt;
-                  if{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 0 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_1_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_5_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_7_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 110 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_3_FOULING)
-                    }
-
-                  } els{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 0 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_1_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_5_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_7_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 110 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_3_FOULING)
-                    }
-
-                  }
-                }
-              } els{
-                (L:G36XIP_SPARK_9_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
-                if{
-                  (L:G36XIP_SPARK_5_LIKELIHOOD) (L:G36XIP_SPARK_9_LIKELIHOOD) &gt;
-                  if{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 0 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_5_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &lt;= and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_1_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_7_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 110 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_3_FOULING)
-                    }
-
-                  } els{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 0 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_5_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &lt;= and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_1_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_7_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 110 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_3_FOULING)
-                    }
-
-                  }
-                } els{
-                  (L:G36XIP_SPARK_5_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
-                  if{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 0 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_5_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &lt;= and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_1_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_7_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 110 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_3_FOULING)
-                    }
-
-                  } els{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 0 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_5_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &lt;= and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_1_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_7_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 110 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_3_FOULING)
-                    }
-
-                  }
-                }
-              }
-            } els{
-              (L:G36XIP_SPARK_1_LIKELIHOOD) (L:G36XIP_SPARK_7_LIKELIHOOD) &gt;
-              if{
-                (L:G36XIP_SPARK_9_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
-                if{
-                  (L:G36XIP_SPARK_1_LIKELIHOOD) (L:G36XIP_SPARK_9_LIKELIHOOD) &gt;
-                  if{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 0 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_1_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &lt;= and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_5_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_7_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 110 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_3_FOULING)
-                    }
-
-                  } els{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 0 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_1_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_7_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &lt;= and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_5_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 110 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_3_FOULING)
-                    }
-
-                  }
-                } els{
-                  (L:G36XIP_SPARK_1_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
-                  if{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 0 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_1_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_7_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &lt;= and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_5_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 110 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_3_FOULING)
-                    }
-
-                  } els{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 0 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_1_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_7_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &lt;= and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_5_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 110 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_3_FOULING)
-                    }
-
-                  }
-                }
-              }
-            }
+            1 (&gt;L:G36XIP_SPARK_1_FOULING)
+            (A:GENERAL ENG PCT MAX RPM:1, percent) (L:G36XIP_BADNESS_SCALE) - (&gt;A:GENERAL ENG PCT MAX RPM:1, percent)
           } els{
-            (L:G36XIP_SPARK_5_LIKELIHOOD) (L:G36XIP_SPARK_7_LIKELIHOOD) &gt;
+            (L:G36XIP_BADNESS_SCALE) 0 &gt;
             if{
-              (L:G36XIP_SPARK_3_LIKELIHOOD) (L:G36XIP_SPARK_5_LIKELIHOOD) &gt;
-              if{
-                (L:G36XIP_SPARK_9_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
-                if{
-                  (L:G36XIP_SPARK_3_LIKELIHOOD) (L:G36XIP_SPARK_9_LIKELIHOOD) &gt;
-                  if{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 0 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_3_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_5_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &lt;= and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_7_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 110 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_1_FOULING)
-                    }
-
-                  } els{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 0 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_3_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_5_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &lt;= and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_7_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 110 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_1_FOULING)
-                    }
-
-                  }
-                } els{
-                  (L:G36XIP_SPARK_3_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
-                  if{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 0 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_3_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_5_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &lt;= and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_7_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 110 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_1_FOULING)
-                    }
-
-                  } els{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 0 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_3_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_5_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &lt;= and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_7_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 110 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_1_FOULING)
-                    }
-
-                  }
-                }
-              } els{
-                (L:G36XIP_SPARK_9_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
-                if{
-                  (L:G36XIP_SPARK_5_LIKELIHOOD) (L:G36XIP_SPARK_9_LIKELIHOOD) &gt;
-                  if{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 0 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_5_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_3_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &lt;= and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_7_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 110 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_1_FOULING)
-                    }
-
-                  } els{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 0 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_5_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_3_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &lt;= and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_7_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 110 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_1_FOULING)
-                    }
-
-                  }
-                } els{
-                  (L:G36XIP_SPARK_5_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
-                  if{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 0 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_5_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_3_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &lt;= and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_7_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 110 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_1_FOULING)
-                    }
-
-                  } els{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 0 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_5_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_3_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &lt;= and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_7_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 110 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_1_FOULING)
-                    }
-                  }
-                }
-              }
-            } els{
-              (L:G36XIP_SPARK_3_LIKELIHOOD) (L:G36XIP_SPARK_7_LIKELIHOOD) &gt;
-              if{
-                (L:G36XIP_SPARK_9_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
-                if{
-                  (L:G36XIP_SPARK_3_LIKELIHOOD) (L:G36XIP_SPARK_9_LIKELIHOOD) &gt;
-                  if{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 0 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_3_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_7_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &lt;= and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_5_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 110 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_1_FOULING)
-                    }
-
-                  } els{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 0 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_3_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_7_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &lt;= and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_5_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 110 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_1_FOULING)
-                    }
-                  }
-                } els{
-                  (L:G36XIP_SPARK_3_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
-                  if{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 0 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_3_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_7_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &lt;= and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_5_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 110 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_1_FOULING)
-                    }
-
-                  } els{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 0 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_3_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_7_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &lt;= and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_5_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 110 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_1_FOULING)
-                    }
-
-                  }
-                }
-              } els{
-                (L:G36XIP_SPARK_9_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
-                if{
-                  (L:G36XIP_SPARK_7_LIKELIHOOD) (L:G36XIP_SPARK_9_LIKELIHOOD) &gt;
-                  if{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 0 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_7_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_3_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &lt;= and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_5_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 110 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_1_FOULING)
-                    }
-
-                  } els{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 0 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_7_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_3_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &lt;= and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_5_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 110 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_1_FOULING)
-                    }
-
-                  }
-                } els{
-                  (L:G36XIP_SPARK_7_LIKELIHOOD) (L:G36XIP_SPARK_11_LIKELIHOOD) &gt;
-                  if{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 0 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_7_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_3_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &lt;= and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_5_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 110 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_1_FOULING)
-                    }
-
-                  } els{
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 0 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_11_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 16.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_7_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 33.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_9_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 49.9 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_3_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 66.6 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &lt;= and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_5_FOULING)
-                    }
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 83.3 &gt;
-                    (L:G36XIP_NUM_SPARKS_TO_FOUL) 110 &lt; and
-                    if{
-                      1 (&gt;L:G36XIP_SPARK_1_FOULING)
-                    }
-
-                  }
-                }
-              }
+              (A:GENERAL ENG PCT MAX RPM:1, percent) (L:G36XIP_BADNESS_SCALE) - (&gt;A:GENERAL ENG PCT MAX RPM:1, percent)
             }
           }
         </UPDATE_CODE>
     </UseTemplate>
   </Component>
 
-  <Component ID="FoulThem">
+  <!-- Cylinder 2 - Plugs 3 & 4 -->
+  <Component ID="CylinderTwo">
     <UseTemplate Name="ASOBO_GT_Update">
-      <FREQUENCY>1</FREQUENCY>
+      <FREQUENCY>3</FREQUENCY>
         <UPDATE_CODE>
-          (L:G36XIP_SPARK_1_FOULING) 1 ==
-          (A:GENERAL ENG RPM:1, rpm) 600 &gt; and
+          (A:ENG COMBUSTION:1, bool) 1 ==
+          (L:G36XIP_FOUL) 1 == and
+          (L:G36XIP_SPARK_3_LIKELIHOOD) (L:G36XIP_NUM_SPARKS_TO_FOUL) &lt;= and
           if{
+            1 (&gt;L:G36XIP_SPARK_3_FOULING)
             (A:GENERAL ENG PCT MAX RPM:1, percent) (L:G36XIP_BADNESS_SCALE) - (&gt;A:GENERAL ENG PCT MAX RPM:1, percent)
-          }
-
-          (L:G36XIP_SPARK_3_FOULING) 1 ==
-          (A:GENERAL ENG RPM:1, rpm) 600 &gt; and
-          if{
-            (A:GENERAL ENG PCT MAX RPM:1, percent) (L:G36XIP_BADNESS_SCALE) - (&gt;A:GENERAL ENG PCT MAX RPM:1, percent)
-          }
-
-          (L:G36XIP_SPARK_5_FOULING) 1 ==
-          (A:GENERAL ENG RPM:1, rpm, percent) 600 &gt; and
-          if{
-            (A:GENERAL ENG PCT MAX RPM:1, percent) (L:G36XIP_BADNESS_SCALE) - (&gt;A:GENERAL ENG PCT MAX RPM:1, percent)
-          }
-
-          (L:G36XIP_SPARK_7_FOULING) 1 ==
-          (A:GENERAL ENG RPM:1, rpm) 600 &gt; and
-          if{
-            (A:GENERAL ENG PCT MAX RPM:1, percent) (L:G36XIP_BADNESS_SCALE) - (&gt;A:GENERAL ENG PCT MAX RPM:1, percent)
-          }
-
-          (L:G36XIP_SPARK_9_FOULING) 1 ==
-          (A:GENERAL ENG RPM:1, rpm) 600 &gt; and
-          if{
-            (A:GENERAL ENG PCT MAX RPM:1, percent) (L:G36XIP_BADNESS_SCALE) - (&gt;A:GENERAL ENG PCT MAX RPM:1, percent)
-          }
-
-          (L:G36XIP_SPARK_11_FOULING) 1 ==
-          (A:GENERAL ENG RPM:1, rpm) 600 &gt; and
-          if{
-            (A:GENERAL ENG PCT MAX RPM:1, percent) (L:G36XIP_BADNESS_SCALE) - (&gt;A:GENERAL ENG PCT MAX RPM:1, percent)
+          } els{
+            (L:G36XIP_BADNESS_SCALE) 0 &gt;
+            if{
+              (A:GENERAL ENG PCT MAX RPM:1, percent) (L:G36XIP_BADNESS_SCALE) - (&gt;A:GENERAL ENG PCT MAX RPM:1, percent)
+            }
           }
         </UPDATE_CODE>
     </UseTemplate>
   </Component>
+
+  <!-- Cylinder 3 - Plugs 5 & 6 -->
+  <Component ID="CylinderThree">
+    <UseTemplate Name="ASOBO_GT_Update">
+      <FREQUENCY>1.5</FREQUENCY>
+        <UPDATE_CODE>
+          (A:ENG COMBUSTION:1, bool) 1 ==
+          (L:G36XIP_FOUL) 1 == and
+          (L:G36XIP_SPARK_5_LIKELIHOOD) (L:G36XIP_NUM_SPARKS_TO_FOUL) &lt;= and
+          if{
+            1 (&gt;L:G36XIP_SPARK_5_FOULING)
+            (A:GENERAL ENG PCT MAX RPM:1, percent) (L:G36XIP_BADNESS_SCALE) - (&gt;A:GENERAL ENG PCT MAX RPM:1, percent)
+          } els{
+            (L:G36XIP_BADNESS_SCALE) 0 &gt;
+            if{
+              (A:GENERAL ENG PCT MAX RPM:1, percent) (L:G36XIP_BADNESS_SCALE) - (&gt;A:GENERAL ENG PCT MAX RPM:1, percent)
+            }
+          }
+        </UPDATE_CODE>
+    </UseTemplate>
+  </Component>
+
+  <!-- Cylinder 4 - Plugs 7 & 8 -->
+  <Component ID="CylinderFour">
+    <UseTemplate Name="ASOBO_GT_Update">
+      <FREQUENCY>2.7</FREQUENCY>
+        <UPDATE_CODE>
+          (A:ENG COMBUSTION:1, bool) 1 ==
+          (L:G36XIP_FOUL) 1 == and
+          (L:G36XIP_SPARK_7_LIKELIHOOD) (L:G36XIP_NUM_SPARKS_TO_FOUL) &lt;= and
+          if{
+            1 (&gt;L:G36XIP_SPARK_7_FOULING)
+            (A:GENERAL ENG PCT MAX RPM:1, percent) (L:G36XIP_BADNESS_SCALE) - (&gt;A:GENERAL ENG PCT MAX RPM:1, percent)
+          } els{
+            (L:G36XIP_BADNESS_SCALE) 0 &gt;
+            if{
+              (A:GENERAL ENG PCT MAX RPM:1, percent) (L:G36XIP_BADNESS_SCALE) - (&gt;A:GENERAL ENG PCT MAX RPM:1, percent)
+            }
+          }
+        </UPDATE_CODE>
+    </UseTemplate>
+  </Component>
+
+  <!-- Cylinder 5 - Plugs 9 & 10 -->
+  <Component ID="CylinderFive">
+    <UseTemplate Name="ASOBO_GT_Update">
+      <FREQUENCY>1.9</FREQUENCY>
+        <UPDATE_CODE>
+          (A:ENG COMBUSTION:1, bool) 1 ==
+          (L:G36XIP_FOUL) 1 == and
+          (L:G36XIP_SPARK_9_LIKELIHOOD) (L:G36XIP_NUM_SPARKS_TO_FOUL) &lt;= and
+          if{
+            1 (&gt;L:G36XIP_SPARK_9_FOULING)
+            (A:GENERAL ENG PCT MAX RPM:1, percent) (L:G36XIP_BADNESS_SCALE) - (&gt;A:GENERAL ENG PCT MAX RPM:1, percent)
+          } els{
+            (L:G36XIP_BADNESS_SCALE) 0 &gt;
+            if{
+              (A:GENERAL ENG PCT MAX RPM:1, percent) (L:G36XIP_BADNESS_SCALE) - (&gt;A:GENERAL ENG PCT MAX RPM:1, percent)
+            }
+          }
+        </UPDATE_CODE>
+    </UseTemplate>
+  </Component>
+
+  <!-- Cylinder 5 - Plugs 11 & 12 -->
+  <Component ID="CylinderSix">
+    <UseTemplate Name="ASOBO_GT_Update">
+      <FREQUENCY>2.4</FREQUENCY>
+        <UPDATE_CODE>
+          (A:ENG COMBUSTION:1, bool) 1 ==
+          (L:G36XIP_FOUL) 1 == and
+          (L:G36XIP_SPARK_11_LIKELIHOOD) (L:G36XIP_NUM_SPARKS_TO_FOUL) &lt;= and
+          if{
+            1 (&gt;L:G36XIP_SPARK_11_FOULING)
+            (A:GENERAL ENG PCT MAX RPM:1, percent) (L:G36XIP_BADNESS_SCALE) - (&gt;A:GENERAL ENG PCT MAX RPM:1, percent)
+          } els{
+            (L:G36XIP_BADNESS_SCALE) 0 &gt;
+            if{
+              (A:GENERAL ENG PCT MAX RPM:1, percent) (L:G36XIP_BADNESS_SCALE) - (&gt;A:GENERAL ENG PCT MAX RPM:1, percent)
+            }
+          }
+        </UPDATE_CODE>
+    </UseTemplate>
+  </Component>
+
+  <!--
+    ##########################################################################################################################################################
+  -->
+
 
   <Component ID="MagDropEffect">
     <UseTemplate Name="ASOBO_GT_Update">

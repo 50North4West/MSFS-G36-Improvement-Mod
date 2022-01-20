@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
-    <title></title>
-    <meta charset="utf-8" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" href="/SCSS/common.css" />
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="bonanza-hangar.css" />
 
     <script type="text/javascript" src="/JS/coherent.js"></script>
     <script type="text/javascript" src="/JS/common.js"></script>
@@ -15,9 +15,9 @@
 
     <script type="text/javascript" src="/JS/simvar.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/d23d9e1bad.js" crossorigin="anonymous"></script>
 
     <link rel="import" href="/templates/NewPushButton/NewPushButton.html" />
@@ -25,110 +25,305 @@
     <link rel="import" href="/templates/ingameUi/ingameUi.html" />
     <link rel="import" href="/templates/ingameUiHeader/ingameUiHeader.html" />
 
+    <link href="bonanza-hangar.css" rel="stylesheet">
+
+    <title>Hangar</title>
   </head>
   <body class="border-box">
     <bonanza-hangar>
-      <ingame-ui id="bonanza_frame" panel-id="G36_Panel" class="ingameUiFrame" title="Bonanza Hangar" content-fit="true" min-width="860" min-height="900">
+      <ingame-ui id="bonanza_frame" panel-id="G36_Panel" class="ingameUiFrame" title="Bonanza Hangar" content-fit="true" min-width="994" min-height="1138">
         <section id="MainDisplay">
-          <div class="container-fluid swish">
-            <div class="row mt-3">
-              <div class="col-12 text-center">
-                <img src="img/Beechcraft_logo_white.png" height="30px" />
-                <h1>BONANZA G36 IMPROVEMENT PROJECT</h1>
+          <nav class="navbar navbar-expand-lg navbar-dark bg-hangar border-bottom border-hangar-blue" style="height:80px;">
+            <div class="container-fluid">
+              <i class="fa-solid fa-warehouse text-white fa-2x"></i>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="btn btn-pink text-blue" aria-current="page" href="#">Preflight</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Maintenance Hangar</a>
+                  </li>
+                </ul>
               </div>
             </div>
-            <div class="row my-5">
-              <div class="col text-center connected-deck">
-                Connected Flight Deck <i class="fa-thin fa-screencast"></i>
+          </nav>
+          <div class="container-fluid">
+            <div class="row bg-hangar justify-content-center header-height">
+              <div class="col-sm-12 col-md-10 col-lg-10 col-xl-10 col-xxl-10">
+                <p class="hangar-title mt-5 text-white display-6 mb-0"><span class="hanagar-header-text">THE HANGAR </span><i class="fa-thin fa-slash-forward fa-lg"></i><i class="fa-thin fa-slash-forward fa-lg"></i> Beechcraft G36 Bonanza</p>
+                <h6 class="text-header-small small ">Aircraft Monitoring & Maintenance</h6>
               </div>
             </div>
-            <div class="row blue-border semi-dark-background">
-              <div class="col-5 offset-sm-1 my-3">
-                <!-- Revision 09/01/2022 -->
-                <span class="text-secondary">AFM Revision: </span><span class="text-offwhite">61DB0408</span><br />
-                <span class="text-secondary">Supplement: </span><span class="text-offwhite">61DB0408-S1</span><br />
-              </div>
-              <div class="col-5 text-right my-3">
-                <span class="text-secondary">Registration: </span><span id="aircraftReg" class="text-offwhite">placeholder</span><br />
-                <span class="text-secondary">Aircraft: </span><span id="aircraftLivery" class="text-offwhite">placeholder</span><br />
-              </div>
-              <div class="row dark-background w-100">
-                <div class="col text-center ">
-                  <img class="mt-3" src="img/Bonanza_360_05.png" height="110px" />
-                  <p class="text-white mt-n1">
-                    Bonanza G36 / Garmin NXi
-                  </p>
-                </div>
-              </div>
-              <div class="row w-100">
-                <div class="col-5 offset-sm-1 my-3">
-                  <div class="custom-control custom-switch text-offwhite">
-                    <input type="checkbox" class="custom-control-input" id="stateSaving" onclick="stateChange()" >
-                    <label class="custom-control-label" for="stateSaving">Enable / Disable State Saving for this aircraft</label>
-                  </div>
-                  <div class="custom-control custom-switch text-offwhite">
-                    <input type="checkbox" class="custom-control-input" id="reset" onclick="resetState()" >
-                    <label id="resetLabel" class="custom-control-label" for="reset">Reset</label>
-                  </div>
-                  <div id="aircraftStateChange" class="row d-none">
-                    <div class="col text-yellow">
-                      <p>
-                        <i class="fa-solid fa-circle-exclamation"></i> Changes above will only be reflected on next flight load
-                      </p>
+            <div class="row justify-content-center into-header">
+              <div class="col-sm-12 col-md-10 col-lg-10 col-xl-10 col-xxl-10">
+                <div class="card shadow">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-sm-12 col-md-6 border-end border-grey">
+                        <div class="progress" style="height:4px">
+                          <div class="progress-bar bg-blue" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="progress" style="height:4px;margin-top:2px;">
+                          <div class="progress-bar bg-pink" role="progressbar" style="width: 5%" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <h5>AIRPLANE INSPECTION PERIODS</h5>
+                        <p class="text-default">
+                          <i class="fa-solid fa-square text-blue"></i> Required Annual Inspection <span id="annualDaysRemain" class="float-end">Due in X days</span><br />
+                          <i class="fa-solid fa-square text-pink"></i> 100hr Service <span id="100HrsRemain" class="float-end">Due in X hours</span>
+                        </p>
+                      </div>
+                      <div class="col-sm-4 col-md-2 text-center">
+                        <p class="mb-0 text-blue">
+                          <i class="fa-regular fa-timer fa-2x"></i>
+                        </p>
+                        <p class="text-blue mb-3">
+                          Total Hours
+                        </p>
+                        <p class="numbers">
+                          2.5
+                        </p>
+                      </div>
+                      <div class="col-sm-4 col-md-2 text-center">
+                        <p class="mb-0 text-blue">
+                          <i class="fa-regular fa-gauge fa-2x"></i>
+                        </p>
+                        <p class="text-blue mb-3">
+                          Total Miles
+                        </p>
+                        <p class="numbers">
+                          5250
+                        </p>
+                      </div>
+                      <div class="col-sm-4 col-md-2 text-center">
+                        <p class="mb-0 text-blue">
+                          <i class="fa-regular fa-plane-tail fa-2x"></i>
+                        </p>
+                        <p class="text-blue mb-3">
+                          A/C Reg
+                        </p>
+                        <p class="numbers">
+                          G-SAIL
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-5 my-3">
-                  <p class="text-offwhite">
-                    <b>Live Aircraft Data</b>
-                  </p>
-                  <dl class="row">
-                    <dt class="col-sm-6">
-                      Engine Hours
-                    </dt>
-                    <dd id="aircraftEngineHours" class="col-sm-6 text-offwhite">
-                      placeholder
-                    </dd>
-                    <dt class="col-sm-6">
-                      Engine
-                    </dt>
-                    <dd id="aircraftEngineType" class="col-sm-6 text-offwhite">
-                      Continental IO-550-B
-                    </dd>
-                    <dt class="col-sm-6">
-                      Hours until next service
-                    </dt>
-                    <dd id="aircraftHoursToService" class="col-sm-6 text-offwhite">
-                      placeholder
-                    </dd>
-                    <dt class="col-sm-6">
-                      Battery 1 Voltage
-                    </dt>
-                    <dd id="aircraftBatt1Volts" class="col-sm-6 text-offwhite">
-                      placeholder
-                    </dd>
-                    <dt class="col-sm-6">
-                      Battery 2 Voltage
-                    </dt>
-                    <dd id="aircraftBatt2Volts" class="col-sm-6 text-offwhite">
-                      placeholder
-                    </dd>
-                  </dl>
+              </div>
+            </div>
+            <div class="row justify-content-center mt-5">
+              <div class="col-sm-4 col-md-3 col-lg-3 col-xl-3 col-xxl-2">
+                <h3 class="page-title">Overview</h3>
+                <p class="mt-4 mb-1">
+                  Avionics
+                </p>
+                <div class="progress" style="height:4px">
+                  <div class="progress-bar bg-blue" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-              </div>
-            </div>
-            <div class="row mt-4">
-              <div class="col">
-                <div id="fouling1" class="text-yellow"></div>
-                <div id="fouling3" class="text-yellow"></div>
-                <div id="fouling5" class="text-yellow"></div>
-                <div id="fouling7" class="text-yellow"></div>
-                <div id="fouling9" class="text-yellow"></div>
-                <div id="fouling11" class="text-yellow"></div>
-              </div>
-            </div>
+                <p class="mt-4 mb-1">
+                  Electrical
+                </p>
+                <div class="progress" style="height:4px">
+                  <div class="progress-bar bg-blue" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <p class="mt-4 mb-1">
+                  Engine
+                </p>
+                <div class="progress" style="height:4px">
+                  <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <p class="mt-4 mb-1">
+                  Flight Controls
+                </p>
+                <div class="progress" style="height:4px">
+                  <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <p class="mt-4 mb-1">
+                  Connectivity
+                </p>
+                <div class="progress" style="height:4px">
+                  <div class="progress-bar bg-blue" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <p class="mt-5">
+                  Notes from last inspection...
+                  <ul>
+                    <li>
+                      Spark Plugs were a little fouled, try leaning more when on the ground
+                    </li>
+                    <li>
+                      Coolant will need topping up next time
+                    </li>
+                    <li>
+                      The oil may need a change
+                    </li>
+                  </ul>
+                </p>
 
+
+
+              </div>
+              <div class="col-sm-8 col-md-7 col-lg-7 col-xl-7 col-xxl-8">
+                <h3 class="page-title">Checklists</h3>
+                <p class="text-default mb-2">
+                  <a class="text-pink" href="#limitations">Limitiations</a>
+                </p>
+                <p class="text-default mb-2">
+                  <a class="text-pink" href="#start">Start</a> / <a class="text-pink" href="#start">Run-up</a>
+                </p>
+                <p class="text-default mb-2">
+                  <a class="text-pink" href="#takeoff">Takeoff</a> / <a class="text-pink" href="#climb">Climb</a>
+                </p>
+                <p class="text-default mb-2">
+                  <a class="text-pink" href="#cruise">Cruise</a>
+                </p>
+                <p class="text-default mb-2">
+                  <a class="text-pink" href="#approach">Approach</a> / <a class="text-pink" href="#landing">Landing</a>
+                </p>
+                <p class="text-default mb-3">
+                  <a class="text-pink" href="#shutdown">Shutdown</a>
+                </p>
+
+                <div id="limitations" class="card bg-white border-2 rounded-3">
+                  <div class="card-header bg-blue text-white ">Limitations</div>
+                    <div class="card-body px-1">
+                      <p class="text-blue ">
+                        <dl class="row">
+                          <dd class="col-sm-6 list-border">Total Fuel Capacity</dd>
+                          <dd class="col-sm-6 text-end list-border">80 Gallons / 667 lbs / 302 ltrs</dd>
+                          <dd class="col-sm-6 list-border">Useable Fuel Capacity</dd>
+                          <dd class="col-sm-6 text-end list-border">74 Gallons / 617 lbs / 280 ltrs</dd>
+                        </dl>
+                        <dl class="row">
+                          <dd class="col-sm-6 list-border">Max Take-off / Landing Weight</dd>
+                          <dd class="col-sm-6 text-end list-border">3650 lbs / 1655 kg</dd>
+                          <dd class="col-sm-6 list-border">Max. Demonstrated Crosswind</dd>
+                          <dd class="col-sm-6 text-end list-border">17 kts</dd>
+                        </dl>
+                        <dl class="row">
+                          <dd class="col-sm-6 list-border">VSO | Stall Speed Flaps 30</dd>
+                          <dd class="col-sm-6 text-end list-border">61 kts <sup>KIAS</sup></dd>
+                          <dd class="col-sm-6 list-border">VSO | Stall Speed Flaps 12</dd>
+                          <dd class="col-sm-6 text-end list-border">?? kts <sup>KIAS</sup></dd>
+                          <dd class="col-sm-6 list-border">VSR | Stall Speed Clean</dd>
+                          <dd class="col-sm-6 text-end list-border">68 kts <sup>KIAS</sup></dd>
+                        </dl>
+                        <dl class="row">
+                          <dd class="col-sm-6 list-border">VLE | Max Gear Extend Speed</dd>
+                          <dd class="col-sm-6 text-end list-border">154 kts <sup>KIAS</sup></dd>
+                          <dd class="col-sm-6 list-border">VFE | Max Appr Flaps Extend Speed</dd>
+                          <dd class="col-sm-6 text-end list-border">154 kts <sup>KIAS</sup></dd>
+                          <dd class="col-sm-6 list-border">VFE | Max Flaps Extend Speed</dd>
+                          <dd class="col-sm-6 text-end list-border">124 kts <sup>KIAS</sup></dd>
+                        </dl>
+                        <dl class="row">
+                          <dd class="col-sm-6 list-border">VA | Max Manoeuvre Speed</dd>
+                          <dd class="col-sm-6 text-end list-border">141 kts <sup>KIAS</sup></dd>
+                          <dd class="col-sm-6 list-border">VNE | Never Exceed Speed</dd>
+                          <dd class="col-sm-6 text-end list-border">205 kts <sup>KIAS</sup></dd>
+                        </dl>
+                        <p class="text-default">
+                          <u>Fuel Quantities Per Side</u>
+                        </p>
+                        <dl class="row">
+                          <dd class="col-sm-6 list-border">Green | Operating Range</dd>
+                          <dd class="col-sm-6 text-end list-border">37 - 13 Gallons</dd>
+                          <dd class="col-sm-6 list-border">Yellow | Caution Range</dd>
+                          <dd class="col-sm-6 text-end list-border">13 - 1 Gallons</dd>
+                          <dd class="col-sm-6 list-border">Red | Warning Range</dd>
+                          <dd class="col-sm-6 text-end list-border">1 - 0 Gallons</dd>
+                        </dl>
+                      </p>
+                    </div>
+                </div>
+
+                <p class="mt-4">
+                  <a class="text-pink" href="#limitations">Limitiations</a> / <a class="text-pink" href="#start">Start</a> / <a class="text-pink" href="#start">Runup</a> / <a class="text-pink" href="#takeoff">Takeoff</a>
+                  / <a class="text-pink" href="#climb">Climb</a> / <a class="text-pink" href="#cruise">Cruise</a> / <a class="text-pink" href="#approach">Approach</a> / <a class="text-pink" href="#landing">Landing</a>
+                  / <a class="text-pink" href="#shutdown">Shutdown</a>
+                </p>
+
+                <div id="start" class="card bg-white mt-4">
+                  <div class="card-header bg-blue text-white">Engine Start</div>
+                    <div class="card-body">
+                      <p class="text-default">
+                        <u>Before Start</u>
+                      </p>
+                      <dl class="row">
+                        <dd class="col-sm-6 list-border">Parking Brake</dd>
+                        <dd class="col-sm-6 text-end list-border">Set</dd>
+                        <dd class="col-sm-6 list-border">All Avionics</dd>
+                        <dd class="col-sm-6 text-end list-border">Off</dd>
+                        <dd class="col-sm-6 list-border">Circuit Breakers</dd>
+                        <dd class="col-sm-6 text-end list-border">In</dd>
+                        <dd class="col-sm-6 list-border">Landing Gear Handle</dd>
+                        <dd class="col-sm-6 text-end list-border">Down</dd>
+                        <dd class="col-sm-6 list-border">Battery 1 & 2</dd>
+                        <dd class="col-sm-6 text-end list-border">On</dd>
+                        <dd class="col-sm-6 list-border">Battery Valtages</dd>
+                        <dd class="col-sm-6 text-end list-border">Checked</dd>
+                        <dd class="col-sm-6 list-border">Alternator 1 & 2</dd>
+                        <dd class="col-sm-6 text-end list-border">On</dd>
+                        <dd class="col-sm-6 list-border">Flaps</dd>
+                        <dd class="col-sm-6 text-end list-border">Up</dd>
+                        <dd class="col-sm-6 list-border">Cowl Flaps</dd>
+                        <dd class="col-sm-6 text-end list-border">Open</dd>
+                        <dd class="col-sm-6 list-border">Beacon</dd>
+                        <dd class="col-sm-6 text-end list-border">On</dd>
+                        <dd class="col-sm-6 list-border">Fuel Selector</dd>
+                        <dd class="col-sm-6 text-end list-border">Fullest Tank</dd>
+                        <dd class="col-sm-6 list-border">Fuel Quantity Indicators</dd>
+                        <dd class="col-sm-6 text-end list-border">Check Quantity</dd>
+                      </dl>
+                      <p class="text-default">
+                        <u>Start</u>
+                      </p>
+                      <p class="text-danger">
+                        Do not engage starter for more than 30s in any 4min period
+                      </p>
+                      <dl class="row">
+                        <dd class="col-sm-6 list-border">Mixture</dd>
+                        <dd class="col-sm-6 text-end list-border">Full Rich</dd>
+                        <dd class="col-sm-6 list-border">Propellor</dd>
+                        <dd class="col-sm-6 text-end list-border">High RPM</dd>
+                        <dd class="col-sm-6 list-border">Throttle</dd>
+                        <dd class="col-sm-6 text-end list-border">Full Open</dd>
+                        <dd class="col-sm-6 list-border">Auxiliary Fuel Pump</dd>
+                        <dd class="col-sm-6 text-end list-border">On until peaks (appx 5s)</dd>
+                        <dd class="col-sm-6 list-border">Throttle</dd>
+                        <dd class="col-sm-6 text-end list-border">1/2inch Open</dd>
+                        <dd class="col-sm-6 list-border">Propellor Area</dd>
+                        <dd class="col-sm-6 text-end list-border">Clear</dd>
+                        <dd class="col-sm-6 list-border">Magneto / Start Switch</dd>
+                        <dd class="col-sm-6 text-end list-border">Start</dd>
+                      </dl>
+                      <p class="text-danger">
+                        If engine has been overprimed: Mixture to Idle Cut Off // Throttle to Open // Turn Over Engine // As Engine starts, reduce throttle and advance mixture to Full Rich
+                      </p>
+                      <dl class="row">
+                        <dd class="col-sm-6 list-border">Mixture</dd>
+                        <dd class="col-sm-6 text-end list-border">Lean</dd>
+                        <dd class="col-sm-6 list-border">Throttle</dd>
+                        <dd class="col-sm-6 text-end list-border">1000-1200 RPM</dd>
+                        <dd class="col-sm-6 list-border">Oil Pressure</dd>
+                        <dd class="col-sm-6 text-end list-border">Check Min 30 psi / Max 100 psi</dd>
+                        <dd class="col-sm-6 list-border">Ammeter</dd>
+                        <dd class="col-sm-6 text-end list-border">Check</dd>
+                        <dd class="col-sm-6 list-border">All Engine Gauges</dd>
+                        <dd class="col-sm-6 text-end list-border">Check</dd>
+                        <dd class="col-sm-6 list-border">Panel Annunciators</dd>
+                        <dd class="col-sm-6 text-end list-border">Extinguished</dd>
+                      </dl>
+                    </div>
+                </div>
+
+
+              </div>
+            </div>
           </div>
+
         </section>
       </ingame-ui>
     </bonanza-hangar>

@@ -730,6 +730,7 @@
 				<Minimum>10</Minimum>
 				<Maximum>35</Maximum>
 				<Style>
+					<TextIncrement>.1</TextIncrement>
 					<ForceTextColor>white</ForceTextColor>
 					<ValuePrecision>1</ValuePrecision>
 					<Graduations>15,20,25,30</Graduations>
@@ -1029,6 +1030,12 @@
 				<Title>MAN IN HG</Title>
 				<Minimum>10</Minimum>
 				<Maximum>35</Maximum>
+				<Style>
+					<TextIncrement>.1</TextIncrement>
+					<ForceTextColor>white</ForceTextColor>
+					<ValuePrecision>1</ValuePrecision>
+					<Graduations>15,20,25,30</Graduations>
+				</Style>
 				<Value>
 					<Simvar name="RECIP ENG MANIFOLD PRESSURE:1" unit="inHG"/>
 				</Value>
@@ -1165,6 +1172,12 @@
 				<Title>MAN IN HG</Title>
 				<Minimum>10</Minimum>
 				<Maximum>35</Maximum>
+				<Style>
+					<TextIncrement>.1</TextIncrement>
+					<ForceTextColor>white</ForceTextColor>
+					<ValuePrecision>1</ValuePrecision>
+					<Graduations>15,20,25,30</Graduations>
+				</Style>
 				<Value>
 					<Simvar name="RECIP ENG MANIFOLD PRESSURE:1" unit="inHG"/>
 				</Value>

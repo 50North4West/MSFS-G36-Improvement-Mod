@@ -28,6 +28,7 @@ Current version: 0.6.7
 * Fixed missing altitude alert tone @200ft to go
 * Fixed spark fouling message in hangar module when sparks not actually fouling, refactored code to be more efficient
 * Tweaked fuel flow as current flow slightly less than book figures (Rpt by @JayDee6281)
+* Fixed missing decimal point to manifold pressure gauge
 
 **Liveries**
 We have split out the files from modifying the default Bonanza to becoming its own aircraft. This is so we can complete further 3d model changes, and work on the hangar module and deeper systems modelling. Liveries will need to be amended to reflect this new aircraft to work. More information here https://forums.flightsimulator.com/t/g36-improvement-project/216094/1943

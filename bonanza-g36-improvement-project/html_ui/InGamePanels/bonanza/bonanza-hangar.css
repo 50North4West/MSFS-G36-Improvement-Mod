@@ -1,14 +1,7 @@
-#MainDisplay {
-  height:100% !important;
-  width: 100% !important;
-  overflow: scroll;
-  scrollbar-color: #EA4C89 #464E5B;
-}
-
 :root {
   --hangar-blue: #385475;
   --hangar-pink: #EA4C89;
-  --hangar-grey: #CCCCCC;
+  --hangar-grey: #d4d4d4;
   --hangar-grey-light: #E2E2E2;
   --hangar-white: #FAFAFB;
   --hangar-dark: #464E5B;
@@ -16,9 +9,14 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;700&display=swap');
 
-body {
+#MainDisplay {
+  height:100% !important;
+  width: 100% !important;
   background-color: var(--hangar-grey);
   font-family: 'Poppins', sans-serif;
+  color: #212529;
+  overflow: scroll;
+  scrollbar-color: #EA4C89 #464E5B;
 }
 
 .text-blue {

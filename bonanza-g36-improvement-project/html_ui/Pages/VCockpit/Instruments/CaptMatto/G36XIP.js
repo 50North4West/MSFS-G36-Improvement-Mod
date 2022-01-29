@@ -1,4 +1,5 @@
 'use strict';
+let engStart = '';
 class G36XIP extends BaseInstrument {
 
   //Aircraft State Saving by CaptMatto & WeptBurrito2749
@@ -16,9 +17,23 @@ class G36XIP extends BaseInstrument {
     if (GetStoredData('G36XIP_STATE_ACTIVE_'+this.livery) == 1) {
       console.log('State Saving Enabled');
 
-      var now = SimVar.GetSimVarValue("GENERAL ENG HOBBS ELAPSED TIME:1", "hours");
-      SimVar.SetSimVarValue("L:G36XIP_HOBBS_START", "number", Number(now));
-      this.hobbs = GetStoredData('G36XIP_HOBBS_'+this.livery) ? GetStoredData('G36XIP_HOBBS_'+this.livery) : 1.25; //Brand new Aircraft that has had a 45min acceptance flight & 30 minute flight checks prior to ownership
+      //Brand new Aircraft that has had a 45min acceptance flight & 30 minute flight checks prior to ownership
+      //var resetHours = 1.25;
+      //SetStoredData('G36XIP_HOBBS_'+this.livery, resetHours.toString());
+      this.hobbs = GetStoredData('G36XIP_HOBBS_'+this.livery) ? GetStoredData('G36XIP_HOBBS_'+this.livery) : 1.25;
+
+      //Set my birthday
+      var now = moment();
+      var date = moment(now).format("YYYY-MM-DD")
+      console.log(date)
+      SetStoredData('G36XIP_BIRTHDAY_'+this.livery, date.toString());
+      this.birthday = GetStoredData('G36XIP_BIRTHDAY_'+this.livery) ? GetStoredData('G36XIP_BIRTHDAY_'+this.livery) : moment();
+
+      //DISTANCE TRAVELLED
+      //var resetMiles = 25;
+      //SetStoredData('G36XIP_DISTANCE_FLOWN'+this.livery, resetMiles.toString());
+      this.flown = GetStoredData('G36XIP_DISTANCE_FLOWN'+this.livery) ? GetStoredData('G36XIP_DISTANCE_FLOWN'+this.livery) : 25;
+
 
       //FUEL IN GALLONS AND WEIGHTS IN KG
       this.leftFuel = GetStoredData('G36XIP_LEFT_FUEL_'+this.livery) ? GetStoredData('G36XIP_LEFT_FUEL_'+this.livery) : 32; // See JuiceBox7535 post #1825 in main forum
@@ -325,7 +340,7 @@ class G36XIP extends BaseInstrument {
 
 
 
-    var timerMilSecs = 5000;
+    var timerMilSecs = 1000;
 
     if (GetStoredData('G36XIP_STATE_ACTIVE_'+this.livery) == 1) {
       var timer = window.setInterval(checkG36State, timerMilSecs);
@@ -451,13 +466,38 @@ class G36XIP extends BaseInstrument {
           SetStoredData('G36XIP_YOKE2_'+planeId, yoke2.toString());
 
         //HOBBS
-          var now = SimVar.GetSimVarValue("GENERAL ENG HOBBS ELAPSED TIME:1", "hours");
-          var start = SimVar.GetSimVarValue("L:G36XIP_HOBBS_START", "number");
-          var elapsed = now - start;
-          SetStoredData('G36XIP_HOBBS_'+planeId, elapsed.toString());
-      //
+          var engStatus = SimVar.GetSimVarValue("ENG COMBUSTION:1", "bool");
+          var preStart = GetStoredData('G36XIP_HOBBS_'+planeId);
+          var hobbsStarter = GetStoredData('G36XIP_HOBBS_STARTER'+planeId);
 
-      //MODELLING STUFF
+          if (engStatus == 1 && hobbsStarter == 0) {
+            engStart = moment();
+            var hobbsStarter = 1;
+            SetStoredData('G36XIP_HOBBS_STARTER'+planeId, hobbsStarter.toString());
+          }
+
+          if (engStatus == 0 && hobbsStarter == 1) {
+            var now = moment();
+            var duration = now.diff(engStart, 'hours', true);
+            var total = Number(preStart) + Number(duration);
+            SetStoredData('G36XIP_HOBBS_'+planeId, total.toString());
+            var starter = 0;
+            SetStoredData('G36XIP_HOBBS_STARTER'+planeId, starter.toString());
+          }
+
+        //DISTANCE MEASURING
+          var simOnGround = SimVar.GetSimVarValue("SIM ON GROUND", "bool");
+          var naughtySlewCheaters = SimVar.GetSimVarValue("IS SLEW ACTIVE", "bool");
+          var currentMiles = GetStoredData('G36XIP_DISTANCE_FLOWN'+planeId);
+
+          if (simOnGround == 0 && naughtySlewCheaters == 0) {
+            var groundSpeed = SimVar.GetSimVarValue("GPS GROUND SPEED", "Meters per second");
+            var travelled = Number(groundSpeed) * 0.00053995680345572;
+            var newMiles = Number(currentMiles) + Number(travelled);
+            SetStoredData('G36XIP_DISTANCE_FLOWN'+planeId, newMiles.toString());
+          }
+
+        //MODELLING STUFF
 
         if (SimVar.GetSimVarValue("L:G36XIP_FOUL", "bool")) {
           var fouling = 1;

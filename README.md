@@ -25,6 +25,7 @@ PLEASE NOTE - WE HAVE REMOVED THE 'Z' FROM THE FOLDER NAME, ENSURE YOU REMOVE TH
 Current version: 0.6.7
 
 **Changelog**
+* Added functionality to Hangar Module (we now save engine hours, miles flown, and count down to annual and 100hr service per livery)
 * Fixed missing altitude alert tone @200ft to go
 * Fixed spark fouling message in hangar module when sparks not actually fouling, refactored code to be more efficient
 * Tweaked fuel flow as current flow slightly less than book figures (Rpt by @JayDee6281)

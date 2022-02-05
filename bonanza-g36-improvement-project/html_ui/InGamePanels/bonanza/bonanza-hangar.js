@@ -82,7 +82,6 @@ class BonanzaHangar extends HTMLElement {
         var title = SimVar.GetSimVarValue("TITLE", "string");
         this.livery = title.replace(/\s+/g, '_');
 
-
         var leftFuel = GetStoredData('G36XIP_LEFT_FUEL_'+this.livery);
         innerDoc.getElementById("stateLeftFuel").innerHTML = leftFuel;
         var rightFuel = GetStoredData('G36XIP_RIGHT_FUEL_'+this.livery);
@@ -94,8 +93,93 @@ class BonanzaHangar extends HTMLElement {
         var sFLikelihood7 = SimVar.GetSimVarValue("L:G36XIP_SPARK_7_LIKELIHOOD", "number");
         var sFLikelihood9 = SimVar.GetSimVarValue("L:G36XIP_SPARK_9_LIKELIHOOD", "number");
         var sFLikelihood11 = SimVar.GetSimVarValue("L:G36XIP_SPARK_11_LIKELIHOOD", "number");
-
         innerDoc.getElementById("stateSparkLikelihood").innerHTML = sFLikelihood1.toFixed(2) + ', ' + sFLikelihood3.toFixed(2) + ', ' + sFLikelihood5.toFixed(2) + ', ' + sFLikelihood7.toFixed(2) + ', ' + sFLikelihood9.toFixed(2) + ', ' + sFLikelihood11.toFixed(2);
+
+        var bat1 = (GetStoredData('G36XIP_BAT1_'+this.livery) == 1) ? 'On' : 'Off';
+        innerDoc.getElementById("stateBat1").innerHTML = bat1;
+        var bat2 = (GetStoredData('G36XIP_BAT2_'+this.livery) == 1) ? 'On' : 'Off';
+        innerDoc.getElementById("stateBat2").innerHTML = bat2;
+
+        var alt1 = (GetStoredData('G36XIP_ALT1_'+this.livery) == 1) ? 'On' : 'Off';
+        innerDoc.getElementById("stateAlt1").innerHTML = alt1;
+        var alt2 = (GetStoredData('G36XIP_ALT2_'+this.livery) == 1) ? 'On' : 'Off';
+        innerDoc.getElementById("stateAlt2").innerHTML = alt2;
+
+        var avionics = (GetStoredData('G36XIP_AVIONICS_'+this.livery) == 1) ? 'On' : 'Off';
+        innerDoc.getElementById("stateAvionics").innerHTML = avionics;
+
+        var airco = (GetStoredData('G36XIP_AIRCO_'+this.livery) == 1) ? 'On' : 'Off';
+        innerDoc.getElementById("stateAirco").innerHTML = airco;
+
+        var blower = (GetStoredData('G36XIP_BLOWER_'+this.livery) == 1) ? 'On' : 'Off';
+        innerDoc.getElementById("stateBlower").innerHTML = blower;
+
+        var ventBlower = (GetStoredData('G36XIP_VENT_BLOWER_'+this.livery) == 1) ? 'On' : 'Off';
+        innerDoc.getElementById("stateVentBlower").innerHTML = ventBlower;
+
+        var auxFuel = (GetStoredData('G36XIP_AUX_FUEL_PUMP_'+this.livery) == 1) ? 'On' : 'Off';
+        innerDoc.getElementById("stateAuxFuel").innerHTML = auxFuel;
+
+        var leftMag = (GetStoredData('G36XIP_MAGNETO_LEFT_'+this.livery) == 1) ? 'Left Mag' : 'Off';
+        var rightMag = (GetStoredData('G36XIP_MAGNETO_RIGHT_'+this.livery) == 1) ? 'Right Mag' : 'Off';
+        innerDoc.getElementById("stateMag").innerHTML = leftMag + ' ' + rightMag;
+
+        var pitot = (GetStoredData('G36XIP_PITOT_'+this.livery) == 1) ? 'On' : 'Off';
+        innerDoc.getElementById("statePitot").innerHTML = pitot;
+
+        var propIce = (GetStoredData('G36XIP_PROP_DEICE_'+this.livery) == 1) ? 'On' : 'Off';
+        innerDoc.getElementById("statePropDeIce").innerHTML = propIce;
+
+        var strobe = (GetStoredData('G36XIP_STROBE_'+this.livery) == 1) ? 'On' : 'Off';
+        innerDoc.getElementById("stateStrobe").innerHTML = strobe;
+
+        var beacon = (GetStoredData('G36XIP_BEACON_'+this.livery) == 1) ? 'On' : 'Off';
+        innerDoc.getElementById("stateBeacon").innerHTML = beacon;
+
+        var nav = (GetStoredData('G36XIP_NAV_LIGHT_'+this.livery) == 1) ? 'On' : 'Off';
+        innerDoc.getElementById("stateNav").innerHTML = nav;
+
+        var flood = (GetStoredData('G36XIP_FLOOD_LIGHT_'+this.livery) == 1) ? 'On' : 'Off';
+        innerDoc.getElementById("stateFlood").innerHTML = flood;
+
+        var panel = (GetStoredData('G36XIP_PANEL_LIGHT_'+this.livery) == 1) ? 'On' : 'Off';
+        innerDoc.getElementById("statePanel").innerHTML = panel;
+
+        var taxi = (GetStoredData('G36XIP_TAXI_LIGHT_'+this.livery) == 1) ? 'On' : 'Off';
+        innerDoc.getElementById("stateTaxi").innerHTML = taxi;
+
+        var landing = (GetStoredData('G36XIP_LANDING_LIGHT_'+this.livery) == 1) ? 'On' : 'Off';
+        innerDoc.getElementById("stateLanding").innerHTML = landing;
+
+        var brake = (GetStoredData('G36XIP_PBRAKE_'+this.livery) == 1) ? 'Set' : 'Off';
+        innerDoc.getElementById("stateParkBrake").innerHTML = brake;
+
+        switch (GetStoredData('G36XIP_FUEL_SELECT_'+this.livery)) {
+          case '0':
+            innerDoc.getElementById("stateFuel").innerHTML = 'Off';
+            break;
+          case '1':
+            innerDoc.getElementById("stateFuel").innerHTML = 'Left';
+            break;
+          case '3':
+            innerDoc.getElementById("stateFuel").innerHTML = 'Right';
+            break;
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
       }
 
 

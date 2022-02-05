@@ -31,6 +31,9 @@
               <a class="btn btn-pink text-blue" aria-current="page" href="preflight.html">Preflight</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="home.html">Home</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="maintenance.html">Maintenance Hangar</a>
             </li>
             <li class="nav-item">
@@ -112,43 +115,118 @@
         <div class="col">
           <h3 class="page-title">Aircraft State Saving Status</h3>
           <p>
-            The mod saves the aircraft state once a second The data below is a behind the scenes look at the data being saved and a sneak at the modelling that happens 'under the hood' it is also really useful to help debug any issues:
+            The mod saves the aircraft state once a second; the data below is a behind the scenes look at the data being saved and a sneak at the modelling that happens 'under the hood' it is also really useful to help debug any issues:
+          </p>
+          <p>
+            State Saving is <span id="stateSaving">ENABLED</span>
           </p>
         </div>
       </div>
-      <div class="row justify-content-center px-3">
+      <div class="row justify-content-center px-3 mb-4">
         <div class="col-12">
           <p class="mt-3">
             <u>Engine</u>
           </p>
           <dl class="row">
-            <dt class="col-sm-3">Oil Quantity:</dt>
+            <dt class="col-sm-3 ps-4">Oil Quantity:</dt>
             <dd class="col-sm-9 text-end"><span id="stateOilQuantuty">WIP</span></dd>
-            <dt class="col-sm-3">Oil Pressure:</dt>
+            <dt class="col-sm-3 ps-4">Oil Pressure:</dt>
             <dd class="col-sm-9 text-end"><span id="stateOilQuantuty">WIP</span></dd>
-            <dt class="col-sm-4">Oil Temperature:</dt>
+            <dt class="col-sm-4 ps-4">Oil Temperature:</dt>
             <dd class="col-sm-8 text-end"><span id="stateOilQuantuty">WIP</span></dd>
-            <dt class="col-sm-5">Spark Plug Fouling Likelihood (per cylinder):</dt>
+            <dt class="col-sm-5 ps-4">Spark Plug Fouling Likelihood (Per Cylinder):</dt>
             <dd class="col-sm-7 text-end"><span id="stateSparkLikelihood">WIP</span></dd>
-            <dt class="col-sm-5">Cylinder Compression:</dt>
+            <dt class="col-sm-5 ps-4">Cylinder Compression:</dt>
             <dd class="col-sm-7 text-end"><span id="stateEngineCompression">WIP</span></dd>
-            <dt class="col-sm-5">Fuel Pump Status:</dt>
+            <dt class="col-sm-5 ps-4">Fuel Pump Status:</dt>
             <dd class="col-sm-7 text-end"><span id="stateFuelPump">WIP</span></dd>
-            <dt class="col-sm-5">Fuel Filter Saturation:</dt>
+            <dt class="col-sm-5 ps-4">Fuel Filter Saturation:</dt>
             <dd class="col-sm-7 text-end"><span id="stateFuelPump">WIP %</span></dd>
           </dl>
           <p class="mt-3">
             <u>Fuel</u>
           </p>
           <dl class="row">
-            <dt class="col-sm-3">Left Fuel:</dt>
+            <dt class="col-sm-3 ps-4">Left Fuel:</dt>
             <dd class="col-sm-9 text-end"><span id="stateLeftFuel">X</span> Gal</dd>
-            <dt class="col-sm-3">Right Fuel:</dt>
+            <dt class="col-sm-3 ps-4">Right Fuel:</dt>
             <dd class="col-sm-9 text-end"><span id="stateRightFuel">X</span> Gal</dd>
           </dl>
           <p class="mt-3">
             <u>Electrical</u>
           </p>
+          <p class="mt-3">
+            <u>Switches (Top Row, Pilots Side)</u>
+          </p>
+          <dl class="row">
+            <dt class="col-sm-3 ps-4">Battery 1:</dt>
+            <dd class="col-sm-9 text-end"><span id="stateBat1">...</span></dd>
+            <dt class="col-sm-3 ps-4">Battery 2:</dt>
+            <dd class="col-sm-9 text-end"><span id="stateBat2">...</span></dd>
+            <dt class="col-sm-3 ps-4">Alternator 1:</dt>
+            <dd class="col-sm-9 text-end"><span id="stateAlt1">...</span></dd>
+            <dt class="col-sm-3 ps-4">Alternator 2:</dt>
+            <dd class="col-sm-9 text-end"><span id="stateAlt2">...</span></dd>
+            <dt class="col-sm-3 ps-4">Avionics:</dt>
+            <dd class="col-sm-9 text-end"><span id="stateAvionics">...</span></dd>
+            <dt class="col-sm-3 ps-4">Airconditioning:</dt>
+            <dd class="col-sm-9 text-end"><span id="stateAirco">...</span></dd>
+            <dt class="col-sm-3 ps-4">Blower:</dt>
+            <dd class="col-sm-9 text-end"><span id="stateBlower">...</span></dd>
+            <dt class="col-sm-3 ps-4">Vent Blower:</dt>
+            <dd class="col-sm-9 text-end"><span id="stateVentBlower">...</span></dd>
+            <dt class="col-sm-3 ps-4">Aux Fuel Pump:</dt>
+            <dd class="col-sm-9 text-end"><span id="stateAuxFuel">...</span></dd>
+          </dl>
+          <p class="mt-3">
+            <u>Switches (Middle Row, Pilots Side)</u>
+          </p>
+          <dl class="row">
+            <dt class="col-sm-4 ps-4">Magneto / Engine Start:</dt>
+            <dd class="col-sm-8 text-end"><span id="stateMag">...</span></dd>
+            <dt class="col-sm-3 ps-4">Pitot Heat:</dt>
+            <dd class="col-sm-9 text-end"><span id="statePitot">...</span></dd>
+            <dt class="col-sm-3 ps-4">Prop Deice:</dt>
+            <dd class="col-sm-9 text-end"><span id="statePropDeIce">...</span></dd>
+            <dt class="col-sm-3 ps-4">Strobe:</dt>
+            <dd class="col-sm-9 text-end"><span id="stateStrobe">...</span></dd>
+            <dt class="col-sm-3 ps-4">Beacon:</dt>
+            <dd class="col-sm-9 text-end"><span id="stateBeacon">...</span></dd>
+            <dt class="col-sm-3 ps-4">Nav:</dt>
+            <dd class="col-sm-9 text-end"><span id="stateNav">...</span></dd>
+            <dt class="col-sm-3 ps-4">Flood:</dt>
+            <dd class="col-sm-9 text-end"><span id="stateFlood">...</span></dd>
+            <dt class="col-sm-3 ps-4">Panel:</dt>
+            <dd class="col-sm-9 text-end"><span id="statePanel">...</span></dd>
+            <dt class="col-sm-3 ps-4">Taxi:</dt>
+            <dd class="col-sm-9 text-end"><span id="stateTaxi">...</span></dd>
+            <dt class="col-sm-3 ps-4">Landing:</dt>
+            <dd class="col-sm-9 text-end"><span id="stateLanding">...</span></dd>
+          </dl>
+          <p class="mt-3">
+            <u>Switches (Bottom Row, Pilots Side)</u>
+          </p>
+          <dl class="row">
+            <dt class="col-sm-4 ps-4">Firewall:</dt>
+            <dd class="col-sm-8 text-end"><span id="stateFirewall">...</span></dd>
+            <dt class="col-sm-4 ps-4">Cabin Heat:</dt>
+            <dd class="col-sm-8 text-end"><span id="stateCabinHeat">...</span></dd>
+            <dt class="col-sm-4 ps-4">Aft Cabin Heat:</dt>
+            <dd class="col-sm-8 text-end"><span id="stateAftCabinHeat">...</span></dd>
+            <dt class="col-sm-4 ps-4">Defrost:</dt>
+            <dd class="col-sm-8 text-end"><span id="stateDefrost">...</span></dd>
+            <dt class="col-sm-4 ps-4">Alternate Air:</dt>
+            <dd class="col-sm-8 text-end"><span id="stateAltAir">...</span></dd>
+            <dt class="col-sm-4 ps-4">Parking Brake:</dt>
+            <dd class="col-sm-8 text-end"><span id="stateParkBrake">...</span></dd>
+          </dl>
+          <p class="mt-3">
+            <u>Switches (Floor)</u>
+          </p>
+          <dl class="row">
+            <dt class="col-sm-4 ps-4">Fuel Selector:</dt>
+            <dd class="col-sm-8 text-end"><span id="stateFuel">...</span></dd>
+          </dl>
         </div>
       </div>
     </div>

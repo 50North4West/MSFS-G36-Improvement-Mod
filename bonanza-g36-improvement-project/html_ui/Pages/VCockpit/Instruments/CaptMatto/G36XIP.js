@@ -12,32 +12,47 @@ class G36XIP extends BaseInstrument {
     //Set our variables and read from the DataStore whilst the sim is loading the flight
     var title = SimVar.GetSimVarValue("TITLE", "string");
     this.livery = title.replace(/\s+/g, '_');
-    console.log(GetStoredData('G36XIP_STATE_ACTIVE_'+this.livery));
+    var active = 1;
+    SetStoredData('G36XIP_STATE_ACTIVE_'+this.livery, active.toString());
 
     if (GetStoredData('G36XIP_STATE_ACTIVE_'+this.livery) == 1) {
       console.log('State Saving Enabled');
 
       //Brand new Aircraft that has had a 45min acceptance flight & 30 minute flight checks prior to ownership
-      //var resetHours = 1.25;
+      //var resetHours = 45.58;
+      DeleteStoredData('G36XIP_HOBBS_'+this.livery);
       //SetStoredData('G36XIP_HOBBS_'+this.livery, resetHours.toString());
       this.hobbs = GetStoredData('G36XIP_HOBBS_'+this.livery) ? GetStoredData('G36XIP_HOBBS_'+this.livery) : 1.25;
+      if (this.hobbs == 1.25) {
+        var startHours = 1.25
+        SetStoredData('G36XIP_HOBBS_'+this.livery, startHours.toString());
+      }
 
       //Set my birthday
       var now = moment();
-      var date = moment(now).format("YYYY-MM-DD")
-      console.log(date)
-      SetStoredData('G36XIP_BIRTHDAY_'+this.livery, date.toString());
-      this.birthday = GetStoredData('G36XIP_BIRTHDAY_'+this.livery) ? GetStoredData('G36XIP_BIRTHDAY_'+this.livery) : moment();
+      //var date = '2021-09-04';
+      //console.log(date)
+      //SetStoredData('G36XIP_BIRTHDAY_'+this.livery, date.toString());
+      this.birthday = GetStoredData('G36XIP_BIRTHDAY_'+this.livery) ? GetStoredData('G36XIP_BIRTHDAY_'+this.livery) : moment(now).format("YYYY-MM-DD");
 
       //DISTANCE TRAVELLED
-      //var resetMiles = 25;
+      //var resetMiles = 5418;
       //SetStoredData('G36XIP_DISTANCE_FLOWN'+this.livery, resetMiles.toString());
       this.flown = GetStoredData('G36XIP_DISTANCE_FLOWN'+this.livery) ? GetStoredData('G36XIP_DISTANCE_FLOWN'+this.livery) : 25;
+      if (this.flown == 25) {
+        var startMiles = 1.25
+        SetStoredData('G36XIP_DISTANCE_FLOWN'+this.livery, startMiles.toString());
+      }
 
 
       //FUEL IN GALLONS AND WEIGHTS IN KG
       this.leftFuel = GetStoredData('G36XIP_LEFT_FUEL_'+this.livery) ? GetStoredData('G36XIP_LEFT_FUEL_'+this.livery) : 32; // See JuiceBox7535 post #1825 in main forum
       this.rightFuel = GetStoredData('G36XIP_RIGHT_FUEL_'+this.livery) ? GetStoredData('G36XIP_RIGHT_FUEL_'+this.livery) : 32;
+      if (this.leftFuel == 32 || this.rightFuel == 32) {
+        var setDefaultFuel = 32;
+        SetStoredData('G36XIP_LEFT_FUEL_'+this.livery, setDefaultFuel.toString());
+        SetStoredData('G36XIP_RIGHT_FUEL_'+this.livery, setDefaultFuel.toString());
+      }
       this.pilotWeight = GetStoredData('G36XIP_PILOT_WEIGHT_'+this.livery) ? GetStoredData('G36XIP_PILOT_WEIGHT_'+this.livery) : 89; //Average male weight
       this.coPilotWeight = GetStoredData('G36XIP_COPILOT_WEIGHT_'+this.livery) ? GetStoredData('G36XIP_COPILOT_WEIGHT_'+this.livery) : 89; //Average male weight
       this.frontPaxLeft = GetStoredData('G36XIP_FRONT_LEFT_PAX_WEIGHT_'+this.livery) ? GetStoredData('G36XIP_FRONT_LEFT_PAX_WEIGHT_'+this.livery) : 0;

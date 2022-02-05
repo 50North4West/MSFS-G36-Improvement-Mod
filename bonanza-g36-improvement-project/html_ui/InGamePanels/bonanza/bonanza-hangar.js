@@ -37,40 +37,67 @@ class BonanzaHangar extends HTMLElement {
 
     setInterval(function() {
 
+      var iframe = document.getElementById('iframeId');
+      var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+
       //get the livery
       var title = SimVar.GetSimVarValue("TITLE", "string");
       this.livery = title.replace(/\s+/g, '_');
 
       //update the reg in the panel
       var aircraftRegistration = SimVar.GetSimVarValue('ATC ID', "string");
-      document.getElementById("G36XIP_PANEL_ACREG").innerHTML = aircraftRegistration;
+      innerDoc.getElementById("G36XIP_PANEL_ACREG").innerHTML = aircraftRegistration;
 
       //update the engine hours in the panel
       this.panelHobbs = GetStoredData('G36XIP_HOBBS_'+this.livery);
-      document.getElementById("G36XIP_PANEL_HOBBS").innerHTML = parseFloat(this.panelHobbs).toFixed(1);
+      innerDoc.getElementById("G36XIP_PANEL_HOBBS").innerHTML = parseFloat(this.panelHobbs).toFixed(1);
 
       //update the progress bar with days until annual inspection
       var birth = GetStoredData('G36XIP_BIRTHDAY_'+this.livery);
-      var birthM = moment(birthM).add(1, 'year');
+      var birthM = moment(birth).add(1, 'year');
       var todaysdate = moment();
       var annualDaysRemain = birthM.diff(todaysdate, 'days');
       var progress =  100 - (((annualDaysRemain-0) * 100 ) / (365-0))
-      document.querySelector("#annual.progress-bar").style.width = progress + "%";
+      innerDoc.querySelector("#annual.progress-bar").style.width = progress + "%";
       var daysRemain = annualDaysRemain;
       var annualText = 'Due in ' + annualDaysRemain + ' days';
-      document.getElementById("G36XIP_PANEL_ANNUAL_DUE").innerHTML = annualText;
+      innerDoc.getElementById("G36XIP_PANEL_ANNUAL_DUE").innerHTML = annualText;
 
       //update the progress bar with hours until 100hr service
       var hundredHourPercentRemain = Number(this.panelHobbs) / 100;
-      document.querySelector("#hundredHour.progress-bar").style.width = hundredHourPercentRemain + "%";
+      var hundredHourPercentRemainProgress = hundredHourPercentRemain * 100;
+      innerDoc.querySelector("#hundredHour.progress-bar").style.width = hundredHourPercentRemainProgress + "%";
       var hoursRemain = 100 - Number(this.panelHobbs);
-      var hundredHourPercentRemainText = 'Due in ' + hoursRemain + ' hours';
-      document.getElementById("G36XIP_PANEL_HUNDRED_DUE").innerHTML = hundredHourPercentRemainText;
+      var hundredHourPercentRemainText = 'Due in ' + hoursRemain.toFixed(1) + ' hours';
+      innerDoc.getElementById("G36XIP_PANEL_HUNDRED_DUE").innerHTML = hundredHourPercentRemainText;
 
       //update the distance flown in the panel
       this.distanceFLown = GetStoredData('G36XIP_DISTANCE_FLOWN'+this.livery);
       var distance = nFormatter(Number(this.distanceFLown), 1);
-      document.getElementById("G36XIP_PANEL_DISTANCE_FLOWN").innerHTML = distance;
+      innerDoc.getElementById("G36XIP_PANEL_DISTANCE_FLOWN").innerHTML = distance;
+
+
+      //check to see if the state saving status page has loaded
+      if (innerDoc.getElementById("htmlState")) {
+        var title = SimVar.GetSimVarValue("TITLE", "string");
+        this.livery = title.replace(/\s+/g, '_');
+
+
+        var leftFuel = GetStoredData('G36XIP_LEFT_FUEL_'+this.livery);
+        innerDoc.getElementById("stateLeftFuel").innerHTML = leftFuel;
+        var rightFuel = GetStoredData('G36XIP_RIGHT_FUEL_'+this.livery);
+        innerDoc.getElementById("stateRightFuel").innerHTML = rightFuel;
+
+        var sFLikelihood1 = SimVar.GetSimVarValue("L:G36XIP_SPARK_1_LIKELIHOOD", "number");
+        var sFLikelihood3 = SimVar.GetSimVarValue("L:G36XIP_SPARK_3_LIKELIHOOD", "number");
+        var sFLikelihood5 = SimVar.GetSimVarValue("L:G36XIP_SPARK_5_LIKELIHOOD", "number");
+        var sFLikelihood7 = SimVar.GetSimVarValue("L:G36XIP_SPARK_7_LIKELIHOOD", "number");
+        var sFLikelihood9 = SimVar.GetSimVarValue("L:G36XIP_SPARK_9_LIKELIHOOD", "number");
+        var sFLikelihood11 = SimVar.GetSimVarValue("L:G36XIP_SPARK_11_LIKELIHOOD", "number");
+
+        innerDoc.getElementById("stateSparkLikelihood").innerHTML = sFLikelihood1.toFixed(2) + ', ' + sFLikelihood3.toFixed(2) + ', ' + sFLikelihood5.toFixed(2) + ', ' + sFLikelihood7.toFixed(2) + ', ' + sFLikelihood9.toFixed(2) + ', ' + sFLikelihood11.toFixed(2);
+      }
+
 
     }, 5000);
 

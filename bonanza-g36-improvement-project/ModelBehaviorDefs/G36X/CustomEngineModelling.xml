@@ -17,13 +17,13 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
 
 <Template Name="Spark_Fouling">
 
-  <!-- Trigger function: Check mixture ratio is over 0.08 and if so set the fouling trigger var -->
+  <!-- Trigger function: Check mixture ratio is over 0.09 and if so set the fouling trigger var -->
   <Component ID="Trigger">
     <UseTemplate Name="ASOBO_GT_Update">
       <FREQUENCY>1</FREQUENCY>
         <UPDATE_CODE>
           (A:ENG COMBUSTION:1, bool) 1 ==
-          (A:RECIP MIXTURE RATIO:1, ratio) 0.08 &gt; and
+          (A:RECIP MIXTURE RATIO:1, ratio) 0.09 &gt; and
           if{
             1 (&gt;L:G36XIP_FOUL)
           } els{

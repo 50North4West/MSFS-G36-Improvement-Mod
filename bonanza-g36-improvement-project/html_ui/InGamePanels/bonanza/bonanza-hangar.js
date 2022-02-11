@@ -95,6 +95,16 @@ class BonanzaHangar extends HTMLElement {
         var sFLikelihood11 = SimVar.GetSimVarValue("L:G36XIP_SPARK_11_LIKELIHOOD", "number");
         innerDoc.getElementById("stateSparkLikelihood").innerHTML = sFLikelihood1.toFixed(2) + ', ' + sFLikelihood3.toFixed(2) + ', ' + sFLikelihood5.toFixed(2) + ', ' + sFLikelihood7.toFixed(2) + ', ' + sFLikelihood9.toFixed(2) + ', ' + sFLikelihood11.toFixed(2);
 
+        var sFActualSwitch1 = SimVar.GetSimVarValue("L:G36XIP_SPARK_1_FOULING", "number");
+        var sFActualSwitch3 = SimVar.GetSimVarValue("L:G36XIP_SPARK_3_FOULING", "number");
+        var sFActualSwitch5 = SimVar.GetSimVarValue("L:G36XIP_SPARK_5_FOULING", "number");
+        var sFActualSwitch7 = SimVar.GetSimVarValue("L:G36XIP_SPARK_7_FOULING", "number");
+        var sFActualSwitch9 = SimVar.GetSimVarValue("L:G36XIP_SPARK_9_FOULING", "number");
+        var sFActualSwitch11 = SimVar.GetSimVarValue("L:G36XIP_SPARK_11_FOULING", "number");
+        var sFActualBadness = SimVar.GetSimVarValue("L:G36XIP_BADNESS_SCALE", "number");
+        innerDoc.getElementById("stateSparkFouling").innerHTML = sFActualSwitch1 + ', ' + sFActualSwitch3 + ', ' + sFActualSwitch5 + ', ' + sFActualSwitch7 + ', ' + sFActualSwitch9 + ', ' + sFActualSwitch11 + ' : ' + sFActualBadness.toFixed(4);
+
+
         var bat1 = (GetStoredData('G36XIP_BAT1_'+this.livery) == 1) ? 'On' : 'Off';
         innerDoc.getElementById("stateBat1").innerHTML = bat1;
         var bat2 = (GetStoredData('G36XIP_BAT2_'+this.livery) == 1) ? 'On' : 'Off';
@@ -164,9 +174,30 @@ class BonanzaHangar extends HTMLElement {
           case '3':
             innerDoc.getElementById("stateFuel").innerHTML = 'Right';
             break;
-
-
         }
+
+        var pitchTrim = (GetStoredData('G36XIP_PITCH_TRIM_'+this.livery)) ? GetStoredData('G36XIP_PITCH_TRIM_'+this.livery) : 'Not saved';
+        innerDoc.getElementById("statePitchTrim").innerHTML = pitchTrim;
+
+        var aileronTrim = (GetStoredData('G36XIP_AILERON_TRIM_'+this.livery)) ? GetStoredData('G36XIP_AILERON_TRIM_'+this.livery) : 'Not saved';
+        innerDoc.getElementById("stateAileronTrim").innerHTML = aileronTrim;
+
+        var cowlflaps = (GetStoredData('G36XIP_COWL_'+this.livery) >= 0) ? GetStoredData('G36XIP_COWL_'+this.livery) : 'Not saved';
+        innerDoc.getElementById("stateCowlFlaps").innerHTML = cowlflaps;
+
+
+        var throttle = (GetStoredData('G36XIP_THROTTLE_'+this.livery) >= 0) ? GetStoredData('G36XIP_THROTTLE_'+this.livery) : 'Not saved';
+        innerDoc.getElementById("stateThrottle").innerHTML = throttle;
+
+        var prop = (GetStoredData('G36XIP_PROP_'+this.livery) >= 0) ?  GetStoredData('G36XIP_PROP_'+this.livery) : 'Not saved';
+        innerDoc.getElementById("stateProp").innerHTML = prop;
+
+        var mixture = (GetStoredData('G36XIP_MIXTURE_'+this.livery) >= 0) ? GetStoredData('G36XIP_MIXTURE_'+this.livery) : 'Not saved';
+        innerDoc.getElementById("stateMixture").innerHTML = mixture;
+
+        var flaps = (GetStoredData('G36XIP_FLAPS_SWITCH_'+this.livery)) ? GetStoredData('G36XIP_FLAPS_SWITCH_'+this.livery) : 'Not saved';
+        innerDoc.getElementById("stateFlaps").innerHTML = flaps;
+
 
 
 

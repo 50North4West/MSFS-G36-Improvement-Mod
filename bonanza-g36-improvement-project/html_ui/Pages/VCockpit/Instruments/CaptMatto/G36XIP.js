@@ -20,11 +20,11 @@ class G36XIP extends BaseInstrument {
 
       //Brand new Aircraft that has had a 45min acceptance flight & 30 minute flight checks prior to ownership
       //var resetHours = 45.58;
-      DeleteStoredData('G36XIP_HOBBS_'+this.livery);
+      //DeleteStoredData('G36XIP_HOBBS_'+this.livery);
       //SetStoredData('G36XIP_HOBBS_'+this.livery, resetHours.toString());
       this.hobbs = GetStoredData('G36XIP_HOBBS_'+this.livery) ? GetStoredData('G36XIP_HOBBS_'+this.livery) : 1.25;
       if (this.hobbs == 1.25) {
-        var startHours = 1.25
+        startHours = 1.25;
         SetStoredData('G36XIP_HOBBS_'+this.livery, startHours.toString());
       }
 

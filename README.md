@@ -11,15 +11,7 @@ We now have a discord channel!
 <img src="https://img.shields.io/discord/860496910367326228?style=for-the-badge" /> <a target="_blank" href="https://forums.flightsimulator.com/t/g36-improvement-project/216094/2198"><img src="https://img.shields.io/badge/Discuss-MSFS%20Forum-blue?style=for-the-badge"  /></a>
 
 
-or continue to use the dedicated MSFS forum post started by FrettFS
-https://forums.flightsimulator.com/t/g36-improvement-project/
-
-We really value your constructive feedback.
-
--------------------------------------
--------------------------------------
-
-Installation:
+##Installation:
 
 1: Download and install the Working Title NXi from the store Marketplace
 
@@ -29,10 +21,8 @@ Installation:
 
 PLEASE NOTE - WE HAVE REMOVED THE 'Z' FROM THE FOLDER NAME, ENSURE YOU REMOVE THE OLD VERSION PRIOR TO USING THIS ONE!!
 
--------------------------------------
--------------------------------------
 
-Current version: 0.6.7
+##Current version: 0.6.7
 
 **Changelog**
 * Added functionality to Hangar Module (we now save engine hours, miles flown, and count down to annual and 100hr service per livery) state saving items are shown on the State page (menu link at top)
@@ -55,10 +45,8 @@ I though you might like to see the plans I have regarding further development of
 7. Wear and tear on aircraft hardware, e.g. flaps/ailerons etc. (not started)
 8. Further Aircraft failures (Investigating)
 
--------------------------------------
--------------------------------------
 
-Features:
+##Features:
 
 **Bonanza Hangar**
 * A custom in game panel where you will manage your aircraft. This is a work in progress feature but aims to replicate some of the features found in the A2A aircraft hangar. This is still very much a WIP feature and will evolve over time.
@@ -166,9 +154,7 @@ NOTE: The aircraft state is only loaded if:
 This allows the aircraft to load in flight or ready at the end of the runway without messing with the aircraft load. It WILL however, still record switch states and tank levels etc.
 
 
--------------------------------------
--------------------------------------
-**FAQ's:**
+##FAQ's:
 
 **Q: I am not seeing the engine pages in the G1000?**
 

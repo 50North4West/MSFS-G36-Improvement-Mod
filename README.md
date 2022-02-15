@@ -6,8 +6,6 @@
 
 This is the improvement project for the MSFS default G36. It all started as a simple edit of some configuration files but it has since grown into a fully-fledged modification that improves all aspects of the default G36 and introduces new features. This was made possible with the help of the community consisting of both enthusiasts and G36 pilots (for a list of contributors, see the end of this readme).
 
-We now have a discord channel!
-
 <img src="https://img.shields.io/discord/860496910367326228?style=for-the-badge" /> <a target="_blank" href="https://forums.flightsimulator.com/t/g36-improvement-project/216094/2198"><img src="https://img.shields.io/badge/Discuss-MSFS%20Forum-blue?style=for-the-badge"  /></a>
 
 

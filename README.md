@@ -8,7 +8,8 @@ This is the improvement project for the MSFS default G36. It all started as a si
 
 We now have a discord channel!
 
-<img src="https://img.shields.io/discord/860496910367326228?style=for-the-badge" /> <img src="https://img.shields.io/endpoint?url=https://forums.flightsimulator.com/t/g36-improvement-project/216094/2198&style?style=for-the-badge&logo=appveyor"  />
+<img src="https://img.shields.io/discord/860496910367326228?style=for-the-badge" />
+<img src="https://img.shields.io/endpoint?url=https://forums.flightsimulator.com/t/g36-improvement-project/216094/2198&style=for-the-badge&logo=appveyor"  />
 
 or continue to use the dedicated MSFS forum post started by FrettFS
 https://forums.flightsimulator.com/t/g36-improvement-project/

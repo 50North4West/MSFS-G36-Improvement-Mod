@@ -1,6 +1,6 @@
 <img src="https://img.shields.io/github/issues/50North4West/MSFS-G36-Improvement-Mod?style=for-the-badge" /> <img src="https://img.shields.io/github/forks/50North4West/MSFS-G36-Improvement-Mod?style=for-the-badge" /> <img src="https://img.shields.io/github/stars/50North4West/MSFS-G36-Improvement-Mod?style=for-the-badge" /> <img src="https://img.shields.io/github/license/50North4West/MSFS-G36-Improvement-Mod?style=for-the-badge" />
 
-# MSFS G36 Project version 0.6.7
+# MSFS G36 Bonanza Improvement Project
 
 <img src="https://simulated.flights/public/Git/G36GitReadmeBannerImg.jpg" />
 

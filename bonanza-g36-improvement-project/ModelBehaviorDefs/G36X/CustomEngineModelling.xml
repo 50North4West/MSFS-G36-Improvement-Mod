@@ -3,13 +3,15 @@
 https://docs.flightsimulator.com/html/index.htm#t=Additional_Information%2FReverse_Polish_Notation.htm&rhsearch=xml&rhhlterm=xml
 https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars/Aircraft_Engine_Variables.htm
 -->
-
 <!-- A reversed throttle scale - 25% = 0.075 -->
 <Macro Name="ThrottleScalar">
   (A:GENERAL ENG THROTTLE LEVER POSITION:1, percent) 10000 / (&gt;L:G36XIP_FOUL_THROTTLE_SCALE)
 </Macro>
 
-<!-- ### CALL THE PROGRAM ### -->
+<!--#################################################################################################################-->
+<!--#################################################################################################################
+SPARK FOULING
+-->
 <Component ID="Call_Spark_Fouling">
   <UseTemplate Name="Spark_Fouling">
   </UseTemplate>
@@ -23,7 +25,8 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
       <FREQUENCY>1</FREQUENCY>
         <UPDATE_CODE>
           (A:ENG COMBUSTION:1, bool) 1 ==
-          (A:RECIP MIXTURE RATIO:1, ratio) 0.09 &gt; and
+          (A:RECIP MIXTURE RATIO:1, ratio) 0.08 &gt; and
+          (A:GENERAL ENG THROTTLE LEVER POSITION:1, percent) 30 &lt; and
           if{
             1 (&gt;L:G36XIP_FOUL)
           } els{

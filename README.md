@@ -1,4 +1,4 @@
-<img src="https://img.shields.io/github/issues/50North4West/MSFS-G36-Improvement-Mod?style=for-the-badge" /> <img src="https://img.shields.io/github/forks/50North4West/MSFS-G36-Improvement-Mod?style=for-the-badge" /> <img src="https://img.shields.io/github/stars/50North4West/MSFS-G36-Improvement-Mod?style=for-the-badge" /> <img src="https://img.shields.io/github/license/50North4West/MSFS-G36-Improvement-Mod?style=for-the-badge" /> <img src="https://img.shields.io/discord/860496910367326228?style=for-the-badge" />
+<img src="https://img.shields.io/github/issues/50North4West/MSFS-G36-Improvement-Mod?style=for-the-badge" /> <img src="https://img.shields.io/github/forks/50North4West/MSFS-G36-Improvement-Mod?style=for-the-badge" /> <img src="https://img.shields.io/github/stars/50North4West/MSFS-G36-Improvement-Mod?style=for-the-badge" /> <img src="https://img.shields.io/github/license/50North4West/MSFS-G36-Improvement-Mod?style=for-the-badge" />
 
 # MSFS G36 Project version 0.6.7
 
@@ -6,7 +6,11 @@
 
 This is the improvement project for the MSFS default G36. It all started as a simple edit of some configuration files but it has since grown into a fully-fledged modification that improves all aspects of the default G36 and introduces new features. This was made possible with the help of the community consisting of both enthusiasts and G36 pilots (for a list of contributors, see the end of this readme).
 
-We now have a discord channel! https://discord.gg/JVPMYdKx86 or you can continue to use the dedicated MSFS forum post https://forums.flightsimulator.com/t/g36-improvement-project/216094
+We now have a discord channel!
+
+<img src="https://img.shields.io/discord/860496910367326228?style=for-the-badge" />
+
+or continue to use the dedicated MSFS forum post started by FrettFS https://forums.flightsimulator.com/t/g36-improvement-project/
 
 We really value your constructive feedback.
 

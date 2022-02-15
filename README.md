@@ -2,7 +2,7 @@
 
 # MSFS G36 Bonanza Improvement Project
 
-<img src="https://simulated.flights/public/Git/G36GitReadmeBannerImg.jpg" />
+<img src="https://simulated.flights/public/Git/G36GitReadmeBannerImg.jpg" style="width:100%" />
 
 This is the improvement project for the MSFS default G36. It all started as a simple edit of some configuration files but it has since grown into a fully-fledged modification that improves all aspects of the default G36 and introduces new features. This was made possible with the help of the community consisting of both enthusiasts and G36 pilots (for a list of contributors, see the end of this readme).
 

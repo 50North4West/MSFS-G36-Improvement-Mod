@@ -15,9 +15,8 @@ This is the improvement project for the MSFS default G36. It all started as a si
 
 2: Download and unzip the folder ‘bonanza-g36-improvement-project’ in to your MSFS Community folder
 
-3: The Bonanza G36 Improvement Project is now listed as it's own aircraft in the menu rather than overwriting the default aircraft (please see livery note)
-
-PLEASE NOTE - WE HAVE REMOVED THE 'Z' FROM THE FOLDER NAME, ENSURE YOU REMOVE THE OLD VERSION PRIOR TO USING THIS ONE!!
+PLEASE NOTE - The Bonanza G36 Improvement Project is now listed as it's own aircraft in the menu rather than overwriting the default aircraft (please see livery note)
+WE HAVE REMOVED THE 'Z' FROM THE FOLDER NAME, ENSURE YOU REMOVE THE OLD VERSION PRIOR TO USING THIS ONE!!
 
 
 ## Current version: 0.6.7

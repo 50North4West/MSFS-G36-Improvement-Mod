@@ -481,8 +481,24 @@
 		<Component ID="OAT_Indicator">
 			<Component ID="OAT_Screen" Node="OAT_Screen">
 				<UseTemplate Name="ASOBO_GT_Emissive_Gauge">
-					<EMISSIVE_CODE>1</EMISSIVE_CODE>
+					<!--<EMISSIVE_CODE>1</EMISSIVE_CODE>-->
+					<EMISSIVE_CODE>
+						(E:TIME OF DAY, enum) 1 == if{ 1.0 }
+							els{ (E:TIME OF DAY, enum) 2 == (E:TIME OF DAY, enum) 0 == or if{ 0.4 }
+								els{ (E:TIME OF DAY, enum) 3 == if{ 0.2 }
+								}
+							}
+					</EMISSIVE_CODE>
 				</UseTemplate>
+				<!-- ### -->
+				<UseTemplate Name="ASOBO_GT_MouseRect">
+					<Cursor>Hand</Cursor>
+					<MOUSEFLAGS_DEFAULT_IM>LeftSingle</MOUSEFLAGS_DEFAULT_IM>
+					<CALLBACKCODE_DEFAULT_IM>
+						(L:G36XIP_TEMP_SELECT) ! (&gt;L:G36XIP_TEMP_SELECT)
+					</CALLBACKCODE_DEFAULT_IM>
+				</UseTemplate>
+				<!-- ### -->
 			</Component>
 		</Component>
 

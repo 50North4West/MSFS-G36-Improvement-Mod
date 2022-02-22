@@ -1,7 +1,8 @@
 class DigitalOAT extends BaseInstrument {
     constructor() {
         super();
-        this.isCelcius = true;
+		SimVar.SetSimVarValue("L:G36XIP_TEMP_SELECT", "number", 0); // 	SET DEFAULT TO 0
+        this.isFarenheit = true;
     }
     get templateID() { return "DigitalOAT"; }
     connectedCallback() {
@@ -14,21 +15,18 @@ class DigitalOAT extends BaseInstrument {
     onInteractionEvent(_args) {
         if (this.isElectricityAvailable()) {
             if (_args[0] == "oclock_select") {
-                this.isCelcius = !this.isCelcius;
+                this.isFarenheit = !this.isFarenheit;
             }
         }
     }
     Update() {
         super.Update();
         if (this.isElectricityAvailable()) {
-            if (this.isCelcius) {
-
-                diffAndSetText(this.textElem, this.getATMTemperatureC());
-
+            if (SimVar.GetSimVarValue("L:G36XIP_TEMP_SELECT", "number") == 1) {
+                diffAndSetText(this.textElem, this.getATMTemperatureF());
             }
             else {
-                diffAndSetText(this.textElem, this.getATMTemperatureF());
-
+                diffAndSetText(this.textElem, this.getATMTemperatureC());
             }
         }
     }

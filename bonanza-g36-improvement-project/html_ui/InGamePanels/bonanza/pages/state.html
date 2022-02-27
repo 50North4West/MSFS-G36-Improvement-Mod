@@ -14,11 +14,10 @@
     -->
     <script src="https://kit.fontawesome.com/d23d9e1bad.js" crossorigin="anonymous"></script>
 
-
     <title>Hangar</title>
   </head>
-  <body>
-    <div id="htmlState"></div>
+  <body onload="parent.htmlState()">
+    <div id="panelState"></div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-hangar border-bottom border-hangar-blue" style="height:80px;">
       <div class="container-fluid">
         <i class="fa-solid fa-warehouse text-white fa-2x"></i>
@@ -53,69 +52,14 @@
           <h6 class="text-header-small small ">Aircraft Monitoring & Maintenance</h6>
         </div>
       </div>
-      <div class="row justify-content-center into-header">
-        <div class="col-sm-12 col-md-10 col-lg-10 col-xl-10 col-xxl-10">
-          <div class="card shadow">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-sm-12 col-md-6 border-end border-grey">
-                  <div class="progress" style="height:4px">
-                    <div id="annual" class="progress-bar bg-blue" role="progressbar" style="width: 0%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <div class="progress" style="height:4px;margin-top:2px;">
-                    <div id="hundredHour" class="progress-bar bg-pink" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <h5>AIRPLANE INSPECTION PERIODS</h5>
-                  <p class="text-default">
-                    <i class="fa-solid fa-square text-blue"></i> Required Annual Inspection <span id="G36XIP_PANEL_ANNUAL_DUE" class="float-end">Due in - days</span><br />
-                    <i class="fa-solid fa-square text-pink"></i> 100hr Service <span id="G36XIP_PANEL_HUNDRED_DUE" class="float-end">Due in - hours</span>
-                  </p>
-                </div>
-                <div class="col-sm-4 col-md-2 text-center">
-                  <p class="mb-0 text-blue">
-                    <i class="fa-regular fa-timer fa-2x"></i>
-                  </p>
-                  <p class="text-blue mb-3">
-                    Total Hours
-                  </p>
-                  <p id="G36XIP_PANEL_HOBBS" class="numbers">
-                    <i class="fa-thin fa-wifi-exclamation fa-xs"></i>
-                  </p>
-                </div>
-                <div class="col-sm-4 col-md-2 text-center">
-                  <p class="mb-0 text-blue">
-                    <i class="fa-regular fa-gauge fa-2x"></i>
-                  </p>
-                  <p class="text-blue mb-3">
-                    Total Miles
-                  </p>
-                  <p id="G36XIP_PANEL_DISTANCE_FLOWN" class="numbers">
-                    <i class="fa-thin fa-wifi-exclamation fa-xs"></i>
-                  </p>
-                </div>
-                <div class="col-sm-4 col-md-2 text-center">
-                  <p class="mb-0 text-blue">
-                    <i class="fa-regular fa-plane-tail fa-2x"></i>
-                  </p>
-                  <p class="text-blue mb-3">
-                    A/C Reg
-                  </p>
-                  <p id="G36XIP_PANEL_ACREG" class="numbers">
-                    <i class="fa-thin fa-wifi-exclamation fa-xs"></i>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
     <div class="container">
       <div class="row justify-content-center mt-5 px-3">
         <div class="col">
           <h3 class="page-title">Aircraft State Saving Status</h3>
           <p>
-            The mod saves the aircraft state once a second; the data below is a behind the scenes look at the data being saved and a sneak at the modelling that happens 'under the hood' it is also really useful to help debug any issues:
+            The mod saves the aircraft state once every second currently; the data is <span class="text-pink">refreshed every 10 seconds</span> and is a behind the scenes look at the data being saved and a sneak at the modelling that happens 'under the hood'
+            it is also really useful to help debug any issues:
           </p>
           <p>
             State Saving is <span id="stateSaving">ENABLED</span>

@@ -7,16 +7,11 @@
 
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-
-    <!--
-    <script src="js/popper.js"></script>
-    <script src="js/bootstrap.js"></script>
-    -->
     <script src="https://kit.fontawesome.com/d23d9e1bad.js" crossorigin="anonymous"></script>
 
     <title>Hangar</title>
   </head>
-  <body>
+  <body onload="parent.htmlHome()">
     <nav class="navbar navbar-expand-lg navbar-dark bg-hangar border-bottom border-hangar-blue" style="height:80px;">
       <div class="container-fluid">
         <i class="fa-solid fa-warehouse text-white fa-2x"></i>
@@ -104,50 +99,88 @@
           </div>
         </div>
       </div>
-      <div class="row justify-content-center mt-5">
+      <div class="row justify-content-center mt-3">
+        <div class="col-sm-12 col-md-10 col-lg-10 col-xl-10 col-xxl-10">
+          <p>
+            Welcome to the G36 Improvement Project! The improvement project started as a simple edit of some configuration files but it has since grown into a fully-fledged modification
+            that improves all aspects of the default G36 and introduces new features. FrettFS brought together the original team (including myself) which consisted of both flight simulator enthusiasts and real G36 pilots.
+            As often happens the original team got smaller as real life committments built and the mod is now maintained just by me with help from a dedicated testing team of real pilots on our Discord.
+          </p>
+          <p>
+            This panel is very much a work in progress, there will definately be things missing or buggy until I get it to a more stable place. My plan is for this window to mimic the operations in a similar
+            nature to that of an A2A aircraft. Ultimately, there will be a preflight section that you will use to check your aircraft is airworthy prior to flight, a maintenance hangar to fix issues with the aircraft, a place to monitor the mod status,
+            and an about page with the latest change log etc. Also planned are an interactive weight/balance chart and performance charts for use by pilots in flight.
+          </p>
+          <p>
+            This is very much a community project so please do get involved, give feedback and chat about what you'd like to see.
+            You can join our community in the MSFS forum <span class="text-primary">https://forums.flightsimulator.com/t/g36-improvement-project/</span>
+            or on our discord server <span class="text-primary">(search for 'Simulated.Flights') https://discord.gg/JVPMYdKx86</span>
+          </p>
+          <p>
+            Thanks for downloading our Mod!
+          </p>
+          <p>
+            CaptMatto
+          </p>
+        </div>
+      </div>
+      <div class="row justify-content-center mt-3">
         <div class="col-sm-4 col-md-3 col-lg-3 col-xl-3 col-xxl-2">
-          <h3 class="page-title">Overview</h3>
+          <h3 class="page-title">Mod Status</h3>
           <p class="mt-4 mb-1">
-            Avionics
+            Engine Performance
           </p>
           <div class="progress" style="height:4px">
-            <div class="progress-bar bg-blue" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar bg-blue" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="90"></div>
           </div>
           <p class="mt-4 mb-1">
-            Electrical
+            Engine System Modelling (e.g. spark fouling, oil usage etc.)
           </p>
           <div class="progress" style="height:4px">
-            <div class="progress-bar bg-blue" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar bg-blue" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="25"></div>
           </div>
           <p class="mt-4 mb-1">
-            Engine
+            Flight Model
           </p>
           <div class="progress" style="height:4px">
-            <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar bg-blue" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="90"></div>
           </div>
           <p class="mt-4 mb-1">
-            Flight Controls
+            Electrical System Modelling
           </p>
           <div class="progress" style="height:4px">
-            <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar bg-blue" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
           <p class="mt-4 mb-1">
-            Connectivity
+            Wear & Tear of aircraft hardware (e.g. flaps etc.)
           </p>
           <div class="progress" style="height:4px">
-            <div class="progress-bar bg-blue" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar bg-blue" role="progressbar" style="width: 5%" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5"></div>
           </div>
+          <p class="mt-4 mb-1">
+            Aircraft Persitence
+          </p>
+          <div class="progress" style="height:4px">
+            <div class="progress-bar bg-blue" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="95"></div>
+          </div>
+
           <p class="mt-5">
-            Notes from last inspection...
+            Roadmap (not promises)...
             <ul>
               <li>
-                Spark Plugs were a little fouled, try leaning more when on the ground
+                Full Aircraft Persistence - Saving off all switches, tanks & weights
               </li>
               <li>
-                Coolant will need topping up next time
+                Interactive Aircraft Hangar
               </li>
               <li>
-                The oil may need a change
+                Engine & Systems Modelling - Spark Fouling, Oil simulation, Hydraulics simulation, detailed electrical simulation
+              </li>
+              <li>
+                Wear & tear on the aircraft - flaps, gear etc.
+              </li>
+              <li>
+                3D model work to enable door opening etc.
               </li>
             </ul>
           </p>
@@ -162,6 +195,7 @@
             / <a class="text-pink" href="#climb">Climb</a> / <a class="text-pink" href="#cruise">Cruise</a> / <a class="text-pink" href="#approach">Approach</a> / <a class="text-pink" href="#landing">Landing</a>
             / <a class="text-pink" href="#shutdown">Shutdown</a>
           </p>
+
 
           <div id="limitations" class="card bg-white border-2 rounded-3">
             <div class="card-header bg-blue text-white ">Limitations</div>
@@ -367,8 +401,364 @@
                   <dd class="col-sm-6 list-border">Parking Brake</dd>
                   <dd class="col-sm-6 text-end list-border">Release</dd>
                 </dl>
+            </div>
+          </div>
+
+            <p class="mt-4">
+              <a class="text-pink" href="#limitations">Limitiations</a> / <a class="text-pink" href="#start">Start</a> / <a class="text-pink" href="#runup">Runup</a> / <a class="text-pink" href="#takeoff">Takeoff</a>
+              / <a class="text-pink" href="#climb">Climb</a> / <a class="text-pink" href="#cruise">Cruise</a> / <a class="text-pink" href="#approach">Approach</a> / <a class="text-pink" href="#landing">Landing</a>
+              / <a class="text-pink" href="#shutdown">Shutdown</a>
+            </p>
+
+            <div id="takeoff" class="card bg-white mt-4">
+              <div class="card-header bg-blue text-white">Take Off</div>
+                <div class="card-body">
+                  <p class="text-default">
+                    <u>BEFORE TAKEOFF</u>
+                  </p>
+                  <dl class="row">
+                    <dd class="col-sm-6 list-border">Pitot Heat</dd>
+                    <dd class="col-sm-6 text-end list-border">As Req.</dd>
+                    <dd class="col-sm-6 list-border">Lights</dd>
+                    <dd class="col-sm-6 text-end list-border">As Req.</dd>
+                    <dd class="col-sm-6 list-border">A/C</dd>
+                    <dd class="col-sm-6 text-end list-border">Off</dd>
+                    <dd class="col-sm-6 list-border">Flaps</dd>
+                    <dd class="col-sm-6 text-end list-border">Confirm Set</dd>
+                    <dd class="col-sm-6 list-border">Transponder</dd>
+                    <dd class="col-sm-6 text-end list-border">Confirm Set</dd>
+                    <dd class="col-sm-6 list-border">Rotation Speed</dd>
+                    <dd class="col-sm-6 text-end list-border">Confirm </dd>
+                    <dd class="col-sm-12 text-end list-border">For 3650lbs, Flaps Up 73kts, Appr. Flaps 67kts</dd>
+                  </dl>
+                  <p class="text-default">
+                    <u>TAKEOFF</u>
+                  </p>
+                  <dl class="row">
+                    <dd class="col-sm-6 list-border">Throttle</dd>
+                    <dd class="col-sm-6 text-end list-border">Full Forward</dd>
+                    <dd class="col-sm-6 list-border">Propellor</dd>
+                    <dd class="col-sm-6 text-end list-border">High RPM</dd>
+                    <dd class="col-sm-6 list-border">Mixture</dd>
+                    <dd class="col-sm-6 text-end list-border">Full Rich</dd>
+                    <dd class="col-sm-6 list-border">[BUSES TIED]</dd>
+                    <dd class="col-sm-6 text-end list-border">Extinguished</dd>
+                    <dd class="col-sm-6 list-border">Brakes</dd>
+                    <dd class="col-sm-6 text-end list-border">Release</dd>
+                    <dd class="col-sm-6 list-border">Instruments</dd>
+                    <dd class="col-sm-6 text-end list-border">Check</dd>
+                    <dd class="col-sm-12 text-end list-border">MAP, RPM, Fuel Flow, Oil Temp/Press</dd>
+                    <dd class="col-sm-6 list-border">Rotation Speed</dd>
+                    <dd class="col-sm-6 text-end list-border">Rotate</dd>
+                    <dd class="col-sm-6 list-border">Landing Gear</dd>
+                    <dd class="col-sm-6 text-end list-border">Retract</dd>
+                    <dd class="col-sm-6 list-border">Flaps</dd>
+                    <dd class="col-sm-6 text-end list-border">Retract</dd>
+                  </dl>
               </div>
             </div>
+
+            <p class="mt-4">
+              <a class="text-pink" href="#limitations">Limitiations</a> / <a class="text-pink" href="#start">Start</a> / <a class="text-pink" href="#runup">Runup</a> / <a class="text-pink" href="#takeoff">Takeoff</a>
+              / <a class="text-pink" href="#climb">Climb</a> / <a class="text-pink" href="#cruise">Cruise</a> / <a class="text-pink" href="#approach">Approach</a> / <a class="text-pink" href="#landing">Landing</a>
+              / <a class="text-pink" href="#shutdown">Shutdown</a>
+            </p>
+
+            <div id="climb" class="card bg-white mt-4">
+              <div class="card-header bg-blue text-white">Climb</div>
+                <div class="card-body">
+                  <dl class="row">
+                    <dd class="col-sm-6 list-border">Throttle</dd>
+                    <dd class="col-sm-6 text-end list-border">Full Foward</dd>
+                    <dd class="col-sm-6 list-border">Propellor</dd>
+                    <dd class="col-sm-6 text-end list-border">MCP Climb - 2700 RPM</dd>
+                    <dd class="col-sm-12 text-end list-border">Cruise Climb - 2500 RPM</dd>
+                    <dd class="col-sm-6 list-border">Mixture</dd>
+                    <dd class="col-sm-6 text-end list-border">As Req.</dd>
+                    <dd class="col-sm-6 list-border">Cowl Flaps</dd>
+                    <dd class="col-sm-6 text-end list-border">As Req.</dd>
+                    <dd class="col-sm-6 list-border">Airspeed</dd>
+                    <dd class="col-sm-6 text-end list-border">MCP Climb 100kts</dd>
+                    <dd class="col-sm-12 text-end list-border">Cruise Climb 110kts</dd>
+                    <dd class="col-sm-6 list-border">Eng Temps</dd>
+                    <dd class="col-sm-6 text-end list-border">Monitor</dd>
+                    <dd class="col-sm-6 list-border">A/C</dd>
+                    <dd class="col-sm-6 text-end list-border">As Req.</dd>
+                    <dd class="col-sm-6 list-border">Aux Fuel Pump</dd>
+                    <dd class="col-sm-6 text-end list-border">As Req.</dd>
+                  </dl>
+                  <p class="text-danger">
+                    Engine roughness, fuel flow fluctuation or low fuel flow can occur when climbing on hot days. These can be eliminated by switching the auxiliary fuel pump from OFF to LO and leaning the fuel flow.
+                  </p>
+                  <p>
+                    Follow the schedule noted below when climbing at 2700 RPM. When climbing at 2500 RPM, you should follow a schedule which is 2 GPH less than that shown below.
+                  </p>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>
+                          Pressure Alt
+                        </th>
+                        <th>
+                          Fuel Flow (GPH)
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          Sea Level
+                        </td>
+                        <td>
+                          25.7
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          2000
+                        </td>
+                        <td>
+                          25.7
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          4000
+                        </td>
+                        <td>
+                          25.1
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          6000
+                        </td>
+                        <td>
+                          24.0
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          8000
+                        </td>
+                        <td>
+                          22.4
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          10,000
+                        </td>
+                        <td>
+                          20.9
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          12,000
+                        </td>
+                        <td>
+                          19.6
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          14,000
+                        </td>
+                        <td>
+                          18.8
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          16,000
+                        </td>
+                        <td>
+                          17.9
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
+            </div>
+
+            <p class="mt-4">
+              <a class="text-pink" href="#limitations">Limitiations</a> / <a class="text-pink" href="#start">Start</a> / <a class="text-pink" href="#runup">Runup</a> / <a class="text-pink" href="#takeoff">Takeoff</a>
+              / <a class="text-pink" href="#climb">Climb</a> / <a class="text-pink" href="#cruise">Cruise</a> / <a class="text-pink" href="#approach">Approach</a> / <a class="text-pink" href="#landing">Landing</a>
+              / <a class="text-pink" href="#shutdown">Shutdown</a>
+            </p>
+
+            <div id="cruise" class="card bg-white mt-4">
+              <div class="card-header bg-blue text-white">Cruise</div>
+                <div class="card-body">
+                  <dl class="row">
+                    <dd class="col-sm-6 list-border">Cowl Flaps</dd>
+                    <dd class="col-sm-6 text-end list-border">Close</dd>
+                    <dd class="col-sm-6 list-border">Power</dd>
+                    <dd class="col-sm-6 text-end list-border">Set</dd>
+                  </dl>
+                  <p class="text-default">
+                    Return the mixture control to full rich before turning the aux fuel pump off
+                  </p>
+                  <dl class="row">
+                    <dd class="col-sm-6 list-border">Aux Fuel Pump (if Selected)</dd>
+                    <dd class="col-sm-6 text-end list-border">Off</dd>
+                    <dd class="col-sm-6 list-border">Mixture</dd>
+                    <dd class="col-sm-6 text-end list-border">Lean using EGT</dd>
+                  </dl>
+              </div>
+            </div>
+
+            <p class="mt-4">
+              <a class="text-pink" href="#limitations">Limitiations</a> / <a class="text-pink" href="#start">Start</a> / <a class="text-pink" href="#runup">Runup</a> / <a class="text-pink" href="#takeoff">Takeoff</a>
+              / <a class="text-pink" href="#climb">Climb</a> / <a class="text-pink" href="#cruise">Cruise</a> / <a class="text-pink" href="#approach">Approach</a> / <a class="text-pink" href="#landing">Landing</a>
+              / <a class="text-pink" href="#shutdown">Shutdown</a>
+            </p>
+
+            <div id="approach" class="card bg-white mt-4">
+              <div class="card-header bg-blue text-white">Descent / Approach</div>
+                <div class="card-body">
+                  <dl class="row">
+                    <dd class="col-sm-6 list-border">Altimeters</dd>
+                    <dd class="col-sm-6 text-end list-border">Set</dd>
+                    <dd class="col-sm-6 list-border">Cowl Flaps</dd>
+                    <dd class="col-sm-6 text-end list-border">Confirm Closed</dd>
+                    <dd class="col-sm-6 list-border">Power</dd>
+                    <dd class="col-sm-6 text-end list-border">As req.</dd>
+                  </dl>
+                  <p class="text-default">
+                    Avoid prolonged idle settings. Cylinder head temperature should not fall below the green band.
+                  </p>
+                  <dl class="row">
+                    <dd class="col-sm-6 list-border">Mixture</dd>
+                    <dd class="col-sm-6 text-end list-border">As req.</dd>
+                  </dl>
+                  <p class="text-default">
+                    The mixture must be manually enriched as the airplane descends. An optional procedure is to retard the throttle as the airplane descends to maintain a constant manifold
+                    pressure. Then adjust the mixture to maintain the EGT within its limits.
+                  </p>
+                  <dl class="row">
+                    <dd class="col-sm-6 list-border">Eng Temps</dd>
+                    <dd class="col-sm-6 text-end list-border">Monitor</dd>
+                    <dd class="col-sm-6 list-border">Flaps</dd>
+                    <dd class="col-sm-6 text-end list-border">As Req.</dd>
+                    <dd class="col-sm-6 list-border">Windshield Defroster</dd>
+                    <dd class="col-sm-6 text-end list-border">As Req.</dd>
+                  </dl>
+              </div>
+            </div>
+
+            <p class="mt-4">
+              <a class="text-pink" href="#limitations">Limitiations</a> / <a class="text-pink" href="#start">Start</a> / <a class="text-pink" href="#runup">Runup</a> / <a class="text-pink" href="#takeoff">Takeoff</a>
+              / <a class="text-pink" href="#climb">Climb</a> / <a class="text-pink" href="#cruise">Cruise</a> / <a class="text-pink" href="#approach">Approach</a> / <a class="text-pink" href="#landing">Landing</a>
+              / <a class="text-pink" href="#shutdown">Shutdown</a>
+            </p>
+
+            <div id="landing" class="card bg-white mt-4">
+              <div class="card-header bg-blue text-white">Landing</div>
+                <div class="card-body">
+                  <p class="text-default">
+                    <u>BEFORE LANDING</u>
+                  </p>
+                  <dl class="row">
+                    <dd class="col-sm-6 list-border">Fuel Selector Valve</dd>
+                    <dd class="col-sm-6 text-end list-border">Sellect fuller tank</dd>
+                    <dd class="col-sm-6 list-border">Cowl Flaps</dd>
+                    <dd class="col-sm-6 text-end list-border">As Req.</dd>
+                    <dd class="col-sm-6 list-border">Mixture</dd>
+                    <dd class="col-sm-6 text-end list-border">Full Rich</dd>
+                  </dl>
+                  <p class="text-default">
+                    or as required by field elevation
+                  </p>
+                  <dl class="row">
+                    <dd class="col-sm-6 list-border">Landing Gear (154 kts or below)</dd>
+                    <dd class="col-sm-6 text-end list-border">Down & Check</dd>
+                    <dd class="col-sm-6 list-border">Landing Lights</dd>
+                    <dd class="col-sm-6 text-end list-border">As Req.</dd>
+                    <dd class="col-sm-6 list-border">Propellor</dd>
+                    <dd class="col-sm-6 text-end list-border">High RPM</dd>
+                  </dl>
+                  <p class="text-default">
+                    <u>NORMAL LANDING</u>
+                  </p>
+                  <dl class="row">
+                    <dd class="col-sm-6 list-border">Flaps (124 kts or below)</dd>
+                    <dd class="col-sm-6 text-end list-border">Down & Check</dd>
+                    <dd class="col-sm-6 list-border">Airspeed</dd>
+                    <dd class="col-sm-6 text-end list-border">Establish normal appr. speed</dd>
+                  </dl>
+                  <p class="text-default">
+                    <u>BALKED LANDING</u>
+                  </p>
+                  <dl class="row">
+                    <dd class="col-sm-6 list-border">Throttle and Propeller</dd>
+                    <dd class="col-sm-6 text-end list-border">Full Forward</dd>
+                    <dd class="col-sm-6 list-border">Airspeed</dd>
+                    <dd class="col-sm-6 text-end list-border">80kts</dd>
+                    <dd class="col-sm-12 text-end list-border">until clear of obstacles, then trim to 110 KTS</dd>
+                    <dd class="col-sm-6 list-border">Flaps</dd>
+                    <dd class="col-sm-6 text-end list-border">Up</dd>
+                    <dd class="col-sm-6 list-border">Landing Gear</dd>
+                    <dd class="col-sm-6 text-end list-border">Retract</dd>
+                    <dd class="col-sm-6 list-border">Cowl Flaps</dd>
+                    <dd class="col-sm-6 text-end list-border">Open</dd>
+                  </dl>
+                  <p class="text-default">
+                    <u>AFTER LANDING</u>
+                  </p>
+                  <dl class="row">
+                    <dd class="col-sm-6 list-border">Cowl Flaps</dd>
+                    <dd class="col-sm-6 text-end list-border">Open</dd>
+                    <dd class="col-sm-6 list-border">Flaps</dd>
+                    <dd class="col-sm-6 text-end list-border">Up</dd>
+                    <dd class="col-sm-6 list-border">Landing, Taxi, and Strobe Lights</dd>
+                    <dd class="col-sm-6 text-end list-border">As Req.</dd>
+                    <dd class="col-sm-6 list-border">Trim Tabs</dd>
+                    <dd class="col-sm-6 text-end list-border">Reset As Req.</dd>
+                    <dd class="col-sm-6 list-border">[BUSES TIED]</dd>
+                    <dd class="col-sm-6 text-end list-border">Illuminated</dd>
+                  </dl>
+              </div>
+            </div>
+
+            <p class="mt-4">
+              <a class="text-pink" href="#limitations">Limitiations</a> / <a class="text-pink" href="#start">Start</a> / <a class="text-pink" href="#runup">Runup</a> / <a class="text-pink" href="#takeoff">Takeoff</a>
+              / <a class="text-pink" href="#climb">Climb</a> / <a class="text-pink" href="#cruise">Cruise</a> / <a class="text-pink" href="#approach">Approach</a> / <a class="text-pink" href="#landing">Landing</a>
+              / <a class="text-pink" href="#shutdown">Shutdown</a>
+            </p>
+
+            <div id="shutdown" class="card bg-white mt-4 mb-5">
+              <div class="card-header bg-blue text-white">Shutdown and Securing</div>
+                <div class="card-body">
+                  <dl class="row">
+                    <dd class="col-sm-6 list-border">Parking Brake</dd>
+                    <dd class="col-sm-6 text-end list-border">Set</dd>
+                    <dd class="col-sm-6 list-border">Avionics</dd>
+                    <dd class="col-sm-6 text-end list-border">Off</dd>
+                    <dd class="col-sm-12 text-end list-border">MFD - Extinguised</dd>
+                    <dd class="col-sm-12 text-end list-border">PFD - Check Reversionary Mode</dd>
+                    <dd class="col-sm-6 list-border">Electrical Equipment</dd>
+                    <dd class="col-sm-6 text-end list-border">Off</dd>
+                    <dd class="col-sm-6 list-border">A/C</dd>
+                    <dd class="col-sm-6 text-end list-border">Off</dd>
+                    <dd class="col-sm-6 list-border">Throttle</dd>
+                    <dd class="col-sm-6 text-end list-border">1000 RPM</dd>
+                    <dd class="col-sm-6 list-border">Mixture</dd>
+                    <dd class="col-sm-6 text-end list-border">Cut Off</dd>
+                    <dd class="col-sm-6 list-border">Magnetos</dd>
+                    <dd class="col-sm-6 text-end list-border">Off</dd>
+                    <dd class="col-sm-6 list-border">Bat 1 & 2</dd>
+                    <dd class="col-sm-6 text-end list-border">Off</dd>
+                    <dd class="col-sm-6 list-border">Alternator 1 & 2</dd>
+                    <dd class="col-sm-6 text-end list-border">Off</dd>
+                  </dl>
+              </div>
+            </div>
+
+
+
+
         </div>
       </div>
     </div>

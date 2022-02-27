@@ -2,7 +2,7 @@
 let engStart = '';
 class G36XIP extends BaseInstrument {
 
-  //Aircraft State Saving by CaptMatto & WeptBurrito2749
+  //Aircraft State Saving by CaptMatto with help by WeptBurrito2749
 
   // @TODO Check if the aircraft is on the ground as this can cause issues when loading when flying and all your switches are off. It is race to see who wins, the floor or the pilot
 
@@ -18,13 +18,15 @@ class G36XIP extends BaseInstrument {
     if (GetStoredData('G36XIP_STATE_ACTIVE_'+this.livery) == 1) {
       console.log('State Saving Enabled');
 
+
       //Brand new Aircraft that has had a 45min acceptance flight & 30 minute flight checks prior to ownership
-      //var resetHours = 45.58;
+      //var resetHours = 1.25;
       //DeleteStoredData('G36XIP_HOBBS_'+this.livery);
       //SetStoredData('G36XIP_HOBBS_'+this.livery, resetHours.toString());
       this.hobbs = GetStoredData('G36XIP_HOBBS_'+this.livery) ? GetStoredData('G36XIP_HOBBS_'+this.livery) : 1.25;
+      console.log(this.hobbs);
       if (this.hobbs == 1.25) {
-        startHours = 1.25;
+        var startHours = 1.25;
         SetStoredData('G36XIP_HOBBS_'+this.livery, startHours.toString());
       }
 
@@ -110,12 +112,12 @@ class G36XIP extends BaseInstrument {
       //MODELLING STUFF
 
       //SPARKS
-      this.spark1 = GetStoredData('G36XIP_SPARK_1_LIKELIHOOD_'+this.livery) ? GetStoredData('G36XIP_SPARK_1_LIKELIHOOD_'+this.livery) : Math.random();
-      this.spark3 = GetStoredData('G36XIP_SPARK_3_LIKELIHOOD_'+this.livery) ? GetStoredData('G36XIP_SPARK_3_LIKELIHOOD_'+this.livery) : Math.random();
-      this.spark5 = GetStoredData('G36XIP_SPARK_5_LIKELIHOOD_'+this.livery) ? GetStoredData('G36XIP_SPARK_5_LIKELIHOOD_'+this.livery) : Math.random();
-      this.spark7 = GetStoredData('G36XIP_SPARK_7_LIKELIHOOD_'+this.livery) ? GetStoredData('G36XIP_SPARK_7_LIKELIHOOD_'+this.livery) : Math.random();
-      this.spark9 = GetStoredData('G36XIP_SPARK_9_LIKELIHOOD_'+this.livery) ? GetStoredData('G36XIP_SPARK_9_LIKELIHOOD_'+this.livery) : Math.random();
-      this.spark11 = GetStoredData('G36XIP_SPARK_11_LIKELIHOOD_'+this.livery) ? GetStoredData('G36XIP_SPARK_11_LIKELIHOOD_'+this.livery) : Math.random();
+      this.spark1 = GetStoredData('G36XIP_SPARK_1_LIKELIHOOD_'+this.livery) ? Math.random() : Math.random();
+      this.spark3 = GetStoredData('G36XIP_SPARK_3_LIKELIHOOD_'+this.livery) ? Math.random() : Math.random();
+      this.spark5 = GetStoredData('G36XIP_SPARK_5_LIKELIHOOD_'+this.livery) ? Math.random() : Math.random();
+      this.spark7 = GetStoredData('G36XIP_SPARK_7_LIKELIHOOD_'+this.livery) ? Math.random() : Math.random();
+      this.spark9 = GetStoredData('G36XIP_SPARK_9_LIKELIHOOD_'+this.livery) ? Math.random() : Math.random();
+      this.spark11 = GetStoredData('G36XIP_SPARK_11_LIKELIHOOD_'+this.livery) ? Math.random() : Math.random();
 
     }
 
@@ -127,12 +129,13 @@ class G36XIP extends BaseInstrument {
 
   //Runs as the sim is loading
   connectedCallback() {
+    console.log('connectedCallback');
     super.connectedCallback();
-
   } //end connectedCallback
 
   //Runs once the flight is loaded
   onFlightStart() {
+    console.log('onFlightStart');
     super.onFlightStart();
 
 
@@ -351,8 +354,6 @@ class G36XIP extends BaseInstrument {
       }
 
     }
-
-
 
 
     var timerMilSecs = 1000;

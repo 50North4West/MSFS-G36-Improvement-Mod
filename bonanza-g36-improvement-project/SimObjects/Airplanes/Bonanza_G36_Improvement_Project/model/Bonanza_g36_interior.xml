@@ -30,6 +30,10 @@
 			<UseTemplate Name="Smooth_Indication"></UseTemplate>
 			<UseTemplate Name="Spark_Fouling"></UseTemplate>
 		</Component>
+
+		<Component ID="G36X_Custom_Engine_Modelling">
+			<UseTemplate Name="Perf_Tweak"></UseTemplate>
+		</Component>
 		<!-- End of G36X Modification -->
 
 	<!-- AS1000 ############################## -->

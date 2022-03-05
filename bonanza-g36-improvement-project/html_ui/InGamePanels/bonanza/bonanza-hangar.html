@@ -25,8 +25,8 @@
   <body class="border-box" >
     <bonanza-hangar>
       <ingame-ui id="bonanza_frame" panel-id="G36_Panel" class="ingameUiFrame panelInvisible" title="Bonanza Hangar" content-fit="true" min-width="994" min-height="1138" resize="both">
-        <ui-element id="MainDisplay" style="height: 100vh;">
-          <iframe name="display-frame" id="iframeId" src="pages/home.html" frameborder="0"></iframe>
+        <ui-element id="MainDisplay" style="display: flex">
+          <iframe name="display-frame" class="responsive-iframe"  id="iframeId" src="pages/home.html" ></iframe>
         </ui-element>
       </ingame-ui>
     </bonanza-hangar>

@@ -5,9 +5,8 @@
   padding-bottom: 1px;
 }
 
-#bonanza_frame iframe {
+iframe {
   width: 100%;
-  height: calc(100% - 60px);
+  box-sizing: border-box;
   border: none;
-  position: relative;
 }

@@ -15,21 +15,30 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
 
 <Template Name="Perf_Tweak">
 
-  <Component ID="Trigger">
+  <Component ID="Speed">
     <UseTemplate Name="ASOBO_GT_Update">
-      <FREQUENCY>1</FREQUENCY>
+      <FREQUENCY>10</FREQUENCY>
         <UPDATE_CODE>
           (A:ENG COMBUSTION:1, bool) 1 ==
           (A:INDICATED ALTITUDE, feet) 4500 &gt; and
           if{
             1 (&gt;L:G36XIP_TEST)
-            (A:INDICATED ALTITUDE, feet) 100000 / (&gt;L:G36XIP_ALT_SCALAR)
+            (A:INDICATED ALTITUDE, feet) 100000 / 0.048 + (&gt;L:G36XIP_ALT_SCALAR)
             (A:GENERAL ENG PCT MAX RPM:1, percent) (L:G36XIP_ALT_SCALAR) + (&gt;A:GENERAL ENG PCT MAX RPM:1, percent)
           } els{
             0 (&gt;L:G36XIP_TEST)
-            (A:INDICATED ALTITUDE, feet) 100000 / (&gt;L:G36XIP_ALT_SCALAR)
+            (A:INDICATED ALTITUDE, feet) 100000 / 0.048 + (&gt;L:G36XIP_ALT_SCALAR)
             (A:GENERAL ENG PCT MAX RPM:1, percent) (L:G36XIP_ALT_SCALAR) - (&gt;A:GENERAL ENG PCT MAX RPM:1, percent)
           }
+        </UPDATE_CODE>
+    </UseTemplate>
+  </Component>
+
+  <Component ID="Gauge">
+    <UseTemplate Name="ASOBO_GT_Update">
+      <FREQUENCY>6</FREQUENCY>
+        <UPDATE_CODE>
+          (A:GENERAL ENG RPM:1, rpm) (&gt;L:G36XIP_ENG_RPM)
         </UPDATE_CODE>
     </UseTemplate>
   </Component>

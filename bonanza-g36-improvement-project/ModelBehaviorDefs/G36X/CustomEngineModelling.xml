@@ -17,16 +17,18 @@ https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars
 
   <Component ID="Trigger">
     <UseTemplate Name="ASOBO_GT_Update">
-      <FREQUENCY>60</FREQUENCY>
+      <FREQUENCY>1</FREQUENCY>
         <UPDATE_CODE>
           (A:ENG COMBUSTION:1, bool) 1 ==
-          4000 (A:INDICATED ALTITUDE, ft) &gt; and
-          if(
-            (A:INDICATED ALTITUDE, ft) 100000 / 0.045 - (A:GENERAL ENG PCT MAX RPM:1, percent) + (&gt;A:GENERAL ENG PCT MAX RPM:1, percent)
+          (A:INDICATED ALTITUDE, feet) 4500 &gt; and
+          if{
             1 (&gt;L:G36XIP_TEST)
-          ) els{
-          (A:INDICATED ALTITUDE, ft) 100000 / 0.045 - (A:GENERAL ENG PCT MAX RPM:1, percent) + (&gt;A:GENERAL ENG PCT MAX RPM:1, percent)
-            4 (&gt;L:G36XIP_TEST)
+            (A:INDICATED ALTITUDE, feet) 100000 / (&gt;L:G36XIP_ALT_SCALAR)
+            (A:GENERAL ENG PCT MAX RPM:1, percent) (L:G36XIP_ALT_SCALAR) + (&gt;A:GENERAL ENG PCT MAX RPM:1, percent)
+          } els{
+            0 (&gt;L:G36XIP_TEST)
+            (A:INDICATED ALTITUDE, feet) 100000 / (&gt;L:G36XIP_ALT_SCALAR)
+            (A:GENERAL ENG PCT MAX RPM:1, percent) (L:G36XIP_ALT_SCALAR) - (&gt;A:GENERAL ENG PCT MAX RPM:1, percent)
           }
         </UPDATE_CODE>
     </UseTemplate>

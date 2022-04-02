@@ -763,7 +763,7 @@
 					<Graduations>1200,1800,2100,2300,2500,2700</Graduations>
 				</Style>
 				<Value>
-					<Simvar name="L:G36XIP_ENG_RPM" unit="rpm"/>
+					<Simvar name="PROP RPM:1" unit="rpm"/>
 				</Value>
 				<ColorZone>
 					<Color>white</Color>
@@ -782,7 +782,7 @@
 				</ColorZone>
 				<RedBlink>
 					<Greater>
-						<Simvar name="L:G36XIP_ENG_RPM" unit="rpm"/>
+						<Simvar name="PROP RPM:1" unit="rpm"/>
 						<Constant>2701</Constant>
 					</Greater>
 				</RedBlink>
@@ -1118,7 +1118,7 @@
 				<Rows>13</Rows>
 				<Columns>6</Columns>
 				<Minimum>482</Minimum>
-				<Maximum>850</Maximum>
+				<Maximum>950</Maximum>
 				<TempOrder>1,4,2,5,3,6</TempOrder>
 				<Value>
 					<Simvar name="GENERAL ENG EXHAUST GAS TEMPERATURE:1" unit="celsius"/>

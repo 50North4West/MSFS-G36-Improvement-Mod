@@ -3,47 +3,7 @@
 https://docs.flightsimulator.com/html/index.htm#t=Additional_Information%2FReverse_Polish_Notation.htm&rhsearch=xml&rhhlterm=xml
 https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars/Aircraft_Engine_Variables.htm
 -->
-<!-- A reversed throttle scale - 25% = 0.075 -->
-<Macro Name="ThrottleScalar">
-  (A:GENERAL ENG THROTTLE LEVER POSITION:1, percent) 10000 / (&gt;L:G36XIP_FOUL_THROTTLE_SCALE)
-</Macro>
 
-<Component ID="Call_Perf_Tweak">
-  <UseTemplate Name="Perf_Tweak">
-  </UseTemplate>
-</Component>
-
-<Template Name="Perf_Tweak">
-
-  <Component ID="Speed">
-    <UseTemplate Name="ASOBO_GT_Update">
-      <FREQUENCY>10</FREQUENCY>
-        <UPDATE_CODE>
-          (A:ENG COMBUSTION:1, bool) 1 ==
-          (A:INDICATED ALTITUDE, feet) 4500 &gt; and
-          if{
-            1 (&gt;L:G36XIP_TEST)
-            (A:INDICATED ALTITUDE, feet) 100000 / 0.048 + (&gt;L:G36XIP_ALT_SCALAR)
-            (A:GENERAL ENG PCT MAX RPM:1, percent) (L:G36XIP_ALT_SCALAR) + (&gt;A:GENERAL ENG PCT MAX RPM:1, percent)
-          } els{
-            0 (&gt;L:G36XIP_TEST)
-            (A:INDICATED ALTITUDE, feet) 100000 / 0.048 + (&gt;L:G36XIP_ALT_SCALAR)
-            (A:GENERAL ENG PCT MAX RPM:1, percent) (L:G36XIP_ALT_SCALAR) - (&gt;A:GENERAL ENG PCT MAX RPM:1, percent)
-          }
-        </UPDATE_CODE>
-    </UseTemplate>
-  </Component>
-
-  <Component ID="Gauge">
-    <UseTemplate Name="ASOBO_GT_Update">
-      <FREQUENCY>6</FREQUENCY>
-        <UPDATE_CODE>
-          (A:GENERAL ENG RPM:1, rpm) (&gt;L:G36XIP_ENG_RPM)
-        </UPDATE_CODE>
-    </UseTemplate>
-  </Component>
-
-</template>
 
 
 <!--#################################################################################################################-->

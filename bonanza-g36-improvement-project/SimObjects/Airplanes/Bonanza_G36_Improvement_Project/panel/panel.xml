@@ -1118,7 +1118,7 @@
 				<Rows>13</Rows>
 				<Columns>6</Columns>
 				<Minimum>482</Minimum>
-				<Maximum>850</Maximum>
+				<Maximum>950</Maximum>
 				<TempOrder>1,4,2,5,3,6</TempOrder>
 				<Value>
 					<Simvar name="GENERAL ENG EXHAUST GAS TEMPERATURE:1" unit="celsius"/>

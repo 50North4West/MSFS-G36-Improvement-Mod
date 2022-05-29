@@ -19,14 +19,11 @@ PLEASE NOTE - The Bonanza G36 Improvement Project is now listed as it's own airc
 WE HAVE REMOVED THE 'Z' FROM THE FOLDER NAME, ENSURE YOU REMOVE THE OLD VERSION PRIOR TO USING THIS ONE!!
 
 
-## Current version: 0.6.7
+## Current version: 0.6.8
 
 **Changelog**
-* Added functionality to Hangar Module (we now save engine hours, miles flown, and count down to annual and 100hr service per livery) state saving items are shown on the State page (menu link at top)
-* Fixed missing altitude alert tone @200ft to go
-* Tweaked fuel flow as current flow slightly less than book figures (Rpt by @JayDee6281)
-* Fixed missing decimal point to manifold pressure gauge
-* Added SU8 Prop Modelling - initial tests show aircraft now at most 1knt and 0.2gph away from book figures
+* Aircraft performance has now been re-factored after the addition of the new sim prop modelling and CFD dynamics.
+* Performance charts are within 2/3knots TAS across the whole flight envelope, 2300/2300 & 2500/2500 and fuel flow is under 1gph out from the POH
 
 **Liveries**
 We have split out the files from modifying the default Bonanza to becoming its own aircraft. This is so we can complete further 3d model changes, and work on the hangar module and deeper systems modelling. Liveries will need to be amended to reflect this new aircraft to work. More information here https://forums.flightsimulator.com/t/g36-improvement-project/216094/1943
@@ -34,7 +31,6 @@ We have split out the files from modifying the default Bonanza to becoming its o
 **RoadMap**
 I though you might like to see the plans I have regarding further development of the mod. None of these are set in stone or confirmed as definitely happening, just things I'd like to try and accomplish. Fee free to add what you'd like to see with the mod in our discord roadmap channel https://discord.gg/JVPMYdKx86
 1. Aircraft Persistence (80% Complete)
-2. Spark Plug Fouling (In test / tweaking)
 3. Hangar Module further development (In progress)
 4. Modelling of MP reduction when systems using power to simulate engine efficiencies e.g. alternator load, air-conditioning, spark plug fouling, mixture etc. (Pondering)
 5. Oil Simulation (investigating)
@@ -61,6 +57,7 @@ I though you might like to see the plans I have regarding further development of
 * Completely overhauled engine parameters: realistic fuel flow, mixture-EGT interaction, engine performance at all pressure altitudes. After more than 30hrs of testing and tweaking, the engine performance figures match the POH as close as we can get them and have been verified by real Bonanza pilots. TAS is within 0.22kts on average across the altitude spectrum and fuel flow within 1g/h.
 * Simulation of Spark Plugs / Spark Plug Fouling - if you don't lean correctly both on the ground or in the air your plugs will encounter spark fouling, loosing RPM and engine power. Each spark is modelled independently and has its own likelihood to foul; this stays across flights, the spark most likely to foul will foul first followed by the next etc.
 * Simulation of the electric fuel pump
+* Simulation of spark plug fouling
 * More advanced simulation of engine start-up:
   - Cold starts: correct use of the fuel pump, throttle and mixture required depending on engine and ambient temperature
   - Under some conditions, idling the engine too soon after start may cause it to quit.

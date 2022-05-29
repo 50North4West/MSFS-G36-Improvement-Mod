@@ -3,10 +3,8 @@
 https://docs.flightsimulator.com/html/index.htm#t=Additional_Information%2FReverse_Polish_Notation.htm&rhsearch=xml&rhhlterm=xml
 https://docs.flightsimulator.com/html/Programming_Tools/SimVars/Aircraft_SimVars/Aircraft_Engine_Variables.htm
 -->
-<!-- A reversed throttle scale - 25% = 0.075 -->
-<Macro Name="ThrottleScalar">
-  (A:GENERAL ENG THROTTLE LEVER POSITION:1, percent) 10000 / (&gt;L:G36XIP_FOUL_THROTTLE_SCALE)
-</Macro>
+
+
 
 <!--#################################################################################################################-->
 <!--#################################################################################################################

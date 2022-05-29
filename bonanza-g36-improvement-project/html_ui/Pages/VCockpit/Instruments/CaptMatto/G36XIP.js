@@ -55,6 +55,9 @@ class G36XIP extends BaseInstrument {
         SetStoredData('G36XIP_LEFT_FUEL_'+this.livery, setDefaultFuel.toString());
         SetStoredData('G36XIP_RIGHT_FUEL_'+this.livery, setDefaultFuel.toString());
       }
+
+
+
       this.pilotWeight = GetStoredData('G36XIP_PILOT_WEIGHT_'+this.livery) ? GetStoredData('G36XIP_PILOT_WEIGHT_'+this.livery) : 89; //Average male weight
       this.coPilotWeight = GetStoredData('G36XIP_COPILOT_WEIGHT_'+this.livery) ? GetStoredData('G36XIP_COPILOT_WEIGHT_'+this.livery) : 89; //Average male weight
       this.frontPaxLeft = GetStoredData('G36XIP_FRONT_LEFT_PAX_WEIGHT_'+this.livery) ? GetStoredData('G36XIP_FRONT_LEFT_PAX_WEIGHT_'+this.livery) : 0;
@@ -148,8 +151,8 @@ class G36XIP extends BaseInstrument {
         //The aircraft is on the ground and parked, we can load all the variables
 
         //load fuel
-        SimVar.SetSimVarValue("FUEL TANK LEFT MAIN QUANTITY", "number", Number(this.leftFuel));
-        SimVar.SetSimVarValue("FUEL TANK RIGHT MAIN QUANTITY", "number", Number(this.rightFuel));
+        SimVar.SetSimVarValue("FUEL TANK LEFT MAIN QUANTITY", "gallons", Number(this.leftFuel));
+        SimVar.SetSimVarValue("FUEL TANK RIGHT MAIN QUANTITY", "gallons", Number(this.rightFuel));
         //Fuel Selector
         SimVar.SetSimVarValue("K:FUEL_SELECTOR_SET", "number", Number(this.fuelSelector));
         //Parking Brake
@@ -257,8 +260,8 @@ class G36XIP extends BaseInstrument {
           //engine off set everything
 
           //load fuel
-          SimVar.SetSimVarValue("FUEL TANK LEFT MAIN QUANTITY", "number", Number(this.leftFuel));
-          SimVar.SetSimVarValue("FUEL TANK RIGHT MAIN QUANTITY", "number", Number(this.rightFuel));
+          SimVar.SetSimVarValue("FUEL TANK LEFT MAIN QUANTITY", "gallons", Number(this.leftFuel));
+          SimVar.SetSimVarValue("FUEL TANK RIGHT MAIN QUANTITY", "gallons", Number(this.rightFuel));
           //Fuel Selector
           SimVar.SetSimVarValue("K:FUEL_SELECTOR_SET", "number", Number(this.fuelSelector));
           //Parking Brake

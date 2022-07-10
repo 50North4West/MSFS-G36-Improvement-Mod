@@ -19,11 +19,11 @@ PLEASE NOTE - The Bonanza G36 Improvement Project is now listed as it's own airc
 WE HAVE REMOVED THE 'Z' FROM THE FOLDER NAME, ENSURE YOU REMOVE THE OLD VERSION PRIOR TO USING THIS ONE!!
 
 
-## Current version: 0.6.8
+## Current version: 0.6.9
 
 **Changelog**
-* Aircraft performance has now been re-factored after the addition of the new sim prop modelling and CFD dynamics.
-* Performance charts are within 2/3knots TAS across the whole flight envelope, 2300/2300 & 2500/2500 and fuel flow is under 1gph out from the POH
+* Fixed [FUEL QTY LO] warning - two notifications were showing on screen, POH states one warning for either tank, pilot to check which one via gauges.
+*
 
 **Liveries**
 We have split out the files from modifying the default Bonanza to becoming its own aircraft. This is so we can complete further 3d model changes, and work on the hangar module and deeper systems modelling. Liveries will need to be amended to reflect this new aircraft to work. More information here https://forums.flightsimulator.com/t/g36-improvement-project/216094/1943
@@ -45,7 +45,8 @@ I though you might like to see the plans I have regarding further development of
 * A custom in game panel where you will manage your aircraft. This is a work in progress feature but aims to replicate some of the features found in the A2A aircraft hangar. This is still very much a WIP feature and will evolve over time.
 
 **Flight dynamics/performance**
-* Adjusted climb and cruise performance to match the Bonanza G36 POH charts.
+* Performance charts are within 2/3knots TAS across the whole flight envelope, 2300/2300 & 2500/2500 and fuel flow is under 1gph out from the POH
+* Aircraft performance has now been re-factored after the addition of the new sim prop modelling and CFD dynamics.
 * Adjusted flap and gear drag
 * Slightly reduced pitch effect due to elevator deflection + propwash
 * Slightly increased nosewheel steering angle

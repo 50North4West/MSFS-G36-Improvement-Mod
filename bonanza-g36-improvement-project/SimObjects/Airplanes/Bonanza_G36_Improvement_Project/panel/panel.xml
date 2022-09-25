@@ -29,33 +29,29 @@
 			<Type>Caution</Type>
 			<Text>FUEL QTY LO</Text>
 			<Condition>
-				<And>
-					<Lower>
-						<Simvar name="FUEL RIGHT QUANTITY" unit="gallon"/>
-						<Constant>13</Constant>
-					</Lower>
-					<Greater>
-						<Simvar name="FUEL RIGHT QUANTITY" unit="gallon"/>
-						<Constant>0.1</Constant>
-					</Greater>
-				</And>
-			</Condition>
-		</Annunciation>
+				<Or>
+					<And>
+						<Lower>
+							<Simvar name="FUEL RIGHT QUANTITY" unit="gallon"/>
+							<Constant>13</Constant>
+						</Lower>
+						<Greater>
+							<Simvar name="FUEL RIGHT QUANTITY" unit="gallon"/>
+							<Constant>0.1</Constant>
+						</Greater>
+					</And>
+					<And>
+						<Lower>
+							<Simvar name="FUEL LEFT QUANTITY" unit="gallon"/>
+							<Constant>13</Constant>
+						</Lower>
+						<Greater>
+							<Simvar name="FUEL LEFT QUANTITY" unit="gallon"/>
+							<Constant>0.1</Constant>
+						</Greater>
+					</And>
+				</Or>
 
-		<Annunciation>
-			<Type>Caution</Type>
-			<Text>FUEL QTY LO</Text>
-			<Condition>
-				<And>
-					<Lower>
-						<Simvar name="FUEL LEFT QUANTITY" unit="gallon"/>
-						<Constant>13</Constant>
-					</Lower>
-					<Greater>
-						<Simvar name="FUEL LEFT QUANTITY" unit="gallon"/>
-						<Constant>0.1</Constant>
-					</Greater>
-				</And>
 			</Condition>
 		</Annunciation>
 

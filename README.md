@@ -11,19 +11,21 @@ This is the improvement project for the MSFS default G36. It all started as a si
 
 ## Installation:
 
-1: Download and install the Working Title NXi from the store Marketplace
-
 2: Download and unzip the folder ‘bonanza-g36-improvement-project’ in to your MSFS Community folder
 
 PLEASE NOTE - The Bonanza G36 Improvement Project is now listed as it's own aircraft in the menu rather than overwriting the default aircraft (please see livery note)
 WE HAVE REMOVED THE 'Z' FROM THE FOLDER NAME, ENSURE YOU REMOVE THE OLD VERSION PRIOR TO USING THIS ONE!!
 
 
-## Current version: 0.6.8
+## Current version: 0.6.10
 
 **Changelog**
-* Aircraft performance has now been re-factored after the addition of the new sim prop modelling and CFD dynamics.
-* Performance charts are within 2/3knots TAS across the whole flight envelope, 2300/2300 & 2500/2500 and fuel flow is under 1gph out from the POH
+* Fix to state saving on the prop handle axis, spotted by @MilitaryMav in the forums and a suggested fix via github by @VA3DBJ
+* WT G1000 NXi now default in all aircraft, no need to download and add this mod.
+* Update of lighting with addition of newest Uwajimaya's lighting mod release
+
+**Known Issues**
+* The climate control display corrupts if you try to interact with it.
 
 **Liveries**
 We have split out the files from modifying the default Bonanza to becoming its own aircraft. This is so we can complete further 3d model changes, and work on the hangar module and deeper systems modelling. Liveries will need to be amended to reflect this new aircraft to work. More information here https://forums.flightsimulator.com/t/g36-improvement-project/216094/1943
@@ -45,7 +47,8 @@ I though you might like to see the plans I have regarding further development of
 * A custom in game panel where you will manage your aircraft. This is a work in progress feature but aims to replicate some of the features found in the A2A aircraft hangar. This is still very much a WIP feature and will evolve over time.
 
 **Flight dynamics/performance**
-* Adjusted climb and cruise performance to match the Bonanza G36 POH charts.
+* Performance charts are within 2/3knots TAS across the whole flight envelope, 2300/2300 & 2500/2500 and fuel flow is under 1gph out from the POH
+* Aircraft performance has now been re-factored after the addition of the new sim prop modelling and CFD dynamics.
 * Adjusted flap and gear drag
 * Slightly reduced pitch effect due to elevator deflection + propwash
 * Slightly increased nosewheel steering angle
@@ -149,14 +152,6 @@ This allows the aircraft to load in flight or ready at the end of the runway wit
 
 
 ## FAQ's:
-
-**Q: I am not seeing the engine pages in the G1000?**
-
-*A: Make sure to install the Working Title NXi (from the Marketplace). Ensure that the old G1000 Working Title mod is no longer installed, we have moved compatabilty to the NXi available from the marketplace.
-
-Please Note: Current version of Working Title NXi 0.7.1 does not have a working reversionary mode and the engine pages are listed on the MFD only. We believe this will change in the future.
-
-There have also been reports of the GNS750 causing issues with the NXi / Our mod.
 
 **Q: The mod isn't working?**
 

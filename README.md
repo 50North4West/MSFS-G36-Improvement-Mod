@@ -8,6 +8,8 @@ This is the improvement project for the MSFS default G36. It all started as a si
 
 <a target="_blank" href="https://discord.gg/ABm5Rj3876"><img src="https://img.shields.io/discord/860496910367326228?style=for-the-badge" /></a> <a target="_blank" href="https://forums.flightsimulator.com/t/g36-improvement-project/216094/2198"><img src="https://img.shields.io/badge/Discuss-MSFS%20Forum-blue?style=for-the-badge"  /></a>
 
+<a href="https://www.buymeacoffee.com/captmatto" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
 
 ## Installation:
 
@@ -26,6 +28,7 @@ WE HAVE REMOVED THE 'Z' FROM THE FOLDER NAME, ENSURE YOU REMOVE THE OLD VERSION 
 
 **Known Issues**
 * The climate control display corrupts if you try to interact with it.
+* Totally my bad! An extraneous folder snuck into the structure, please double check when overwriting. Will push a new update shortly
 
 **Liveries**
 We have split out the files from modifying the default Bonanza to becoming its own aircraft. This is so we can complete further 3d model changes, and work on the hangar module and deeper systems modelling. Liveries will need to be amended to reflect this new aircraft to work. More information here https://forums.flightsimulator.com/t/g36-improvement-project/216094/1943

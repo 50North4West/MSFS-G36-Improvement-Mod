@@ -4,13 +4,7 @@
 		<!-- Highest LOD -->
 		<!-- minimum display size in % (should be bounding sphere vertical screen size, sphere will often be slightly larger than you expect) -->
 		<!-- default minSize is 0 -->
-		<LOD minSize="150" ModelFile="Bonanza_g36_LOD00.gltf"/>
-		<LOD minSize="90" ModelFile="Bonanza_g36_LOD01.gltf"/>
-		<LOD minSize="60" ModelFile="Bonanza_g36_LOD02.gltf"/>
-		<LOD minSize="40" ModelFile="Bonanza_g36_LOD03.gltf"/>
-		<LOD minSize="25" ModelFile="Bonanza_g36_LOD04.gltf"/>
-		<LOD minSize="10" ModelFile="Bonanza_g36_LOD05.gltf"/>
-		<LOD minSize="1" ModelFile="Bonanza_g36_LOD06.gltf"/>
+		<LOD minSize="1" ModelFile="Bonanza_g36_LOD00.gltf"/>
 	</LODS>
 	<Behaviors>
 		<!-- Includes ###################################### -->

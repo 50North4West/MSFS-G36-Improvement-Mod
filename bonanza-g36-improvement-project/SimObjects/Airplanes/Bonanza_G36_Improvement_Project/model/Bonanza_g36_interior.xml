@@ -69,7 +69,19 @@
         <NODE_ID>G36mod_sun_visor_right3</NODE_ID>
         <ID>right3</ID>
       </UseTemplate>
-    </Component>	
+    </Component>
+<!-- ARMREST ############################## -->
+    <Component ID="G36mod_armrest0" Node="ArmRest.000">
+        <UseTemplate Name="ASOBO_GT_Switch_Code">
+          <NODE_ID>ArmRest.000</NODE_ID>
+          <ANIM_NAME>G36mod_ArmRest000</ANIM_NAME>
+          <ANIM_LAG>75</ANIM_LAG>
+          <ANIM_CODE>(L:XML_G36mod_ArmRest000,bool) 100 *</ANIM_CODE>
+          <LEFT_SINGLE_CODE>(L:XML_G36mod_ArmRest000,bool) ! (&gt;L:XML_G36mod_ArmRest000,bool)</LEFT_SINGLE_CODE>
+          <TOOLTIPID>ARMREST</TOOLTIPID>
+        </UseTemplate>
+    </Component>
+
 <!-- AS1000 ############################## -->
 	<Component ID="AS1000_PFD">
 		<UseTemplate Name="ASOBO_AS1000_PFD_Template">
@@ -243,14 +255,13 @@
 	
 	<Component ID="HANDLING_RudderPedals">
 		<UseTemplate Name="ASOBO_HANDLING_RudderPedals_Template">
-			<RUDDERPEDALS_TYPE>SPLITTED</RUDDERPEDALS_TYPE>
-			<USE_BRAKE/>
-			<DIFFERENTIATE_BRAKE_ANIM_L_R>True</DIFFERENTIATE_BRAKE_ANIM_L_R>
-			<NODE_ID>HANDLING_RudderPedals_1_1</NODE_ID><!-- Any valid node -->
-			<PREFIX_LEFT_PEDALS>HANDLING_RudderPedals_</PREFIX_LEFT_PEDALS>
-			<SUFFIX_LEFT_PEDALS>_1</SUFFIX_LEFT_PEDALS>
-			<PREFIX_RIGHT_PEDALS>HANDLING_RudderPedals_</PREFIX_RIGHT_PEDALS>
-			<SUFFIX_RIGHT_PEDALS>_2</SUFFIX_RIGHT_PEDALS>
+			<RUDDERPEDALS_TYPE>MIXED</RUDDERPEDALS_TYPE>
+			<NODE_ID_L_BRAKE_1>HANDLING_RudderPedals_Brake_1_1</NODE_ID_L_BRAKE_1>
+			<NODE_ID_L_BRAKE_2>HANDLING_RudderPedals_Brake_2_1</NODE_ID_L_BRAKE_2>
+			<NODE_ID_R_BRAKE_1>HANDLING_RudderPedals_Brake_1_2</NODE_ID_R_BRAKE_1>
+			<NODE_ID_R_BRAKE_2>HANDLING_RudderPedals_Brake_2_2</NODE_ID_R_BRAKE_2>
+			<NODE_ID_L_RUDDER>HANDLING_RudderPedals_1_1</NODE_ID_L_RUDDER>
+			<NODE_ID_R_RUDDER>HANDLING_RudderPedals_1_2</NODE_ID_R_RUDDER>
 		</UseTemplate>
 	</Component>
 	

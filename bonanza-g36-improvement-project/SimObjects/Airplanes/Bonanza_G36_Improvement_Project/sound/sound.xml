@@ -291,21 +291,16 @@
 
   </SimVarSounds>
 
-<!-- AvionicSounds ################################################################################# -->
+<!-- G1000 SOUNDS ################################################################################# -->
 
   <AvionicSounds>
-	<!-- <Sound WwiseData="true" WwiseEvent="aural_stall" NodeName="LIGHTING_CABIN_EMISSIVE_1" /> -->
-	<Sound WwiseData="true" WwiseEvent="aural_pull_up" NodeName="LIGHTING_CABIN_EMISSIVE_1" />
-	<!-- <Sound WwiseData="true" WwiseEvent="aural_overspeed" NodeName="LIGHTING_CABIN_EMISSIVE_1" /> -->
-	<Sound WwiseData="true" WwiseEvent="aural_sink_rate" NodeName="LIGHTING_CABIN_EMISSIVE_1" />
-	<Sound WwiseData="true" WwiseEvent="aural_dont_sink" NodeName="LIGHTING_CABIN_EMISSIVE_1" />
-	<Sound WwiseData="true" WwiseEvent="aural_500ft" NodeName="LIGHTING_CABIN_EMISSIVE_1" />
-	<Sound WwiseData="true" WwiseEvent="aural_minimums" NodeName="LIGHTING_CABIN_EMISSIVE_1" />
-	<Sound WwiseData="true" WwiseEvent="tone_caution" NodeName="LIGHTING_CABIN_EMISSIVE_1" ViewPoint="Inside"/>
-	<Sound WwiseData="true" WwiseEvent="tone_warning" NodeName="LIGHTING_CABIN_EMISSIVE_1" ViewPoint="Inside"/>
-	<Sound WwiseData="true" WwiseEvent="tone_altitude_alert_default" NodeName="LIGHTING_CABIN_EMISSIVE_1" ViewPoint="Inside"/>
-	<Sound WwiseData="true" WwiseEvent="aural_taws_system_test_ok" ViewPoint="Inside"/>
-	<Sound WwiseData="false" WwiseEvent="custom_warning_cockpit_sound_04" FileName="custom_taws" NodeName="AS1000_MFD_SCREEN" ViewPoint="Inside"/>
+	<Sound WwiseData="false" WwiseEvent="custom_warning_cockpit_sound_01" FileName="custom_taws" NodeName="AS1000_PFD_SCREEN" ViewPoint="Inside"/>
+	<Sound WwiseData="false" WwiseEvent="custom_warning_cockpit_sound_02" FileName="custom_stall" NodeName="AS1000_PFD_SCREEN" ViewPoint="Inside"/>
+	<Sound WwiseData="false" WwiseEvent="custom_warning_cockpit_sound_03" FileName="custom_gear" NodeName="AS1000_PFD_SCREEN" ViewPoint="Inside"/>
+	<Sound WwiseData="false" WwiseEvent="custom_warning_cockpit_sound_04" FileName="custom_dontsink" NodeName="AS1000_PFD_SCREEN" ViewPoint="Inside"/>
+	<Sound WwiseData="false" WwiseEvent="custom_warning_cockpit_sound_05" FileName="custom_sinkrate" NodeName="AS1000_PFD_SCREEN" ViewPoint="Inside"/>
+	<Sound WwiseData="false" WwiseEvent="custom_warning_cockpit_sound_06" FileName="custom_pullup" NodeName="AS1000_PFD_SCREEN" ViewPoint="Inside"/>
+	<Sound WwiseData="false" WwiseEvent="custom_warning_cockpit_sound_07" FileName="custom_minimums" NodeName="AS1000_PFD_SCREEN" ViewPoint="Inside"/>
   </AvionicSounds>
 
 <!-- ANIMATION SOUNDS ################################################################################# -->

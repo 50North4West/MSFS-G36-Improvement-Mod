@@ -1,0 +1,71 @@
+:root {
+  --bodyHeightScale: 1;
+}
+
+@keyframes TemporaryShow {
+  0%, 100% {
+    visibility: visible;
+  }
+}
+@keyframes TemporaryHide {
+  0%, 100% {
+    visibility: hidden;
+  }
+}
+html {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+html body {
+  -webkit-user-select: none;
+  font-family: var(--font);
+  font-size: calc(var(--viewportHeightRatio) * (36px / 21.6) * var(--currentPageHeight) / 100 );
+  color: white;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#highlight {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+}
+
+#Electricity {
+  width: 100%;
+  height: 100%;
+}
+#Electricity[state=off] {
+  display: none;
+}
+@font-face {
+  font-family: "Alarm-Clock";
+  src: url("/Fonts/QUARTZIT.TTF") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+digital-oat-element {
+  width: 100%;
+  height: 100%;
+  color: limegreen;
+  overflow: hidden;
+}
+digital-oat-element #Mainframe {
+  width: 100%;
+  height: 100%;
+}
+digital-oat-element #textZone {
+  width: 100%;
+  height: 100%;
+  margin-top: 0%;
+  margin-left: 3%;
+  font-size: 92px;
+  font-family: Alarm-Clock;
+  text-align: center;
+}
+
+/*# sourceMappingURL=DigitalOAT.css.map */

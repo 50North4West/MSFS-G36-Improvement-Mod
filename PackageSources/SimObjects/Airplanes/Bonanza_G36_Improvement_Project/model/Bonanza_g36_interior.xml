@@ -70,6 +70,20 @@
         <ID>right3</ID>
       </UseTemplate>
     </Component>
+    <Component ID="G36mod_sun_visor_left4" Node="SunVisorLeft.006">
+        <UseTemplate Name="ASOBO_GT_Switch_Code">
+          <NODE_ID>SunVisorLeft.006</NODE_ID>
+          <LEFT_SINGLE_CODE>0 (&gt;L:XMLVAR_G36mod_sun_visor_left1) 0 (&gt;L:XMLVAR_G36mod_sun_visor_left2) 0 (&gt;L:XMLVAR_G36mod_sun_visor_left3)</LEFT_SINGLE_CODE>
+          <TOOLTIPID>RESET SUN VISOR</TOOLTIPID>
+        </UseTemplate>
+    </Component>
+    <Component ID="G36mod_sun_visor_right4" Node="SunVisorRight.006">
+        <UseTemplate Name="ASOBO_GT_Switch_Code">
+          <NODE_ID>SunVisorRight.006</NODE_ID>
+          <LEFT_SINGLE_CODE>0 (&gt;L:XMLVAR_G36mod_sun_visor_right1) 0 (&gt;L:XMLVAR_G36mod_sun_visor_right2) 0 (&gt;L:XMLVAR_G36mod_sun_visor_right3)</LEFT_SINGLE_CODE>
+          <TOOLTIPID>RESET SUN VISOR</TOOLTIPID>
+        </UseTemplate>
+    </Component>
 <!-- ARMREST ############################## -->
     <Component ID="G36mod_armrest0" Node="ArmRest.000">
         <UseTemplate Name="ASOBO_GT_Switch_Code">

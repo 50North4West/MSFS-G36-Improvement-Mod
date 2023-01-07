@@ -9,6 +9,10 @@
 	 <Behaviors>
 		<Include ModelBehaviorFile="Asobo\Common.xml"/>
 		<Include ModelBehaviorFile="Asobo\GlassCockpit\AS1000.xml"/>
+
+		<!-- System Modelling Files -->
+		 <Include Path="G36X\electricalTemplate.xml"/>
+
 <!-- SUNVISORS ############################## -->	
     <Template Name="G36mod_Sun_Visors">
       <DefaultTemplateParameters>
@@ -588,14 +592,42 @@
             <NODE_ID>Breaker_avionics_master</NODE_ID>
             <PART_ID>Breaker_avionics_master</PART_ID>
             <ANIM_NAME>Breaker_avionics_master</ANIM_NAME>
-            <ANIMTIP_0>RESET AVIONICS MASTER BREAKER</ANIMTIP_0>
-            <ANIMTIP_1>PULL AVIONICS MASTER BREAKER</ANIMTIP_1>
+            <ANIMTIP_0>PULL AVIONICS MASTER BREAKER</ANIMTIP_0>
+            <ANIMTIP_1>RESET AVIONICS MASTER BREAKER</ANIMTIP_1>
             <WWISE_EVENT_1>cabin_light_button_on</WWISE_EVENT_1>
             <WWISE_EVENT_2>cabin_light_button_off</WWISE_EVENT_2>
-            <BUS_INDEX>1</BUS_INDEX>
-            <CIRCUIT_INDEX>1</CIRCUIT_INDEX>
+            <BUS_INDEX>2</BUS_INDEX>
+            <CIRCUIT_INDEX>25</CIRCUIT_INDEX>
         </UseTemplate>
     </Component>
+
+	<Component ID="Breaker_stby_horiz" Node="Breaker_stby_horiz">
+		 <UseTemplate Name="ASOBO_ELECTRICAL_Switch_Breaker_Template">
+			 <NODE_ID>Breaker_stby_horiz</NODE_ID>
+			 <PART_ID>Breaker_stby_horiz</PART_ID>
+			 <ANIM_NAME>Breaker_stby_horiz</ANIM_NAME>
+			 <ANIMTIP_0>PULL STANDBY HORIZON BREAKER</ANIMTIP_0>
+			 <ANIMTIP_1>RESET STANDBY HORIZON BREAKER</ANIMTIP_1>
+			 <WWISE_EVENT_1>cabin_light_button_on</WWISE_EVENT_1>
+			 <WWISE_EVENT_2>cabin_light_button_off</WWISE_EVENT_2>
+			 <BUS_INDEX>1</BUS_INDEX>
+			 <CIRCUIT_INDEX>5</CIRCUIT_INDEX>
+		 </UseTemplate>
+	</Component>
+
+	<Component ID="Breaker_clock" Node="Breaker_clock">
+		 <UseTemplate Name="ASOBO_ELECTRICAL_Switch_Breaker_Template">
+			 <NODE_ID>Breaker_clock</NODE_ID>
+			 <PART_ID>Breaker_clock</PART_ID>
+			 <ANIM_NAME>Breaker_clock</ANIM_NAME>
+			 <ANIMTIP_0>PULL CLOCK BREAKER</ANIMTIP_0>
+			 <ANIMTIP_1>RESET CLOCK BREAKER</ANIMTIP_1>
+			 <WWISE_EVENT_1>cabin_light_button_on</WWISE_EVENT_1>
+			 <WWISE_EVENT_2>cabin_light_button_off</WWISE_EVENT_2>
+			 <BUS_INDEX>2</BUS_INDEX>
+			 <CIRCUIT_INDEX>25</CIRCUIT_INDEX>
+		 </UseTemplate>
+	</Component>
 
 
 	</Behaviors>

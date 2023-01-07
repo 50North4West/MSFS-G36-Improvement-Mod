@@ -15269,36 +15269,46 @@
             }
         },
         {
+            "extensions" : {
+                "ASOBO_material_detail_map" : {
+                    "detailNormalTexture" : {
+                        "index" : 13,
+                        "scale" : 0.6000000238418579
+                    },
+                    "UVScale" : 20,
+                    "blendThreshold" : 0.10000000149011612
+                }
+            },
             "name" : "05_SEATS",
             "normalTexture" : {
-                "index" : 13
+                "index" : 14
             },
             "occlusionTexture" : {
-                "index" : 14
+                "index" : 15
             },
             "pbrMetallicRoughness" : {
                 "baseColorTexture" : {
-                    "index" : 15
+                    "index" : 16
                 },
                 "metallicRoughnessTexture" : {
-                    "index" : 14
+                    "index" : 15
                 }
             }
         },
         {
             "name" : "Main",
             "normalTexture" : {
-                "index" : 16
+                "index" : 17
             },
             "occlusionTexture" : {
-                "index" : 17
+                "index" : 18
             },
             "pbrMetallicRoughness" : {
                 "baseColorTexture" : {
-                    "index" : 18
+                    "index" : 19
                 },
                 "metallicRoughnessTexture" : {
-                    "index" : 17
+                    "index" : 18
                 }
             }
         },
@@ -15330,7 +15340,7 @@
         {
             "alphaMode" : "BLEND",
             "emissiveTexture" : {
-                "index" : 19
+                "index" : 20
             },
             "extensions" : {
                 "ASOBO_material_blend_gbuffer" : {
@@ -15346,7 +15356,7 @@
             "name" : "AS1000_Decals",
             "pbrMetallicRoughness" : {
                 "baseColorTexture" : {
-                    "index" : 20
+                    "index" : 21
                 },
                 "metallicFactor" : 0,
                 "roughnessFactor" : 0
@@ -15359,21 +15369,21 @@
                 1
             ],
             "emissiveTexture" : {
-                "index" : 21
+                "index" : 22
             },
             "name" : "AS1000_WithAutopilot",
             "normalTexture" : {
-                "index" : 22
+                "index" : 23
             },
             "occlusionTexture" : {
-                "index" : 23
+                "index" : 24
             },
             "pbrMetallicRoughness" : {
                 "baseColorTexture" : {
-                    "index" : 24
+                    "index" : 25
                 },
                 "metallicRoughnessTexture" : {
-                    "index" : 23
+                    "index" : 24
                 }
             }
         },
@@ -15384,21 +15394,21 @@
                 1
             ],
             "emissiveTexture" : {
-                "index" : 25
+                "index" : 26
             },
             "name" : "AS1000_NoAutopilot",
             "normalTexture" : {
-                "index" : 26
+                "index" : 27
             },
             "occlusionTexture" : {
-                "index" : 27
+                "index" : 28
             },
             "pbrMetallicRoughness" : {
                 "baseColorTexture" : {
-                    "index" : 28
+                    "index" : 29
                 },
                 "metallicRoughnessTexture" : {
-                    "index" : 27
+                    "index" : 28
                 }
             }
         },
@@ -15462,24 +15472,24 @@
         {
             "name" : "AttitudeIndicator_DA40_TDI",
             "normalTexture" : {
-                "index" : 29
+                "index" : 30
             },
             "occlusionTexture" : {
-                "index" : 30
+                "index" : 31
             },
             "pbrMetallicRoughness" : {
                 "baseColorTexture" : {
-                    "index" : 31
+                    "index" : 32
                 },
                 "metallicRoughnessTexture" : {
-                    "index" : 30
+                    "index" : 31
                 }
             }
         },
         {
             "alphaMode" : "BLEND",
             "emissiveTexture" : {
-                "index" : 32
+                "index" : 33
             },
             "extensions" : {
                 "ASOBO_material_blend_gbuffer" : {
@@ -15494,17 +15504,17 @@
             },
             "name" : "10_DECALS",
             "normalTexture" : {
-                "index" : 33
+                "index" : 34
             },
             "occlusionTexture" : {
-                "index" : 34
+                "index" : 35
             },
             "pbrMetallicRoughness" : {
                 "baseColorTexture" : {
-                    "index" : 35
+                    "index" : 36
                 },
                 "metallicRoughnessTexture" : {
-                    "index" : 34
+                    "index" : 35
                 }
             }
         },
@@ -15523,29 +15533,29 @@
             },
             "name" : "DecalsInfo",
             "occlusionTexture" : {
-                "index" : 36
+                "index" : 37
             },
             "pbrMetallicRoughness" : {
                 "baseColorTexture" : {
-                    "index" : 37
+                    "index" : 38
                 },
                 "metallicRoughnessTexture" : {
-                    "index" : 36
+                    "index" : 37
                 }
             }
         },
         {
             "name" : "12_GAUGES",
             "occlusionTexture" : {
-                "index" : 38
+                "index" : 39
             },
             "pbrMetallicRoughness" : {
                 "baseColorTexture" : {
-                    "index" : 39
+                    "index" : 40
                 },
                 "metallicFactor" : 0,
                 "metallicRoughnessTexture" : {
-                    "index" : 38
+                    "index" : 39
                 }
             }
         },
@@ -15559,7 +15569,7 @@
             },
             "name" : "08_GLASS",
             "occlusionTexture" : {
-                "index" : 40
+                "index" : 41
             },
             "pbrMetallicRoughness" : {
                 "baseColorFactor" : [
@@ -15570,77 +15580,77 @@
                 ],
                 "metallicFactor" : 0,
                 "metallicRoughnessTexture" : {
-                    "index" : 40
+                    "index" : 41
                 },
                 "roughnessFactor" : 0
             }
         },
         {
             "emissiveTexture" : {
-                "index" : 41
+                "index" : 42
             },
             "name" : "LIGHTS",
             "normalTexture" : {
-                "index" : 42
+                "index" : 43
             },
             "occlusionTexture" : {
-                "index" : 43
+                "index" : 44
             },
             "pbrMetallicRoughness" : {
                 "baseColorTexture" : {
-                    "index" : 44
+                    "index" : 45
                 },
                 "metallicRoughnessTexture" : {
-                    "index" : 43
+                    "index" : 44
                 }
             }
         },
         {
             "name" : "06_PEDALS",
             "normalTexture" : {
-                "index" : 45
+                "index" : 46
             },
             "occlusionTexture" : {
-                "index" : 46
+                "index" : 47
             },
             "pbrMetallicRoughness" : {
                 "baseColorTexture" : {
-                    "index" : 47
+                    "index" : 48
                 },
                 "metallicRoughnessTexture" : {
-                    "index" : 46
+                    "index" : 47
                 }
             }
         },
         {
             "name" : "AirspeedIndicator_C172",
             "normalTexture" : {
-                "index" : 48
+                "index" : 49
             },
             "occlusionTexture" : {
-                "index" : 49
+                "index" : 50
             },
             "pbrMetallicRoughness" : {
                 "baseColorTexture" : {
-                    "index" : 50
+                    "index" : 51
                 },
                 "metallicRoughnessTexture" : {
-                    "index" : 49
+                    "index" : 50
                 }
             }
         },
         {
             "name" : "Airpseed",
             "occlusionTexture" : {
-                "index" : 51
+                "index" : 52
             },
             "pbrMetallicRoughness" : {
                 "baseColorTexture" : {
-                    "index" : 52
+                    "index" : 53
                 },
                 "metallicFactor" : 0,
                 "metallicRoughnessTexture" : {
-                    "index" : 51
+                    "index" : 52
                 },
                 "roughnessFactor" : 0.8999999761581421
             }
@@ -15661,7 +15671,7 @@
             "name" : "Compass",
             "pbrMetallicRoughness" : {
                 "baseColorTexture" : {
-                    "index" : 53
+                    "index" : 54
                 },
                 "metallicFactor" : 0,
                 "roughnessFactor" : 0.800000011920929
@@ -15669,7 +15679,7 @@
         },
         {
             "emissiveTexture" : {
-                "index" : 54
+                "index" : 55
             },
             "name" : "13_GLARESHIELD",
             "pbrMetallicRoughness" : {
@@ -15723,17 +15733,17 @@
         {
             "name" : "SEAT_BELT",
             "normalTexture" : {
-                "index" : 55
+                "index" : 56
             },
             "occlusionTexture" : {
-                "index" : 56
+                "index" : 57
             },
             "pbrMetallicRoughness" : {
                 "baseColorTexture" : {
-                    "index" : 57
+                    "index" : 58
                 },
                 "metallicRoughnessTexture" : {
-                    "index" : 56
+                    "index" : 57
                 }
             }
         },
@@ -15785,15 +15795,15 @@
         {
             "alphaMode" : "BLEND",
             "emissiveTexture" : {
-                "index" : 58
+                "index" : 59
             },
             "extensions" : {
                 "ASOBO_material_detail_map" : {
                     "detailColorTexture" : {
-                        "index" : 59
+                        "index" : 60
                     },
                     "detailNormalTexture" : {
-                        "index" : 60
+                        "index" : 61
                     },
                     "UVScale" : 3.5,
                     "blendThreshold" : 0.10000000149011612
@@ -15824,28 +15834,28 @@
         {
             "name" : "09_CABIN",
             "normalTexture" : {
-                "index" : 61
+                "index" : 62
             },
             "occlusionTexture" : {
-                "index" : 62
+                "index" : 63
             },
             "pbrMetallicRoughness" : {
                 "baseColorTexture" : {
-                    "index" : 63
+                    "index" : 64
                 },
                 "metallicRoughnessTexture" : {
-                    "index" : 62
+                    "index" : 63
                 }
             }
         },
         {
             "name" : "FLOOR",
             "normalTexture" : {
-                "index" : 64
+                "index" : 65
             },
             "pbrMetallicRoughness" : {
                 "baseColorTexture" : {
-                    "index" : 65
+                    "index" : 66
                 },
                 "metallicFactor" : 0,
                 "roughnessFactor" : 0.8799999952316284
@@ -15854,14 +15864,14 @@
         {
             "name" : "04_YOKE.001",
             "normalTexture" : {
-                "index" : 66
+                "index" : 67
             },
             "pbrMetallicRoughness" : {
                 "baseColorTexture" : {
-                    "index" : 67
+                    "index" : 68
                 },
                 "metallicRoughnessTexture" : {
-                    "index" : 68
+                    "index" : 69
                 }
             }
         },
@@ -22455,6 +22465,10 @@
         },
         {
             "sampler" : 0,
+            "source" : 66
+        },
+        {
+            "sampler" : 0,
             "source" : 10
         },
         {
@@ -22531,6 +22545,11 @@
             "mimeType" : "image/png",
             "name" : "BONANZA_COCKPIT_YOKE_ALBD",
             "uri" : "BONANZA_COCKPIT_YOKE_ALBD.png"
+        },
+        {
+            "mimeType" : "image/png",
+            "name" : "Leather_Detail_norm",
+            "uri" : "Leather_Detail_norm.png"
         },
         {
             "mimeType" : "image/png",

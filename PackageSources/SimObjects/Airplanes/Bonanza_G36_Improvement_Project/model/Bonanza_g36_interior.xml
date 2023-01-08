@@ -11,7 +11,11 @@
 		<Include ModelBehaviorFile="Asobo\GlassCockpit\AS1000.xml"/>
 
 		<!-- System Modelling Files -->
-		 <Include Path="G36X\electricalTemplate.xml"/>
+		<Include Path="G36X\electricalTemplate.xml"/>
+
+		<Component ID="G36_Custom_Behaviour">
+			<UseTemplate Name="Electrical"></UseTemplate>
+		</Component>
 
 <!-- SUNVISORS ############################## -->	
     <Template Name="G36mod_Sun_Visors">
@@ -88,6 +92,7 @@
           <TOOLTIPID>RESET SUN VISOR</TOOLTIPID>
         </UseTemplate>
     </Component>
+
 <!-- ARMREST ############################## -->
     <Component ID="G36mod_armrest0" Node="ArmRest.000">
         <UseTemplate Name="ASOBO_GT_Switch_Code">

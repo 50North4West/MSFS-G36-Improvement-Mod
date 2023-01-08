@@ -1,3 +1,12 @@
 <!-- Electrical System Modelling -->
 
-    <!-- Avionics Master Breaker -->
+    <!-- Battery 2 Switch -->
+    <!-- TODO the logic behind engine RPM -->
+    <Template Name="Electrical">
+        <Update Frequency="5">
+            (A:ELECTRICAL MASTER BATTERY:2, Bool) 1 ==
+            if{
+                6 1 (&gt;K:ELECTRICAL_BUS_TO_BUS_CONNECTION_TOGGLE)
+            }
+        </Update>
+    </Template>

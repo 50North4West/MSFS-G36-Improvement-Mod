@@ -587,6 +587,7 @@
 	</Component>
 
 	<!-- CIRCUIT BREAKERS ###################################-->
+	<!-- TODO Complete refactor of circuit system in systems.cfg -->
 
 	<!-- Left Panel, top row, Avionics Breaker -->
     <Component ID="Breaker_avionics_master" Node="Breaker_avionics_master">
@@ -648,7 +649,7 @@
 		 </UseTemplate>
 	</Component>
 
-	<!-- Left Panel, top row, Air Conditioning TODO, AC circuit -->
+	<!-- Left Panel, top row, Air Conditioning -->
 	<Component ID="Breaker_air_cond" Node="Breaker_air_cond">
 		 <UseTemplate Name="ASOBO_ELECTRICAL_Switch_Breaker_Template">
 			 <NODE_ID>Breaker_air_cond</NODE_ID>
@@ -658,12 +659,12 @@
 			 <ANIMTIP_1>RESET AIR CONDITIONING BREAKER</ANIMTIP_1>
 			 <WWISE_EVENT_1>cabin_light_button_on</WWISE_EVENT_1>
 			 <WWISE_EVENT_2>cabin_light_button_off</WWISE_EVENT_2>
-			 <BUS_INDEX>2</BUS_INDEX>
-			 <CIRCUIT_INDEX>25</CIRCUIT_INDEX>
+			 <BUS_INDEX>1</BUS_INDEX>
+			 <CIRCUIT_INDEX>48</CIRCUIT_INDEX>
 		 </UseTemplate>
 	</Component>
 
-	<!-- Left Panel, top row, Air Conditioning TODO, AC blower circuit -->
+	<!-- Left Panel, top row, Air Conditioning -->
 	<Component ID="Breaker_air_cond_blower" Node="Breaker_air_cond_blower">
 		<UseTemplate Name="ASOBO_ELECTRICAL_Switch_Breaker_Template">
 			 <NODE_ID>Breaker_air_cond_blower</NODE_ID>
@@ -673,8 +674,8 @@
 			 <ANIMTIP_1>RESET AIR CONDITIONING BLOWER BREAKER</ANIMTIP_1>
 			 <WWISE_EVENT_1>cabin_light_button_on</WWISE_EVENT_1>
 			 <WWISE_EVENT_2>cabin_light_button_off</WWISE_EVENT_2>
-			 <BUS_INDEX>2</BUS_INDEX>
-			 <CIRCUIT_INDEX>25</CIRCUIT_INDEX>
+			 <BUS_INDEX>1</BUS_INDEX>
+			 <CIRCUIT_INDEX>49</CIRCUIT_INDEX>
 		</UseTemplate>
 	</Component>
 
@@ -825,6 +826,126 @@
 			 <WWISE_EVENT_2>cabin_light_button_off</WWISE_EVENT_2>
 			 <BUS_INDEX>1</BUS_INDEX>
 			 <CIRCUIT_INDEX>19</CIRCUIT_INDEX>
+		 </UseTemplate>
+	</Component>
+
+	<!-- Left Panel, bottom row, Hour Meter TODO, add circuit -->
+	<Component ID="Breaker_hour_meter" Node="Breaker_hour_meter">
+		 <UseTemplate Name="ASOBO_ELECTRICAL_Switch_Breaker_Template">
+			 <NODE_ID>Breaker_hour_meter</NODE_ID>
+			 <PART_ID>Breaker_hour_meter</PART_ID>
+			 <ANIM_NAME>Breaker_hour_meter</ANIM_NAME>
+			 <ANIMTIP_0>PULL HOUR METER BREAKER</ANIMTIP_0>
+			 <ANIMTIP_1>RESET HOUR METER BREAKER</ANIMTIP_1>
+			 <WWISE_EVENT_1>cabin_light_button_on</WWISE_EVENT_1>
+			 <WWISE_EVENT_2>cabin_light_button_off</WWISE_EVENT_2>
+			 <BUS_INDEX>1</BUS_INDEX>
+			 <CIRCUIT_INDEX>19</CIRCUIT_INDEX>
+		 </UseTemplate>
+	</Component>
+
+	<!-- Left Panel, bottom row, Utility Power TODO, add circuit -->
+	<Component ID="Breaker_util_pwr" Node="Breaker_util_pwr">
+		 <UseTemplate Name="ASOBO_ELECTRICAL_Switch_Breaker_Template">
+			 <NODE_ID>Breaker_util_pwr</NODE_ID>
+			 <PART_ID>Breaker_util_pwr</PART_ID>
+			 <ANIM_NAME>Breaker_util_pwr</ANIM_NAME>
+			 <ANIMTIP_0>PULL UTILITY POWER BREAKER</ANIMTIP_0>
+			 <ANIMTIP_1>RESET UTILITY POWER BREAKER</ANIMTIP_1>
+			 <WWISE_EVENT_1>cabin_light_button_on</WWISE_EVENT_1>
+			 <WWISE_EVENT_2>cabin_light_button_off</WWISE_EVENT_2>
+			 <BUS_INDEX>1</BUS_INDEX>
+			 <CIRCUIT_INDEX>19</CIRCUIT_INDEX>
+		 </UseTemplate>
+	</Component>
+
+	<!-- Left Panel, bottom row, Annunciator Lights TODO, add circuit -->
+	<Component ID="Breaker_annun_lights" Node="Breaker_annun_lights">
+		 <UseTemplate Name="ASOBO_ELECTRICAL_Switch_Breaker_Template">
+			 <NODE_ID>Breaker_annun_lights</NODE_ID>
+			 <PART_ID>Breaker_annun_lights</PART_ID>
+			 <ANIM_NAME>Breaker_annun_lights</ANIM_NAME>
+			 <ANIMTIP_0>PULL ANNUNCIATOR LIGHTS BREAKER</ANIMTIP_0>
+			 <ANIMTIP_1>RESET ANNUNCIATOR LIGHTS BREAKER</ANIMTIP_1>
+			 <WWISE_EVENT_1>cabin_light_button_on</WWISE_EVENT_1>
+			 <WWISE_EVENT_2>cabin_light_button_off</WWISE_EVENT_2>
+			 <BUS_INDEX>1</BUS_INDEX>
+			 <CIRCUIT_INDEX>19</CIRCUIT_INDEX>
+		 </UseTemplate>
+	</Component>
+
+	<!-- Left Panel, bottom row, Surface Deice TODO, assuming this is Prop Deice, check POH, add circuit -->
+	<Component ID="Breaker_surface_de-ice" Node="Breaker_surface_de-ice">
+		 <UseTemplate Name="ASOBO_ELECTRICAL_Switch_Breaker_Template">
+			 <NODE_ID>Breaker_surface_de-ice</NODE_ID>
+			 <PART_ID>Breaker_surface_de-ice</PART_ID>
+			 <ANIM_NAME>Breaker_surface_de-ice</ANIM_NAME>
+			 <ANIMTIP_0>PULL SURFACE DEICE BREAKER</ANIMTIP_0>
+			 <ANIMTIP_1>RESET SURFACE DEICE BREAKER</ANIMTIP_1>
+			 <WWISE_EVENT_1>cabin_light_button_on</WWISE_EVENT_1>
+			 <WWISE_EVENT_2>cabin_light_button_off</WWISE_EVENT_2>
+			 <BUS_INDEX>1</BUS_INDEX>
+			 <CIRCUIT_INDEX>19</CIRCUIT_INDEX>
+		 </UseTemplate>
+	</Component>
+
+	<!-- Left Panel, bottom row, Stall Warning -->
+	<Component ID="Breaker_stall_warn" Node="Breaker_stall_warn">
+		<UseTemplate Name="ASOBO_ELECTRICAL_Switch_Breaker_Template">
+			 <NODE_ID>Breaker_stall_warn</NODE_ID>
+			 <PART_ID>Breaker_stall_warn</PART_ID>
+			 <ANIM_NAME>Breaker_stall_warn</ANIM_NAME>
+			 <ANIMTIP_0>PULL STALL WARNING BREAKER</ANIMTIP_0>
+			 <ANIMTIP_1>RESET STALL WARNING BREAKER</ANIMTIP_1>
+			 <WWISE_EVENT_1>cabin_light_button_on</WWISE_EVENT_1>
+			 <WWISE_EVENT_2>cabin_light_button_off</WWISE_EVENT_2>
+			 <BUS_INDEX>1</BUS_INDEX>
+			 <CIRCUIT_INDEX>46</CIRCUIT_INDEX>
+		</UseTemplate>
+	</Component>
+
+	<!-- Left Panel, bottom row, Landing Gear Warning Lights -->
+	<Component ID="Breaker_ldg_gr_warn" Node="Breaker_ldg_gr_warn">
+		 <UseTemplate Name="ASOBO_ELECTRICAL_Switch_Breaker_Template">
+			 <NODE_ID>Breaker_ldg_gr_warn</NODE_ID>
+			 <PART_ID>Breaker_ldg_gr_warn</PART_ID>
+			 <ANIM_NAME>Breaker_ldg_gr_warn</ANIM_NAME>
+			 <ANIMTIP_0>PULL LANDING GEAR WARNING LIGHTS BREAKER</ANIMTIP_0>
+			 <ANIMTIP_1>RESET LANDING GEAR WARNING LIGHTS BREAKER</ANIMTIP_1>
+			 <WWISE_EVENT_1>cabin_light_button_on</WWISE_EVENT_1>
+			 <WWISE_EVENT_2>cabin_light_button_off</WWISE_EVENT_2>
+			 <BUS_INDEX>1</BUS_INDEX>
+			 <CIRCUIT_INDEX>41</CIRCUIT_INDEX>
+		 </UseTemplate>
+	</Component>
+
+	<!-- Left Panel, bottom row, Flap Relay TODO, add relay circuit -->
+	<Component ID="Breaker_flap_relay" Node="Breaker_flap_relay">
+		 <UseTemplate Name="ASOBO_ELECTRICAL_Switch_Breaker_Template">
+			 <NODE_ID>Breaker_flap_relay</NODE_ID>
+			 <PART_ID>Breaker_flap_relay</PART_ID>
+			 <ANIM_NAME>Breaker_flap_relay</ANIM_NAME>
+			 <ANIMTIP_0>PULL FLAP RELAY BREAKER</ANIMTIP_0>
+			 <ANIMTIP_1>RESET FLAP RELAY BREAKER</ANIMTIP_1>
+			 <WWISE_EVENT_1>cabin_light_button_on</WWISE_EVENT_1>
+			 <WWISE_EVENT_2>cabin_light_button_off</WWISE_EVENT_2>
+			 <BUS_INDEX>1</BUS_INDEX>
+			 <CIRCUIT_INDEX>41</CIRCUIT_INDEX>
+		 </UseTemplate>
+	</Component>
+
+	<!-- Left Panel, bottom row, Flap Motor -->
+	<Component ID="Breaker_flap_motor" Node="Breaker_flap_motor">
+		 <UseTemplate Name="ASOBO_ELECTRICAL_Switch_Breaker_Template">
+			 <NODE_ID>Breaker_flap_motor</NODE_ID>
+			 <PART_ID>Breaker_flap_motor</PART_ID>
+			 <ANIM_NAME>Breaker_flap_motor</ANIM_NAME>
+			 <ANIMTIP_0>PULL FLAP MOTOR BREAKER</ANIMTIP_0>
+			 <ANIMTIP_1>RESET FLAP MOTOR BREAKER</ANIMTIP_1>
+			 <WWISE_EVENT_1>cabin_light_button_on</WWISE_EVENT_1>
+			 <WWISE_EVENT_2>cabin_light_button_off</WWISE_EVENT_2>
+			 <BUS_INDEX>1</BUS_INDEX>
+			 <CIRCUIT_INDEX>6</CIRCUIT_INDEX>
 		 </UseTemplate>
 	</Component>
 

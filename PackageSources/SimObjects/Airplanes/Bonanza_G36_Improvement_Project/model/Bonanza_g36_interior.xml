@@ -587,6 +587,8 @@
 	</Component>
 
 	<!-- CIRCUIT BREAKERS ###################################-->
+
+	<!-- Left Panel, top row, Avionics Breaker -->
     <Component ID="Breaker_avionics_master" Node="Breaker_avionics_master">
         <UseTemplate Name="ASOBO_ELECTRICAL_Switch_Breaker_Template">
             <NODE_ID>Breaker_avionics_master</NODE_ID>
@@ -601,6 +603,7 @@
         </UseTemplate>
     </Component>
 
+	<!-- Left Panel, top row, Standby Horizon -->
 	<Component ID="Breaker_stby_horiz" Node="Breaker_stby_horiz">
 		 <UseTemplate Name="ASOBO_ELECTRICAL_Switch_Breaker_Template">
 			 <NODE_ID>Breaker_stby_horiz</NODE_ID>
@@ -615,6 +618,7 @@
 		 </UseTemplate>
 	</Component>
 
+	<!-- Left Panel, top row, Clock TODO, clock circuit -->
 	<Component ID="Breaker_clock" Node="Breaker_clock">
 		 <UseTemplate Name="ASOBO_ELECTRICAL_Switch_Breaker_Template">
 			 <NODE_ID>Breaker_clock</NODE_ID>
@@ -629,6 +633,200 @@
 		 </UseTemplate>
 	</Component>
 
+	<!-- Left Panel, top row, Vent Blower TODO, vent blower circuit -->
+	<Component ID="Breaker_vent_air_blower" Node="Breaker_vent_air_blower">
+		 <UseTemplate Name="ASOBO_ELECTRICAL_Switch_Breaker_Template">
+			 <NODE_ID>Breaker_vent_air_blower</NODE_ID>
+			 <PART_ID>Breaker_vent_air_blower</PART_ID>
+			 <ANIM_NAME>Breaker_vent_air_blower</ANIM_NAME>
+			 <ANIMTIP_0>PULL VENT AIR BLOWER BREAKER</ANIMTIP_0>
+			 <ANIMTIP_1>RESET VENT AIR BLOWER BREAKER</ANIMTIP_1>
+			 <WWISE_EVENT_1>cabin_light_button_on</WWISE_EVENT_1>
+			 <WWISE_EVENT_2>cabin_light_button_off</WWISE_EVENT_2>
+			 <BUS_INDEX>2</BUS_INDEX>
+			 <CIRCUIT_INDEX>25</CIRCUIT_INDEX>
+		 </UseTemplate>
+	</Component>
 
-	</Behaviors>
+	<!-- Left Panel, top row, Air Conditioning TODO, AC circuit -->
+	<Component ID="Breaker_air_cond" Node="Breaker_air_cond">
+		 <UseTemplate Name="ASOBO_ELECTRICAL_Switch_Breaker_Template">
+			 <NODE_ID>Breaker_air_cond</NODE_ID>
+			 <PART_ID>Breaker_air_cond</PART_ID>
+			 <ANIM_NAME>Breaker_air_cond</ANIM_NAME>
+			 <ANIMTIP_0>PULL AIR CONDITIONING BREAKER</ANIMTIP_0>
+			 <ANIMTIP_1>RESET AIR CONDITIONING BREAKER</ANIMTIP_1>
+			 <WWISE_EVENT_1>cabin_light_button_on</WWISE_EVENT_1>
+			 <WWISE_EVENT_2>cabin_light_button_off</WWISE_EVENT_2>
+			 <BUS_INDEX>2</BUS_INDEX>
+			 <CIRCUIT_INDEX>25</CIRCUIT_INDEX>
+		 </UseTemplate>
+	</Component>
+
+	<!-- Left Panel, top row, Air Conditioning TODO, AC blower circuit -->
+	<Component ID="Breaker_air_cond_blower" Node="Breaker_air_cond_blower">
+		<UseTemplate Name="ASOBO_ELECTRICAL_Switch_Breaker_Template">
+			 <NODE_ID>Breaker_air_cond_blower</NODE_ID>
+			 <PART_ID>Breaker_air_cond_blower</PART_ID>
+			 <ANIM_NAME>Breaker_air_cond_blower</ANIM_NAME>
+			 <ANIMTIP_0>PULL AIR CONDITIONING BLOWER BREAKER</ANIMTIP_0>
+			 <ANIMTIP_1>RESET AIR CONDITIONING BLOWER BREAKER</ANIMTIP_1>
+			 <WWISE_EVENT_1>cabin_light_button_on</WWISE_EVENT_1>
+			 <WWISE_EVENT_2>cabin_light_button_off</WWISE_EVENT_2>
+			 <BUS_INDEX>2</BUS_INDEX>
+			 <CIRCUIT_INDEX>25</CIRCUIT_INDEX>
+		</UseTemplate>
+	</Component>
+
+	<!-- Left Panel, top row, Fuel Boost Pump Left TODO, check fuel pump circuit, currently only 1 modelled -->
+	<Component ID="Breaker_fuel_boost_pump_left" Node="Breaker_fuel_boost_pump_left">
+		 <UseTemplate Name="ASOBO_ELECTRICAL_Switch_Breaker_Template">
+			 <NODE_ID>Breaker_fuel_boost_pump_left</NODE_ID>
+			 <PART_ID>Breaker_fuel_boost_pump_left</PART_ID>
+			 <ANIM_NAME>Breaker_fuel_boost_pump_left</ANIM_NAME>
+			 <ANIMTIP_0>PULL LEFT FUEL BOOST PUMP BREAKER</ANIMTIP_0>
+			 <ANIMTIP_1>RESET LEFT FUEL BOOST PUMP BREAKER</ANIMTIP_1>
+			 <WWISE_EVENT_1>cabin_light_button_on</WWISE_EVENT_1>
+			 <WWISE_EVENT_2>cabin_light_button_off</WWISE_EVENT_2>
+			 <BUS_INDEX>2</BUS_INDEX>
+			 <CIRCUIT_INDEX>25</CIRCUIT_INDEX>
+		 </UseTemplate>
+	</Component>
+
+	<!-- Left Panel, top row, Fuel Boost Pump Right TODO, check fuel pump circuit, currently only 1 modelled -->
+	<Component ID="Breaker_fuel_boost_pump_right" Node="Breaker_fuel_boost_pump_right">
+		 <UseTemplate Name="ASOBO_ELECTRICAL_Switch_Breaker_Template">
+			 <NODE_ID>Breaker_fuel_boost_pump_right</NODE_ID>
+			 <PART_ID>Breaker_fuel_boost_pump_right</PART_ID>
+			 <ANIM_NAME>Breaker_fuel_boost_pump_right</ANIM_NAME>
+			 <ANIMTIP_0>PULL RIGHT FUEL BOOST PUMP BREAKER</ANIMTIP_0>
+			 <ANIMTIP_1>RESET RIGHT FUEL BOOST PUMP BREAKER</ANIMTIP_1>
+			 <WWISE_EVENT_1>cabin_light_button_on</WWISE_EVENT_1>
+			 <WWISE_EVENT_2>cabin_light_button_off</WWISE_EVENT_2>
+			 <BUS_INDEX>2</BUS_INDEX>
+			 <CIRCUIT_INDEX>25</CIRCUIT_INDEX>
+		 </UseTemplate>
+	</Component>
+
+	<!-- Left Panel, top row, Gear Motor -->
+	<Component ID="Breaker_landing_gear_motor" Node="Breaker_landing_gear_motor">
+		 <UseTemplate Name="ASOBO_ELECTRICAL_Switch_Breaker_Template">
+			 <NODE_ID>Breaker_landing_gear_motor</NODE_ID>
+			 <PART_ID>Breaker_landing_gear_motor</PART_ID>
+			 <ANIM_NAME>Breaker_landing_gear_motor</ANIM_NAME>
+			 <ANIMTIP_0>PULL GEAR MOTOR BREAKER</ANIMTIP_0>
+			 <ANIMTIP_1>RESET GEAR MOTOR BREAKER</ANIMTIP_1>
+			 <WWISE_EVENT_1>cabin_light_button_on</WWISE_EVENT_1>
+			 <WWISE_EVENT_2>cabin_light_button_off</WWISE_EVENT_2>
+			 <BUS_INDEX>1</BUS_INDEX>
+			 <CIRCUIT_INDEX>9</CIRCUIT_INDEX>
+		 </UseTemplate>
+	</Component>
+
+	<!-- Left Panel, top row, cabin Heater TODO, cabin heater circuit -->
+	<Component ID="Breaker_cabin_heater" Node="Breaker_cabin_heater">
+		 <UseTemplate Name="ASOBO_ELECTRICAL_Switch_Breaker_Template">
+			 <NODE_ID>Breaker_cabin_heater</NODE_ID>
+			 <PART_ID>Breaker_cabin_heater</PART_ID>
+			 <ANIM_NAME>Breaker_cabin_heater</ANIM_NAME>
+			 <ANIMTIP_0>PULL CABIN HEATER BREAKER</ANIMTIP_0>
+			 <ANIMTIP_1>RESET CABIN HEATER BREAKER</ANIMTIP_1>
+			 <WWISE_EVENT_1>cabin_light_button_on</WWISE_EVENT_1>
+			 <WWISE_EVENT_2>cabin_light_button_off</WWISE_EVENT_2>
+			 <BUS_INDEX>1</BUS_INDEX>
+			 <CIRCUIT_INDEX>9</CIRCUIT_INDEX>
+		 </UseTemplate>
+	</Component>
+
+	<!-- Left Panel, middle row, right start relay TODO, start relay circuit -->
+	<Component ID="Breaker_start_realy_right" Node="Breaker_start_realy_right">
+		 <UseTemplate Name="ASOBO_ELECTRICAL_Switch_Breaker_Template">
+			 <NODE_ID>Breaker_start_realy_right</NODE_ID>
+			 <PART_ID>Breaker_start_realy_right</PART_ID>
+			 <ANIM_NAME>Breaker_start_realy_right</ANIM_NAME>
+			 <ANIMTIP_0>PULL RIGHT START RELAY BREAKER</ANIMTIP_0>
+			 <ANIMTIP_1>RESET RIGHT START RELAY BREAKER</ANIMTIP_1>
+			 <WWISE_EVENT_1>cabin_light_button_on</WWISE_EVENT_1>
+			 <WWISE_EVENT_2>cabin_light_button_off</WWISE_EVENT_2>
+			 <BUS_INDEX>1</BUS_INDEX>
+			 <CIRCUIT_INDEX>9</CIRCUIT_INDEX>
+		 </UseTemplate>
+	</Component>
+
+	<!-- Left Panel, middle row, left start relay TODO, start relay circuit -->
+	<Component ID="Breaker_start_relay_left" Node="Breaker_start_relay_left">
+		 <UseTemplate Name="ASOBO_ELECTRICAL_Switch_Breaker_Template">
+			 <NODE_ID>Breaker_start_relay_left</NODE_ID>
+			 <PART_ID>Breaker_start_relay_left</PART_ID>
+			 <ANIM_NAME>Breaker_start_relay_left</ANIM_NAME>
+			 <ANIMTIP_0>PULL LEFT START RELAY BREAKER</ANIMTIP_0>
+			 <ANIMTIP_1>RESET LEFT START RELAY BREAKER</ANIMTIP_1>
+			 <WWISE_EVENT_1>cabin_light_button_on</WWISE_EVENT_1>
+			 <WWISE_EVENT_2>cabin_light_button_off</WWISE_EVENT_2>
+			 <BUS_INDEX>1</BUS_INDEX>
+			 <CIRCUIT_INDEX>9</CIRCUIT_INDEX>
+		 </UseTemplate>
+	</Component>
+
+	<!-- Left Panel, middle row, landing gear lights TODO, landing light circuit -->
+	<Component ID="Breaker_ldg_gr_pos_lts" Node="Breaker_ldg_gr_pos_lts">
+		 <UseTemplate Name="ASOBO_ELECTRICAL_Switch_Breaker_Template">
+			 <NODE_ID>Breaker_ldg_gr_pos_lts</NODE_ID>
+			 <PART_ID>Breaker_ldg_gr_pos_lts</PART_ID>
+			 <ANIM_NAME>Breaker_ldg_gr_pos_lts</ANIM_NAME>
+			 <ANIMTIP_0>PULL LANDING LIGHT BREAKER</ANIMTIP_0>
+			 <ANIMTIP_1>RESET LANDING LIGHT BREAKER</ANIMTIP_1>
+			 <WWISE_EVENT_1>cabin_light_button_on</WWISE_EVENT_1>
+			 <WWISE_EVENT_2>cabin_light_button_off</WWISE_EVENT_2>
+			 <BUS_INDEX>1</BUS_INDEX>
+			 <CIRCUIT_INDEX>9</CIRCUIT_INDEX>
+		 </UseTemplate>
+	</Component>
+
+	<!-- Left Panel, middle row, cabin lights TODO, merge cabin circuits 19, 20, 21 -->
+	<Component ID="Breaker_cabin_lts" Node="Breaker_cabin_lts">
+		 <UseTemplate Name="ASOBO_ELECTRICAL_Switch_Breaker_Template">
+			 <NODE_ID>Breaker_cabin_lts</NODE_ID>
+			 <PART_ID>Breaker_cabin_lts</PART_ID>
+			 <ANIM_NAME>Breaker_cabin_lts</ANIM_NAME>
+			 <ANIMTIP_0>PULL CABIN LIGHT BREAKER</ANIMTIP_0>
+			 <ANIMTIP_1>RESET CABIN LIGHT BREAKER</ANIMTIP_1>
+			 <WWISE_EVENT_1>cabin_light_button_on</WWISE_EVENT_1>
+			 <WWISE_EVENT_2>cabin_light_button_off</WWISE_EVENT_2>
+			 <BUS_INDEX>1</BUS_INDEX>
+			 <CIRCUIT_INDEX>19</CIRCUIT_INDEX>
+		 </UseTemplate>
+	</Component>
+
+	<!-- Left Panel, middle row, R ENG AFR SENSOR TODO, what is this! check POH -->
+	<Component ID="Breaker_rengafrsnsr" Node="Breaker_rengafrsnsr">
+		 <UseTemplate Name="ASOBO_ELECTRICAL_Switch_Breaker_Template">
+			 <NODE_ID>Breaker_rengafrsnsr</NODE_ID>
+			 <PART_ID>Breaker_rengafrsnsr</PART_ID>
+			 <ANIM_NAME>Breaker_rengafrsnsr</ANIM_NAME>
+			 <ANIMTIP_0>PULL ENG AFR SENSOR BREAKER</ANIMTIP_0>
+			 <ANIMTIP_1>RESET ENG AFR SENSOR BREAKER</ANIMTIP_1>
+			 <WWISE_EVENT_1>cabin_light_button_on</WWISE_EVENT_1>
+			 <WWISE_EVENT_2>cabin_light_button_off</WWISE_EVENT_2>
+			 <BUS_INDEX>1</BUS_INDEX>
+			 <CIRCUIT_INDEX>19</CIRCUIT_INDEX>
+		 </UseTemplate>
+	</Component>
+
+	<!-- Left Panel, middle row, Prop Sync TODO, what does this do? check POH -->
+	<Component ID="Breaker_propsync" Node="Breaker_propsync">
+		 <UseTemplate Name="ASOBO_ELECTRICAL_Switch_Breaker_Template">
+			 <NODE_ID>Breaker_propsync</NODE_ID>
+			 <PART_ID>Breaker_propsync</PART_ID>
+			 <ANIM_NAME>Breaker_propsync</ANIM_NAME>
+			 <ANIMTIP_0>PULL PROP SYNC BREAKER</ANIMTIP_0>
+			 <ANIMTIP_1>RESET PROP SYNC BREAKER</ANIMTIP_1>
+			 <WWISE_EVENT_1>cabin_light_button_on</WWISE_EVENT_1>
+			 <WWISE_EVENT_2>cabin_light_button_off</WWISE_EVENT_2>
+			 <BUS_INDEX>1</BUS_INDEX>
+			 <CIRCUIT_INDEX>19</CIRCUIT_INDEX>
+		 </UseTemplate>
+	</Component>
+
+	 </Behaviors>
 </ModelInfo>

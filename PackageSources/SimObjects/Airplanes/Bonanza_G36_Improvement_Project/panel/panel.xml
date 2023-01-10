@@ -1444,12 +1444,12 @@
             <Text>
                 <Left>
                     <ToFixed precision="1">
-                        <Simvar name="L:XMLVAR_BUS1_VOLT_INDICATED" unit="volts"/>
+                        <Simvar name="ELECTRICAL MAIN BUS VOLTAGE:1" unit="volts"/>
                     </ToFixed>
                 </Left>
                 <Right>
                     <ToFixed precision="1">
-                        <Simvar name="L:XMLVAR_BUS2_VOLT_INDICATED" unit="volts"/>
+                        <Simvar name="ELECTRICAL MAIN BUS VOLTAGE:6" unit="volts"/>
                     </ToFixed>
                 </Right>
             </Text>
